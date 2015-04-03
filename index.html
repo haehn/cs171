@@ -8,7 +8,7 @@
     <script src="libs/d3/d3.min.js" charset="utf-8"></script>
     <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
     <script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
-
+    <script src="http://d3js.org/queue.v1.min.js"></script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
@@ -87,14 +87,7 @@
                     <text x="50" y="50">HERE should be SummaryVis</text>
                 </svg>
             </div>
-
         </div>
-
-
-
-
-
-
     </div>
 
 
@@ -105,6 +98,7 @@
             //--- HERE IS WHERE ALL THE MAGIC STARTS --
             //==========================================
             // variables keeping global knowledge of the data
+            var startTime;
             var allData = [];
             var metaData = {};
             // this function can convert Date objects to a string
@@ -123,6 +117,8 @@
             // call this function after both files are loaded -- error should be "null" if no error
             var dataLoaded = function (error, _allData, _metaData) {
                 if (!error) {
+                    var end = new Date();
+                    console.log(Math.abs(end - startTime));
                     // make our data look nicer and more useful:
                     // per Day we want to have an object looking like this:
                     /*
@@ -162,11 +158,29 @@
             var startHere = function(){
                 //TODO: load data here and call "dataLoaded" afterwards
                 // Hint: http://giscollective.org/d3-queue-js/
-                // bind reset zoom button to a function (-- ONLY FOR BONUS --)
-                d3.select("#fitInBtn").on("click", function() {
+                startTime = new Date();
+                var q = queue();
+
+                for(var year = 1800; year <= 1900;year=year + 10)
+                {
+                    q = q.defer(d3.csv, "data/" + year + "_city.csv");
+                    q = q.defer(d3.csv, "data/" + year + "_county.csv");
+                    q = q.defer(d3.json, "data/" + year + "_country.json");
+                }
+//                    .defer(d3.csv, 'data/1800.csv')
+  //                  .defer(d3.csv, 'data/1810.csv')
+                    q.await(dataLoaded));
+                //var endTime = new Date();
+                //var totalTime = endTime - startTime;
+                //console.log("Time: " + Math.abs(endTime - startTime));
+                //console.log("End time: " + endTime.toDateString());
+
+               // bind reset zoom button to a function (-- ONLY FOR BONUS --)
+                //d3.select("#fitInBtn").on("click", function() {
                     // TODO: -- ONLY FOR BONUS --
-                });
+                //});
             }
+
             startHere();
         })
     </script>

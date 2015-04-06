@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <title>The Growth of a Nation</title>
 
     <!-- Libraries -->
@@ -60,10 +60,10 @@
             </div>
 
             <div class="col-md-8" id="mapVis">
-                <!-- TODO: delete placeholder svg element -->
+                <!-- TODO: delete placeholder svg element 
                 <svg width="650" height="330"  style="background-color: lightblue;border: 2.5px solid black">
                     <text x="100" y="50">HERE should be MapVis</text>
-                </svg>
+                    </svg>-->
             </div>
             <div class="col-md-2" id="chartVis">
                 <!-- TODO: delete placeholder svg element -->
@@ -105,6 +105,7 @@
             var stateMaps = [];
             var countyMaps = [];
             var railMaps = {};
+            var stateMappings = [];
             // this function can convert Date objects to a string
             // it can also convert strings to Date objects
             // see: https://github.com/mbostock/d3/wiki/Time-Formatting
@@ -114,15 +115,20 @@
                 //TODO: Create an eventHandler  --> DONE :)
                 var MyEventHandler = new Object();
                 //TODO: Instantiate all Vis Objects here
+
+                var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps);
+
                 // TODO: bind the eventHandler to the Vis Objects
                 // events will be created from the CountVis object (nothing to do here)
                 // events will be consumed by the PrioVis and AgeVis object (binding should happen here)
             }
             // call this function after both files are loaded -- error should be "null" if no error
-            var dataLoaded = function (error, _cityData, _countyData, _countyMap, _stateMap, _1800_CountryMap, _1810CountryMap, _1820CountryMap, _1830CountryMap, _1830RailMap, _1840CountryMap, _1840RailMap, _1850CountryMap, _1850RailMap, _1860CountryMap, _1860RailMap, _1870CountryMap, _1870RailMap, _1880CountryMap, _1880RailMap, _1890CountryMap, _1890RailMap, _1900CountryMap, _1900RailMap) {
-                if (!error) {
-                    //console.log("here");
-                    console.log(_countyData);
+            var dataLoaded = function (error, _states, _cityData, _countyData, _countyMap, _stateMap, _1800_CountryMap, _1810CountryMap, _1820CountryMap, _1830CountryMap, _1830RailMap, _1840CountryMap, _1840RailMap, _1850CountryMap, _1850RailMap, _1860CountryMap, _1860RailMap, _1870CountryMap, _1870RailMap, _1880CountryMap, _1880RailMap, _1890CountryMap, _1890RailMap, _1900CountryMap, _1900RailMap) {
+              var that = this;
+              if (!error) {
+                  //console.log("here");
+                    stateMappings = _states;
+                    //console.log(_cityData);
 
                     // make our data look nicer and more useful:
                     // per Day we want to have an object looking like this:
@@ -134,15 +140,62 @@
                     *   ages: [..,..,..,..] (array counts of votes per age 0-99)
                     *
                     * */
+                    //console.log(getIDbyName("Alabama"));
+                    var countyData = d3.nest()
+                                    .key(function(d) {return getIDbyName(d.State);})
+                                    .key(function(d) {return "counties";})
+                                    .key(function(d) {return d.County})
+                                    .key(function(d) { return d.Year})
+                                    .map(_countyData);
 
+                    var cityData = d3.nest()
+                                    .key(function(d) {return getIDbyCode(d.State);})
+                                    .key(function(d) {return "cities";})
+                                    .key(function(d) {return d.City})
+                                    .key(function(d) {return d.Year})
+                                    .map(_cityData);
 
-                    for(var i = 0; i < 3/*_countyData.length*/;i++)
+                    var tmpData = d3.merge(countyData, cityData);
+
+                    // This is temporary until I igure out how to merge the two objects above.
+                    allData = countyData;
+                    countryMaps["1800"] = _1800_CountryMap;
+                    countryMaps["1810"] = _1810CountryMap;
+                    countryMaps["1820"] = _1820CountryMap;
+                    countryMaps["1830"] = _1830CountryMap;
+                    countryMaps["1840"] = _1840CountryMap;
+                    countryMaps["1850"] = _1850CountryMap;
+                    countryMaps["1860"] = _1860CountryMap;
+                    countryMaps["1870"] = _1870CountryMap;
+                    countryMaps["1880"] = _1880CountryMap;
+                    countryMaps["1890"] = _1890CountryMap;
+                    countryMaps["1900"] = _1900CountryMap;
+                    countyMaps = _countyMap;
+                    stateMaps = _stateMap;
+                    railMaps["1830"] = _1830RailMap;
+                    railMaps["1840"] = _1840RailMap;
+                    railMaps["1850"] = _1850RailMap;
+                    railMaps["1860"] = _1860RailMap;
+                    railMaps["1870"] = _1870RailMap;
+                    railMaps["1880"] = _1880RailMap;
+                    railMaps["1890"] = _1890RailMap;
+                    railMaps["1900"] = _1900RailMap;
+                    //console.log(_stateMap);
+
+                    //console.log(countryMaps);
+                    //stateMaps =
+                    //countyMaps =
+                    //railMaps = 
+
+                    //console.log(countyData);
+
+                    /*for(var i = 0; i < 3_countyData.length;i++)
                     {
                         // If the key doesn't exist, create it
                         console.log(_countyData[i]["StateID"]);
                         console.log(areaData.map.get(_countyData[i]["StateID"]));
 
-                    }                    
+                    }*/                    
 
                     /*allData = _allData.map(function (d) {
                                 var res = {
@@ -166,8 +219,8 @@
                                 return res;
                             }
                     )
-                    metaData = _metaData;
-                    initVis();*/
+                    metaData = _metaData;*/
+                    initVis();
                 }
                 else
                     console.log(error);
@@ -177,7 +230,7 @@
                 // Hint: http://giscollective.org/d3-queue-js/
                 //startTime = new Date();
                 var q = queue();
-
+                q = q.defer(d3.csv, "data/stateID.csv");
                 q = q.defer(d3.csv, "data/allcitydata.csv");
                 q = q.defer(d3.csv, "data/allcountydata.csv");
                 q = q.defer(d3.json, "data/county_outlines_20m.json");
@@ -201,6 +254,21 @@
                     // TODO: -- ONLY FOR BONUS --
                 //});
             }
+
+            var getIDbyName = function(name)
+            {
+              for(var i = 0; i < stateMappings.length;i++)
+                  if(stateMappings[i]["State"] == name)
+                      return stateMappings[i]["ID"];
+            }
+
+            var getIDbyCode = function(code)
+            { 
+              for(var i = 0; i < stateMappings.length;i++)
+                  if(stateMappings[i]["Code"] == code)
+                      return stateMappings[i]["ID"];
+            }
+
 
             startHere();
         })

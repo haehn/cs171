@@ -12,23 +12,29 @@
  * */
 
 /**
- * CountVis object for HW3 of CS171
+ * MapVis object for HW3 of CS171
  * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
  * @param _data -- the data array
  * @param _metaData -- the meta-data / data description object
  * @param _eventHandler -- the Eventhandling Object to emit data to (see Task 4)
  * @constructor
  */
-CountVis = function(_parentElement, _data, _metaData, _eventHandler){
+MapVis = function(_parentElement, _data, _country, _state, _county, _rail, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
-    this.metaData = _metaData;
+    this.countryMaps = _country;
+    this.stateMaps = _state;
+    this.countyMaps = _county;
+    this.railMaps = _rail;
     this.eventHandler = _eventHandler;
     this.displayData = [];
 
+    this.width = 760;
+    this.height = 500;
+    this.color = d3.scale.quantize(); // We need to define this here because
+    // the values stay the same across all views
 
     // TODO: define all "constants" here
-
 
 
 
@@ -39,7 +45,7 @@ CountVis = function(_parentElement, _data, _metaData, _eventHandler){
 /**
  * Method that sets up the SVG and the variables
  */
-CountVis.prototype.initVis = function(){
+MapVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
@@ -54,10 +60,40 @@ CountVis.prototype.initVis = function(){
     // --- ONLY FOR BONUS ---  implement zooming
 
     // TODO: modify this to append an svg element, not modify the current placeholder SVG element
-    this.svg = this.parentElement.select("svg");
+    this.svg = this.parentElement.append("svg")
+        .attr("width", this.width)
+        .attr("height", this.height)
+        .attr("style", "border: 2px solid black")
+        .append("g")
+        .attr("transform", "translate(-100, 0)");
+
+    // TODO: Update the color scale (inspired by Mike Bostock's color scale, bl.ocks.org/mbostock/5925375
+    // In order to do this, we need to loop through all populations and find the highest.
+    var population = 0;
+    //console.log(that.data);
+
+    for(var state in that.data)
+    {
+        for(var county in that.data[state]["counties"])
+        {
+            for(var year in that.data[state]["counties"][county])
+                if(parseInt(that.data[state]["counties"][county][year][0]["Population"]) > population)
+                    population = parseInt(that.data[state]["counties"][county][year][0]["Population"]);
+        }
+    }
+
+    //console.log(population);
+
+    //that.data.forEach(function(d){
+    //    console.log(d);
+    //});
+
+    that.color
+        .domain([0, 50000])
+        .range(d3.range(9).map(function(i) { return "colorPop" + i;}));
 
     //TODO: implement the slider -- see example at http://bl.ocks.org/mbostock/6452972
-    this.addSlider(this.svg)
+    //this.addSlider(this.svg)
 
 
     // filter, aggregate, modify data
@@ -72,7 +108,7 @@ CountVis.prototype.initVis = function(){
 /**
  * Method to wrangle the data. In this case it takes an options object
   */
-CountVis.prototype.wrangleData= function(){
+MapVis.prototype.wrangleData= function(){
 
     // displayData should hold the data which is visualized
     // pretty simple in this case -- no modifications needed
@@ -86,9 +122,65 @@ CountVis.prototype.wrangleData= function(){
  * the drawing function - should use the D3 selection, enter, exit
  * @param _options -- only needed if different kinds of updates are needed
  */
-CountVis.prototype.updateVis = function(){
+MapVis.prototype.updateVis = function(){
 
     // TODO: implement update graphs (D3: update, enter, exit)
+    var year = 1900;
+    var that = this;
+    var projection = d3.geo.albersUsa()
+                       .scale([1000]);
+    var path = d3.geo.path()
+                 .projection(projection);
+
+    var svg = that.parentElement.select("svg").select("g");
+
+    // TODO:  We need to add the layers, from bottom to top: counties, states, countries
+    //console.log(that.countyMaps);
+    //console.log(that.displayData);
+    // Here we need to bind the population data to the county data 
+    for(var i = 0; i < that.countyMaps.features.length;i++)  //change later to that.countyMaps.features.length
+    {
+        var state = that.countyMaps.features[i].properties["STATE"];
+        var county = that.countyMaps.features[i].properties["NAME"];
+        var population = -100;
+        //console.log(that.countyMaps.features[i]);
+        try{
+        
+            var population = that.displayData[state]["counties"][county][year][0]["Population"];
+        }
+        catch(err){
+//            console.log("Error for: "  + year + county + ", " + state);
+            population = -1;
+        }
+        that.countyMaps.features[i].properties.population = population;
+        //console.log(that.countyMaps.features[i].properties);
+    }
+
+    svg.selectAll("path")
+       .data(that.countyMaps.features)
+       .enter()
+       .append("path")
+       .attr("d", path)
+       .attr("id", function(d) {
+           return d.properties.population;
+       })
+       .style("stroke", "black")
+       .style("stroke-width", "0.5px")
+       .attr("class", function(d){
+           if(d.properties.population == -1)
+              return "nocolor";
+           else
+              return that.color(d.properties.population);
+       });
+    console.log(that.railMaps);
+    svg.selectAll("path")
+       .data(that.railMaps[year].features)
+       .enter()
+       .append("path")
+       .attr("d", path)
+       .attr("stroke", "black")
+       .attr("stroke-width", "2")
+       .attr("class", function(d) {console.log(d)});
 
 
 }
@@ -99,7 +191,7 @@ CountVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-CountVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
@@ -125,7 +217,7 @@ CountVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
  * creates the y axis slider
  * @param svg -- the svg element
  */
-CountVis.prototype.addSlider = function(svg){
+MapVis.prototype.addSlider = function(svg){
     var that = this;
 
     // TODO: Think of what is domain and what is range for the y axis slider !!

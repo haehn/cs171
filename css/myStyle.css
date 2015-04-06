@@ -46,3 +46,44 @@ body{
 .desc_header{
     font-weight: 700;
 }
+
+.colorPop0{
+    fill: rgb(247,251,255);
+}
+
+.colorPop1{
+    fill: rgb(222,235,247);
+}
+
+.colorPop2{
+    fill: rgb(198,219,239);
+}
+
+.colorPop3{
+    fill: rgb(158,202,225);
+}
+
+.colorPop4{
+    fill: rgb(107,174,214);
+}
+
+.colorPop5{
+    fill: rgb(66,146,198);
+}
+
+.colorPop6{
+    fill: rgb(33,113,181);
+}
+
+.colorPop7{
+    fill: rgb(8,81,156);
+}
+
+.colorPop8{
+    fill: rgb(8,48,107);
+}
+
+.nocolor{
+  fill: #FFFFFF;
+}
+

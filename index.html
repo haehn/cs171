@@ -98,9 +98,13 @@
             //--- HERE IS WHERE ALL THE MAGIC STARTS --
             //==========================================
             // variables keeping global knowledge of the data
-            var startTime;
             var allData = [];
             var metaData = {};
+            var areaData = {};
+            var countryMaps = {};
+            var stateMaps = [];
+            var countyMaps = [];
+            var railMaps = {};
             // this function can convert Date objects to a string
             // it can also convert strings to Date objects
             // see: https://github.com/mbostock/d3/wiki/Time-Formatting
@@ -115,10 +119,11 @@
                 // events will be consumed by the PrioVis and AgeVis object (binding should happen here)
             }
             // call this function after both files are loaded -- error should be "null" if no error
-            var dataLoaded = function (error, _allData, _metaData) {
+            var dataLoaded = function (error, _cityData, _countyData, _countyMap, _stateMap, _1800_CountryMap, _1810CountryMap, _1820CountryMap, _1830CountryMap, _1830RailMap, _1840CountryMap, _1840RailMap, _1850CountryMap, _1850RailMap, _1860CountryMap, _1860RailMap, _1870CountryMap, _1870RailMap, _1880CountryMap, _1880RailMap, _1890CountryMap, _1890RailMap, _1900CountryMap, _1900RailMap) {
                 if (!error) {
-                    var end = new Date();
-                    console.log(Math.abs(end - startTime));
+                    //console.log("here");
+                    console.log(_countyData);
+
                     // make our data look nicer and more useful:
                     // per Day we want to have an object looking like this:
                     /*
@@ -129,7 +134,17 @@
                     *   ages: [..,..,..,..] (array counts of votes per age 0-99)
                     *
                     * */
-                    allData = _allData.map(function (d) {
+
+
+                    for(var i = 0; i < 3/*_countyData.length*/;i++)
+                    {
+                        // If the key doesn't exist, create it
+                        console.log(_countyData[i]["StateID"]);
+                        console.log(areaData.map.get(_countyData[i]["StateID"]));
+
+                    }                    
+
+                    /*allData = _allData.map(function (d) {
                                 var res = {
                                     time: dateFormatter.parse(d.day),
                                     count: parseInt(d["count(*)"])
@@ -152,24 +167,30 @@
                             }
                     )
                     metaData = _metaData;
-                    initVis();
+                    initVis();*/
                 }
+                else
+                    console.log(error);
             }
             var startHere = function(){
                 //TODO: load data here and call "dataLoaded" afterwards
                 // Hint: http://giscollective.org/d3-queue-js/
-                startTime = new Date();
+                //startTime = new Date();
                 var q = queue();
+
+                q = q.defer(d3.csv, "data/allcitydata.csv");
+                q = q.defer(d3.csv, "data/allcountydata.csv");
+                q = q.defer(d3.json, "data/county_outlines_20m.json");
+                q = q.defer(d3.json, "data/state_outlines_20m.json");
 
                 for(var year = 1800; year <= 1900;year=year + 10)
                 {
-                    q = q.defer(d3.csv, "data/" + year + "_city.csv");
-                    q = q.defer(d3.csv, "data/" + year + "_county.csv");
                     q = q.defer(d3.json, "data/" + year + "_country.json");
+                    if(year >= 1830)
+                        q = q.defer(d3.json, "data/" + year + "_rail.json");
                 }
-//                    .defer(d3.csv, 'data/1800.csv')
-  //                  .defer(d3.csv, 'data/1810.csv')
-                    q.await(dataLoaded));
+                
+                    q.await(dataLoaded);
                 //var endTime = new Date();
                 //var totalTime = endTime - startTime;
                 //console.log("Time: " + Math.abs(endTime - startTime));

@@ -67,6 +67,16 @@ MapVis.prototype.initVis = function(){
         .append("g")
         .attr("transform", "translate(-100, 0)");
 
+    this.svg.append("g")
+        .attr("class", "counties");
+        //.attr("transform", "translate(-100,0)");
+
+    this.svg.append("g")
+        .attr("class", "rails");
+        //.attr("transform", "translate(-100,0)");
+
+
+
     // TODO: Update the color scale (inspired by Mike Bostock's color scale, bl.ocks.org/mbostock/5925375
     // In order to do this, we need to loop through all populations and find the highest.
     var population = 0;
@@ -156,7 +166,7 @@ MapVis.prototype.updateVis = function(){
         //console.log(that.countyMaps.features[i].properties);
     }
 
-    svg.selectAll("path")
+    svg.select(".counties").selectAll("path")
        .data(that.countyMaps.features)
        .enter()
        .append("path")
@@ -173,14 +183,14 @@ MapVis.prototype.updateVis = function(){
               return that.color(d.properties.population);
        });
     console.log(that.railMaps);
-    svg.selectAll("path")
+    svg.select(".rails").selectAll("path")
        .data(that.railMaps[year].features)
        .enter()
        .append("path")
        .attr("d", path)
        .attr("stroke", "black")
-       .attr("stroke-width", "2")
-       .attr("class", function(d) {console.log(d)});
+       .attr("stroke-width", "2");
+       //.attr("class", function(d) {console.log(d)});
 
 
 }

@@ -87,3 +87,24 @@ body{
   fill: #FFFFFF;
 }
 
+.country{
+  stroke: red;
+  stroke-width: 2px;
+  fill: none;
+}
+
+.states{
+  stroke: purple;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.counties{
+    stroke: #d3d3d3;
+    stroke-width: 0.5px;
+}
+
+.rails{
+    stroke: black;
+    stroke-width: 3px;
+}

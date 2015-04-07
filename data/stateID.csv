@@ -1,46 +1,46 @@
-State,Code,ID
-Alabama,AL,01
-Arkansas,AR,05
-California,CA,06
-Colorado,CO,08
-Connecticut,CT,09
-Delaware,DE,10
-Florida,FL,12
-Georgia,GA,13
-Idaho,ID,16
-Illinois,IL,17
-Indiana,IN,18
-Iowa,IA,19
-Kansas,KS,20
-Kentucky,KY,21
-Louisiana,LA,22
-Maine,ME,23
-Maryland,MD,24
-Massachusetts,MA,25
-Michigan,MI,26
-Minnesota,MN,27
-Mississippi,MS,28
-Missouri,MO,29
-Montana,MT,30
-Nebraska,NE,31
-Nevada,NV,32
-New Hampshire,NH,33
-New Jersey,NJ,34
-New York,NY,36
-North Carolina,NC,37
-North Dakota,ND,38
-Ohio,OH,39
-Oregon,OR,40
-Pennsylvania,PA,42
-Rhode Island,RI,44
-South Carolina,SC,45
-South Dakota,SC,46
-Tennessee,TN,47
-Texas,TX,48
-Utah,UT,49
-Vermont,VT,50
-Virginia,VA,51
-Washington,WA,53
-West Virginia,WV,54
-Wisconsin,WI,55
-Wyoming,WY,56
+State,Code,ID,Year
+Alabama,AL,01,1819
+Arkansas,AR,05,1836
+California,CA,06,1850
+Colorado,CO,08,1876
+Connecticut,CT,09,1788
+Delaware,DE,10,1787
+Florida,FL,12,1845
+Georgia,GA,13,1788
+Idaho,ID,16,1890
+Illinois,IL,17,1818
+Indiana,IN,18,1816
+Iowa,IA,19,1846
+Kansas,KS,20,1861
+Kentucky,KY,21,1792
+Louisiana,LA,22,1812
+Maine,ME,23,1820
+Maryland,MD,24,1788
+Massachusetts,MA,25,1788
+Michigan,MI,26,1837
+Minnesota,MN,27,1858
+Mississippi,MS,28,1817
+Missouri,MO,29,1821
+Montana,MT,30,1889
+Nebraska,NE,31,1867
+Nevada,NV,32,1864
+New Hampshire,NH,33,1788
+New Jersey,NJ,34,1787
+New York,NY,36,1788
+North Carolina,NC,37,1789
+North Dakota,ND,38,1889
+Ohio,OH,39,1803
+Oregon,OR,40,1859
+Pennsylvania,PA,42,1787
+Rhode Island,RI,44,1790
+South Carolina,SC,45,1788
+South Dakota,SC,46,1889
+Tennessee,TN,47,1796
+Texas,TX,48,1845
+Utah,UT,49,1896
+Vermont,VT,50,1791
+Virginia,VA,51,1788
+Washington,WA,53,1889
+West Virginia,WV,54,1863
+Wisconsin,WI,55,1848
+Wyoming,WY,56,1890

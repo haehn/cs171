@@ -187,7 +187,10 @@
                     //countyMaps =
                     //railMaps = 
 
-                    //console.log(countyData);
+                    for(var i in cityData)
+                    {
+                      countyData[i]["cities"] = cityData[i]["cities"];
+                    }
 
                     /*for(var i = 0; i < 3_countyData.length;i++)
                     {

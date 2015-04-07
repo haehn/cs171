@@ -67,10 +67,19 @@ MapVis.prototype.initVis = function(){
         .append("g")
         .attr("transform", "translate(-100, 0)");
 
+   
+
+   
+
     this.svg.append("g")
         .attr("class", "counties");
         //.attr("transform", "translate(-100,0)");
 
+this.svg.append("g")
+        .attr("class", "states");
+  this.svg.append("g")
+        .attr("class", "country");
+ 
     this.svg.append("g")
         .attr("class", "rails");
         //.attr("transform", "translate(-100,0)");
@@ -174,23 +183,41 @@ MapVis.prototype.updateVis = function(){
        .attr("id", function(d) {
            return d.properties.population;
        })
-       .style("stroke", "black")
-       .style("stroke-width", "0.5px")
+    //   .style("stroke", "black")
+    //   .style("stroke-width", "0.5px")
        .attr("class", function(d){
            if(d.properties.population == -1)
               return "nocolor";
            else
               return that.color(d.properties.population);
        });
-    console.log(that.railMaps);
+
+    svg.select(".states").selectAll("path")
+       .data(that.stateMaps.features)
+       .enter()
+       .append("path")
+       .attr("d", path);
+       //.attr("stroke", "black")
+       //.attr("stroke-width", "2");
+ 
+    svg.select(".country").selectAll("path")
+       .data(that.countryMaps[year].features)
+       .enter()
+       .append("path")
+       .attr("d", path);
+       //.attr("stroke", "black")
+       //.attr("stroke-width", "2");
+ 
+
     svg.select(".rails").selectAll("path")
        .data(that.railMaps[year].features)
        .enter()
        .append("path")
        .attr("d", path)
-       .attr("stroke", "black")
-       .attr("stroke-width", "2");
+      // .attr("stroke", "black")
+      // .attr("stroke-width", "2");
        //.attr("class", function(d) {console.log(d)});
+
 
 
 }

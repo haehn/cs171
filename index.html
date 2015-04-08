@@ -116,7 +116,7 @@
                 var MyEventHandler = new Object();
                 //TODO: Instantiate all Vis iObjects here
 
-               // var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
+                var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
                 var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
 
                 // TODO: bind the eventHandler to the Vis Objects

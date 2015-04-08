@@ -66,10 +66,10 @@
                     </svg>-->
             </div>
             <div class="col-md-2" id="chartVis">
-                <!-- TODO: delete placeholder svg element -->
+                <!-- TODO: delete placeholder svg element 
                 <svg width="200" height="330" style="background-color: lightcoral;border: 2.5px solid black">
                     <text x="50" y="50">HERE should be ChartVis</text>
-                </svg>
+                    </svg> -->
             </div>
         </div>
 
@@ -114,9 +114,10 @@
             var initVis = function(){
                 //TODO: Create an eventHandler  --> DONE :)
                 var MyEventHandler = new Object();
-                //TODO: Instantiate all Vis Objects here
+                //TODO: Instantiate all Vis iObjects here
 
-                var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps);
+               // var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
+                var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
 
                 // TODO: bind the eventHandler to the Vis Objects
                 // events will be created from the CountVis object (nothing to do here)
@@ -141,6 +142,21 @@
                     *
                     * */
                     //console.log(getIDbyName("Alabama"));
+
+                    // We need to format our data so that it's consistent across formats for city and county.
+                    for(var i = 0; i< _countyData.length; i++)
+                    {
+                      _countyData[i]["Name"] = _countyData[i]["County"];
+                      _countyData[i]["StateCode"] = getCodebyID(_countyData[i]["StateID"]); 
+                    }
+                    
+                    for(var i = 0; i< _cityData.length; i++)
+                    {
+                      _cityData[i]["Name"] = _cityData[i]["City"];
+                      _cityData[i]["StateCode"] = _cityData[i]["State"]; 
+                    }
+
+
                     var countyData = d3.nest()
                                     .key(function(d) {return getIDbyName(d.State);})
                                     .key(function(d) {return "counties";})
@@ -155,9 +171,12 @@
                                     .key(function(d) {return d.Year})
                                     .map(_cityData);
 
-                    var tmpData = d3.merge(countyData, cityData);
+                                 
+                //    console.log(_countyData);
+                  //  console.log(_cityData);
+                                    //var tmpData = d3.merge(countyData, cityData);
 
-                    // This is temporary until I igure out how to merge the two objects above.
+                    // This is temporary until I figure out how to merge the two objects above.
                     allData = countyData;
                     countryMaps["1800"] = _1800_CountryMap;
                     countryMaps["1810"] = _1810CountryMap;
@@ -271,6 +290,15 @@
                   if(stateMappings[i]["Code"] == code)
                       return stateMappings[i]["ID"];
             }
+
+            var getCodebyID = function(ID)
+            { 
+              for(var i = 0; i < stateMappings.length;i++)
+                  if(stateMappings[i]["ID"] == ID)
+                      return stateMappings[i]["Code"];
+            }
+
+
 
 
             startHere();

@@ -12,16 +12,19 @@
  * @param _eventHandler -- the Eventhandling Object to emit data to (see Task 4)
  * @constructor
  */
-TypeVis = function(_parentElement, _data, _eventHandler){
+ChartVis = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
     this.eventHandler = _eventHandler;
     this.displayData = [];
 
+    this.year = "1900";
+    this.display = "cities";
+
     // defines constants
     this.margin = {top: 20, right: 20, bottom: 30, left: 0},
-    this.width = getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
-    this.height = 400 - this.margin.top - this.margin.bottom;
+    this.width = 200;//getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
+    this.height = 1000;//400 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }
@@ -30,14 +33,15 @@ TypeVis = function(_parentElement, _data, _eventHandler){
 /**
  * Method that sets up the SVG and the variables
  */
-TypeVis.prototype.initVis = function(){
+ChartVis.prototype.initVis = function(){
 
     // constructs SVG layout
     this.svg = this.parentElement.append("svg")
-        .attr("width", this.width + this.margin.left + this.margin.right)
-        .attr("height", this.height + this.margin.top + this.margin.bottom)
-      .append("g")
-        .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+        .attr("width", this.width)
+        .attr("height", this.height)
+        .attr("style", "border: 2px solid black")
+        .append("g")
+        //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
     // creates axis and scales
     this.x = d3.scale.linear()
@@ -61,9 +65,9 @@ TypeVis.prototype.initVis = function(){
     this.svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")");
-
+//    console.log("init");
     // filter, aggregate, modify data
-    this.wrangleData(null);
+    this.wrangleData(this.year, this.display);
 
     // call the update method
     this.updateVis();
@@ -74,11 +78,11 @@ TypeVis.prototype.initVis = function(){
  * Method to wrangle the data. In this case it takes an options object
  * @param _filterFunction - a function that filters data or "null" if none
  */
-TypeVis.prototype.wrangleData= function(_filterFunction){
-
+ChartVis.prototype.wrangleData= function(year, display){
+  //  console.log("wrangle");
     // displayData should hold the data whiche is visualized
-    this.displayData = this.filterAndAggregate(_filterFunction);
-
+    this.displayData = this.filterAndAggregate(year, display);
+ 
     //// you might be able to pass some options,
     //// if you don't pass options -- set the default options
     //// the default is: var options = {filter: function(){return true;} }
@@ -90,19 +94,16 @@ TypeVis.prototype.wrangleData= function(_filterFunction){
 /**
  * the drawing function - should use the D3 selection, enter, exit
  */
-TypeVis.prototype.updateVis = function(){
+ChartVis.prototype.updateVis = function(){
 
-    // Dear JS hipster,
-    // you might be able to pass some options as parameter _option
-    // But it's not needed to solve the task.
-    // var options = _options || {};
+console.log(this.displayData);
 
     var that = this;
 
     // updates scales
-    this.x.domain(d3.extent(this.displayData, function(d) { return d.count; }));
-    this.y.domain(this.displayData.map(function(d) { return d.type; }));
-    this.color.domain(this.displayData.map(function(d) { return d.type }));
+    this.x.domain(d3.extent(this.displayData, function(d) { return parseInt(d.Population); }));
+    this.y.domain(this.displayData.map(function(d) { return d.Name; }));
+    this.color.domain(this.displayData.map(function(d) { return d.Name }));
 
     // updates axis
     this.svg.select(".x.axis")
@@ -112,7 +113,7 @@ TypeVis.prototype.updateVis = function(){
 
     // Data join
     var bar = this.svg.selectAll(".bar")
-      .data(this.displayData, function(d) { return d.type; });
+      .data(this.displayData);
 
     // Append new bar groups, if required
     var bar_enter = bar.enter().append("g");
@@ -123,18 +124,31 @@ TypeVis.prototype.updateVis = function(){
 
     // Add click interactivity
     bar_enter.on("click", function(d) {
-       $(that.eventHandler).trigger("selectionChanged", d.type);
+       $(that.eventHandler).trigger("selectionChanged", d.Name);
     })
 
     // Add attributes (position) to all bars
     bar
       .attr("class", "bar")
       .transition()
-      .attr("transform", function(d, i) { return "translate(0," + that.y(d.type) + ")"; })
+//      .attr("transform", function(d, i) { return "translate(0," + (i*10 + 10) + ")"; })
+
+    this.svg.selectAll(".bar")
+        .sort(function(a,b)
+        {
+             return d3.descending(parseInt(a.Population), parseInt(b.Population));
+        })
+        .attr("transform", function(d,i)
+        {
+            return "translate(10, " + (i *10 +10) + ")";
+        });
 
     // Remove the extra bars
     bar.exit()
       .remove();
+
+    bar.selectAll("rect")
+       .attr("class", function(d){ return d.Name;});
 
     // Update all inner rects and texts (both update and enter sets)
 
@@ -143,22 +157,24 @@ TypeVis.prototype.updateVis = function(){
       .attr("y", 0)
       .attr("height", this.y.rangeBand())
       .style("fill", function(d,i) {
-        return that.color(d.type);
+        return that.color(d.Name);
       })
       .transition()
       .attr("width", function(d, i) {
-          return that.x(d.count);
+      //      return 10;
+          return that.x(d.Population);
       });
 
     bar.selectAll("text")
       .transition()
-      .attr("x", function(d) { return that.x(d.count) + (that.doesLabelFit(d) ? -3 : 5); })
+      .attr("x", function(d) { return that.x(d.Population) + (that.doesLabelFit(d) ? -3 : 5); })
       .attr("y", function(d,i) { return that.y.rangeBand() / 2; })
-      .text(function(d) { return d.type; })
+      .text(function(d) { return d.Name + ", " + d.StateCode; })
       .attr("class", "type-label")
       .attr("dy", ".35em")
       .attr("text-anchor", function(d) { return that.doesLabelFit(d) ? "end" : "start"; })
       .attr("fill", function(d) { return that.doesLabelFit(d) ? "white" : "black"; });
+
 }
 
 
@@ -168,7 +184,7 @@ TypeVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-TypeVis.prototype.onSelectionChange = function (selectionStart, selectionEnd){
+ChartVis.prototype.onSelectionChange = function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
@@ -180,10 +196,9 @@ TypeVis.prototype.onSelectionChange = function (selectionStart, selectionEnd){
  * Helper function that figures if there is sufficient space
  * to fit a label inside its bar in a bar chart
  */
-TypeVis.prototype.doesLabelFit = function(datum, label) {
+ChartVis.prototype.doesLabelFit = function(datum) {
   var pixel_per_character = 6;  // obviously a (rough) approximation
-
-  return datum.type.length * pixel_per_character < this.x(datum.count);
+  return (datum.Name.length + 2 + datum.StateCode.length) * pixel_per_character < this.x(datum.count);
 }
 
 /**
@@ -191,9 +206,31 @@ TypeVis.prototype.doesLabelFit = function(datum, label) {
  * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
  * @returns {Array|*}
  */
-TypeVis.prototype.filterAndAggregate = function(_filter){
+ChartVis.prototype.filterAndAggregate = function(year, display){
+    //console.log("filter");
+    var that = this;
+   // console.log(that.data);
+    var filteredData = [];
+    
+    for(state in that.data)
+    {
+        //console.log(state);
+        if(display in that.data[state])
+        {
+            for(area in that.data[state][display])
+            {
+                //console.log(area);
+                if(year in that.data[state][display][area])
+                {
+                    filteredData.push(that.data[state][display][area][year][0]);
+                }
+            }
+        }
+    }
+    //console.log(filteredData);
 
-
+    return filteredData;
+/*
     // Set filter to a function that accepts all items
     // ONLY if the parameter _filter is NOT null use this parameter
     var filter = function(){return true;}
@@ -223,7 +260,7 @@ TypeVis.prototype.filterAndAggregate = function(_filter){
       .sort(function(a, b) { return a.count < b.count || (a.count === b.count) - 1; })
       .slice(0, 20);
 
-    return counts;
+    return counts;*/
 }
 
 

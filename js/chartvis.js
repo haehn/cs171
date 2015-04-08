@@ -147,8 +147,8 @@ console.log(this.displayData);
     bar.exit()
       .remove();
 
-    bar.selectAll("rect")
-       .attr("class", function(d){ return d.Name;});
+    this.svg.selectAll(".bar").select("rect")
+       .attr("class", function(d, i){ console.log(i%2);return "colorPop" + 8*(i%2)});
 
     // Update all inner rects and texts (both update and enter sets)
 
@@ -156,7 +156,7 @@ console.log(this.displayData);
       .attr("x", 0)
       .attr("y", 0)
       .attr("height", this.y.rangeBand())
-      .style("fill", function(d,i) {
+      .attr("fill", function(d,i) {
         return that.color(d.Name);
       })
       .transition()

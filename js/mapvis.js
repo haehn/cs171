@@ -109,7 +109,7 @@ this.svg.append("g")
 
     that.color
         .domain([0, 50000])
-        .range(d3.range(9).map(function(i) { return "colorPop" + i;}));
+        .range(d3.range(9).map(function(i) { return "color" + (i + 1);}));
 
     //TODO: implement the slider -- see example at http://bl.ocks.org/mbostock/6452972
     //this.addSlider(this.svg)

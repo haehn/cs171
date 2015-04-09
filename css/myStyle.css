@@ -1,5 +1,6 @@
 body{
     font-family: 'PT Sans', sans-serif;
+    background-color: #d3d3d3;
 }
 .axis text {
     font: 10px sans-serif;
@@ -47,40 +48,48 @@ body{
     font-weight: 700;
 }
 
-.colorPop0{
+.color0{
+    fill: rgb(255,255,255);
+}
+
+.color1{
     fill: rgb(247,251,255);
 }
 
-.colorPop1{
+.color2{
     fill: rgb(222,235,247);
 }
 
-.colorPop2{
+.color3{
     fill: rgb(198,219,239);
 }
 
-.colorPop3{
+.color4{
     fill: rgb(158,202,225);
 }
 
-.colorPop4{
+.color5{
     fill: rgb(107,174,214);
 }
 
-.colorPop5{
+.color6{
     fill: rgb(66,146,198);
 }
 
-.colorPop6{
+.color7{
     fill: rgb(33,113,181);
 }
 
-.colorPop7{
+.color8{
     fill: rgb(8,81,156);
 }
 
-.colorPop8{
+.color9{
     fill: rgb(8,48,107);
+}
+
+.color10{
+    fill: rgb(0,0,0);
 }
 
 .nocolor{

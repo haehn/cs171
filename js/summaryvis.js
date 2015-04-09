@@ -13,22 +13,22 @@
  * */
 
 /**
- * AgeVis object for HW3 of CS171
+ * SummaryVis object for HW3 of CS171
  * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
  * @param _data -- the data array
  * @param _metaData -- the meta-data / data description object
  * @constructor
  */
-AgeVis = function(_parentElement, _data, _metaData){
+SummaryVis = function(_parentElement, _data, _event){
     this.parentElement = _parentElement;
     this.data = _data;
-    this.metaData = _metaData;
     this.displayData = [];
-
+    this.eventHandler = _event
 
 
     // TODO: define all constants here
-
+    this.width = 900;
+    this.height = 200;
 
     this.initVis();
 
@@ -38,13 +38,37 @@ AgeVis = function(_parentElement, _data, _metaData){
 /**
  * Method that sets up the SVG and the variables
  */
-AgeVis.prototype.initVis = function(){
+SummaryVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
 
     //TODO: construct or select SVG
     //TODO: create axis and scales
+
+    // constructs SVG layout
+    this.svg = this.parentElement.append("svg")
+        .attr("width", this.width)
+        .attr("height", this.height)
+        .attr("style", "border: 2px solid black")
+        .append("g")
+        //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+    // creates axis and scales
+    this.landX = d3.scale.linear()
+      .range([0, this.width]);
+
+    this.populationX = d3.scale.linear()
+      .range([0, this.width]);
+
+    this.statesX = d3.scale.linear()
+      .range([0, this.width]);
+
+    this.tracksX = d3.scale.linear()
+      .range([0, this.width]);
+
+
+
 
     // filter, aggregate, modify data
     this.wrangleData(null);
@@ -58,7 +82,7 @@ AgeVis.prototype.initVis = function(){
  * Method to wrangle the data. In this case it takes an options object
  * @param _filterFunction - a function that filters data or "null" if none
  */
-AgeVis.prototype.wrangleData= function(_filterFunction){
+SummaryVis.prototype.wrangleData= function(_filterFunction){
 
     // displayData should hold the data which is visualized
     this.displayData = this.filterAndAggregate(_filterFunction);
@@ -79,7 +103,7 @@ AgeVis.prototype.wrangleData= function(_filterFunction){
 /**
  * the drawing function - should use the D3 selection, enter, exit
  */
-AgeVis.prototype.updateVis = function(){
+SummaryVis.prototype.updateVis = function(){
 
     // Dear JS hipster,
     // you might be able to pass some options as parameter _option
@@ -101,7 +125,7 @@ AgeVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-AgeVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
@@ -126,7 +150,7 @@ AgeVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
  * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
  * @returns {Array|*}
  */
-AgeVis.prototype.filterAndAggregate = function(_filter){
+SummaryVis.prototype.filterAndAggregate = function(_filter){
 
 
     // Set filter to a function that accepts all items

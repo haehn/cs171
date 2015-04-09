@@ -148,7 +148,7 @@ console.log(this.displayData);
       .remove();
 
     this.svg.selectAll(".bar").select("rect")
-       .attr("class", function(d, i){ console.log(i%2);return "colorPop" + (((i%2)+1)*4)});
+       .attr("class", function(d, i){ return "color" + (((i%2)+1)*4)});
 
     // Update all inner rects and texts (both update and enter sets)
 

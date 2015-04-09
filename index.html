@@ -119,7 +119,7 @@
 
             //    var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
               //  var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
-                var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, MyEventHandler);
+                var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
 
 
                 // TODO: bind the eventHandler to the Vis Objects
@@ -132,8 +132,25 @@
               if (!error) {
                   //console.log("here");
                     stateMappings = _states;
-                    //console.log(_cityData);
 
+                                      for(var i = 0; i<stateMappings.length;i++)
+                    {
+                        stateMappings[i]["Year"] = parseInt(stateMappings[i]["Year"]);
+                        for(var j = 0;j<_stateMap.features.length;j++)
+                        {
+                            if(stateMappings[i]["ID"] == _stateMap.features[j]["STATE"])
+                            { console.log("x");
+                                stateMappings[i]["Area"] = _stateMap.features[j]["CENSUSAREA"];
+                                break;
+                            }
+                        }
+                    }
+
+                    console.log(_stateMap);
+                    console.log(stateMappings);
+
+
+                    
                     // make our data look nicer and more useful:
                     // per Day we want to have an object looking like this:
                     /*
@@ -151,12 +168,28 @@
                     {
                       _countyData[i]["Name"] = _countyData[i]["County"];
                       _countyData[i]["StateCode"] = getCodebyID(_countyData[i]["StateID"]); 
+                      _countyData[i]["Population"] = parseInt(_countyData[i]["Population"]);
+                      _countyData[i]["Year"] = parseInt(_countyData[i]["Year"]);
+
+
                     }
                     
                     for(var i = 0; i< _cityData.length; i++)
                     {
                       _cityData[i]["Name"] = _cityData[i]["City"];
-                      _cityData[i]["StateCode"] = _cityData[i]["State"]; 
+                      _cityData[i]["StateCode"] = _cityData[i]["State"];
+                      _cityData[i]["Population"] = parseInt(_cityData[i]["Population"]);
+                      _cityData[i]["Year"] = parseInt(_cityData[i]["Year"]);
+
+                    }
+
+                    for(var i = 0; i< _summary.length; i++)
+                    {
+                      _summary[i]["Population"] = parseInt(_summary[i]["Population"]);
+                      _summary[i]["Year"] = parseInt(_summary[i]["Year"]);
+                      _summary[i]["Area"] = parseInt(_summary[i]["Area"]);
+                      _summary[i]["States"] = parseInt(_summary[i]["States"]);
+                      _summary[i]["Tracks"] = parseInt(_summary[i]["Tracks"]);
                     }
 
 

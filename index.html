@@ -133,14 +133,14 @@
                   //console.log("here");
                     stateMappings = _states;
 
-                                      for(var i = 0; i<stateMappings.length;i++)
+                    for(var i = 0; i<stateMappings.length;i++)
                     {
                         stateMappings[i]["Year"] = parseInt(stateMappings[i]["Year"]);
                         for(var j = 0;j<_stateMap.features.length;j++)
                         {
-                            if(stateMappings[i]["ID"] == _stateMap.features[j]["STATE"])
-                            { console.log("x");
-                                stateMappings[i]["Area"] = _stateMap.features[j]["CENSUSAREA"];
+                            if(stateMappings[i]["ID"] == _stateMap.features[j].properties["STATE"])
+                            { 
+                                stateMappings[i]["Area"] = _stateMap.features[j].properties["CENSUSAREA"];
                                 break;
                             }
                         }

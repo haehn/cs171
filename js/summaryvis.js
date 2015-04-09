@@ -30,7 +30,7 @@ SummaryVis = function(_parentElement, _data, _states,  _event){
     // TODO: define all constants here
     this.width = 900;
     this.height = 200;
-
+console.log(_data);
     this.initVis();
 
 }
@@ -162,14 +162,16 @@ SummaryVis.prototype.filterAndAggregate = function(year){
             return true;
     });
     var tracks = [];
+    var populations = [];
 
-
+console.log(that.data);
     for(d in that.data)
     {
         if(d <= year)
         {
             //console.log(that.data[d]);
             var tmp = [];
+            var yr = [];
             tmp["Year"] = parseInt(d);
             if(that.data[d][0]["Tracks"] == "0")
             {
@@ -181,10 +183,47 @@ SummaryVis.prototype.filterAndAggregate = function(year){
                 tmp["start"] = that.data[d-10][0]["Tracks"];
                 tmp["end"] = that.data[d][0]["Tracks"];
             }
+            
+            if(d == 1800)
+            {
+                yr["start"] = 0;
+                yr["end"] = that.data[d][0]["Population"];
+            }
+            else
+            {
+                yr["start"] = that.data[d-10][0]["Population"];
+                yr["end"] = that.data[d][0]["Population"];
+            }
+            populations.push(yr);
             tracks.push(tmp);
         }
     }
+    localdata["Population"] = populations;
     localdata["Tracks"] = tracks;
+
+    var areas = [];
+
+    for(var i = 1800; i <= year;i=i+10)
+    {
+        areas[i] = 0;
+    }
+
+    for(var i = 0; i < localdata["States"].length;i++)
+    { //console.log(localdata["States"]);
+      //console.log(year);
+      
+        if(localdata["States"][i]["Year"] <= year)
+        {// console.log(year);
+            for(var j = 1800;j <= year;j=j+10)
+            {//console.log("c");
+                if(localdata["States"][i]["Year"] < j)
+                    areas[j] = areas[j] + localdata["States"][i]["Area"];
+            }
+        }
+    }
+
+    localdata["Areas"] = areas;
+
     console.log(localdata); 
 
     // Set filter to a function that accepts all items

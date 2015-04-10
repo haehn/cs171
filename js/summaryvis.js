@@ -25,12 +25,15 @@ SummaryVis = function(_parentElement, _data, _states,  _event){
     this.states = _states;
     this.displayData = [];
     this.eventHandler = _event;
-    this.year = 1860;
-
+    this.year = [];
+    this.year.start = 0;
+    this.year.end = 0;
+    this.year.current = 0;
+    this.displaylocations = [];
+    
     // TODO: define all constants here
     this.width = 900;
     this.height = 200;
-console.log(_data);
     this.initVis();
 
 }
@@ -52,27 +55,59 @@ SummaryVis.prototype.initVis = function(){
         .attr("width", this.width)
         .attr("height", this.height)
         .attr("style", "border: 2px solid black")
-        .append("g")
+        this.svg.append("g").attr("class", "populations");
+        this.svg.append("g").attr("class", "tracks");
+        this.svg.append("g").attr("class", "area");
         //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
+    this.displaylocations.tracks = (this.height/4)*1;
+    this.displaylocations.area = (this.height/4)*2
+    this.displaylocations.population = (this.height/4)*3;
+    this.displaylocations.states = (this.height/4)*4;
+
+    //Find the range of years
+
+    for(d in that.data)
+    {
+        if(that.year.start == 0)
+            that.year.start = d;
+        else if(that.year.start > d)
+            that.year.start = d;
+
+        if(that.year.end == 0)
+            that.year.end = d;
+        else if(that.year.end < d)
+            that.year.end = d;
+    }
+
+    that.year.current = 1900; //that.year.start;
+
     // creates axis and scales
+    // Land Area
     this.landX = d3.scale.linear()
-      .range([0, this.width]);
-
+      .range([0, this.width])  // ouput
+      .domain([0, that.data[that.year.end][0]["Area"]]);
+    // Population
     this.populationX = d3.scale.linear()
-      .range([0, this.width]);
+      .range([0, this.width])  // ouput
+      .domain([0, that.data[that.year.end][0]["Population"]]);
 
+    // Number of states
     this.statesX = d3.scale.linear()
-      .range([0, this.width]);
+      .range([0, this.width])  // ouput
+      .domain([0, that.data[that.year.end][0]["States"]]);
 
+    // Miles of railroad tracks
     this.tracksX = d3.scale.linear()
-      .range([0, this.width]);
+      .range([0, this.width])  // ouput
+      .domain([0, that.data[that.year.end][0]["Tracks"]]);
+
 
 
 
 
     // filter, aggregate, modify data
-    this.wrangleData(that.year);
+    this.wrangleData(that.year.current);
 
     // call the update method
     this.updateVis();
@@ -106,15 +141,68 @@ SummaryVis.prototype.wrangleData= function(year){
  */
 SummaryVis.prototype.updateVis = function(){
 
-    // Dear JS hipster,
-    // you might be able to pass some options as parameter _option
-    // But it's not needed to solve the task.
-    // var options = _options || {};
+    var that = this;
+    console.log(this.displayData);
+    // Create train line
+/*
+    var tracks       = this.svg.selectAll("line")
+                          .data(that.displayData["Tracks"])
+                          .enter()
+                          .append("line")
+                          .attr("y1", that.displaylocations.tracks)
+                          .attr("y2", that.displaylocations.tracks)
+                          .attr("x1", function(d){return that.tracksX(d.start)})
+                          .attr("x2", function(d){return that.tracksX(d.end)})
+                          //.attr("stroke", "black")
+                          .attr("stroke-width", 2)
+                          .attr("class", function(d, i){;return "color" + i;});
+
+*/
+    var tracks       = this.svg.select(".tracks").selectAll("rect")
+                          .data(that.displayData["Tracks"])
+                          .enter()
+                          .append("rect")
+                          .attr("y", that.displaylocations.tracks)
+                          .attr("x", function(d){return that.tracksX(d.start)})
+                          .attr("width", function(d){return that.tracksX(d.end) - that.tracksX(d.start)})
+                          //.attr("stroke", "black")
+                          .attr("height", 6)
+                          .attr("style", "outline: solid black 1px")
+                          .attr("class", function(d, i){;return "color" + i;});
+
+    var area       = this.svg.select(".area").selectAll("rect")
+                          .data(that.displayData["Areas"])
+                          .enter()
+                          .append("rect")
+                          .attr("y", that.displaylocations.area)
+                          .attr("x", function(d){return that.landX(d.start)})
+                          .attr("width", function(d){return that.landX(d.end-d.start)})
+                          //.attr("stroke", "black")
+                          .attr("height", 10)
+                          .attr("style", "outline: solid black 1px")
+                          .attr("class", function(d, i){;return "color" + i;});
+    
+    
+    for(e in that.data["Population"])
+    {
+        for(var i = 1; i < that.displayData["Population"][e]
+        this.svg.select(".populations").append("circle");
+    }
 
 
-    // TODO: implement...
-    // TODO: ...update scales
-    // TODO: ...update graphs
+    var populations = this.svg.select(".populations").selectAll("circle")
+                          .data(that.displayData["Population"])
+                          .enter()
+                          .append("circle")
+                          .attr("y", that.displaylocations.population)
+                          .attr("x", function(d){console.log(d);return that.landX(d.start)})
+                          .attr("width", function(d){return that.landX(d.end-d.start)})
+                          //.attr("stroke", "black")
+                          .attr("height", 10)
+                          .attr("style", "outline: solid black 1px")
+                          .attr("class", function(d, i){;return "color" + i;});
+
+
 
 
 }
@@ -131,6 +219,8 @@ SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
     // TODO: call wrangle function
 
     this.updateVis();
+
+    
 
 
 }
@@ -152,55 +242,64 @@ SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
  * @returns {Array|*}
  */
 SummaryVis.prototype.filterAndAggregate = function(year){
-
+console.log(this.data);
     var that = this;
     var localdata = [];
 
     localdata["States"] = that.states.filter(function(d)
-    {
+    {  
         if(d.Year < year)
             return true;
     });
     var tracks = [];
     var populations = [];
-
-console.log(that.data);
+    var areas = [];
     for(d in that.data)
     {
         if(d <= year)
         {
-            //console.log(that.data[d]);
-            var tmp = [];
-            var yr = [];
-            tmp["Year"] = parseInt(d);
+            var trk = [];
+            var pop = [];
+            var ar = [];
+            ar["Year"] = parseInt(d);
+            pop["Year"] = parseInt(d);
+            trk["Year"] = parseInt(d);
             if(that.data[d][0]["Tracks"] == "0")
             {
-               tmp["start"] = 0;
-               tmp["end"] = 0;
+               trk["start"] = 0;
+               trk["end"] = 0;
             }
             else
             {
-                tmp["start"] = that.data[d-10][0]["Tracks"];
-                tmp["end"] = that.data[d][0]["Tracks"];
+                trk["start"] = that.data[d-10][0]["Tracks"];
+                trk["end"] = that.data[d][0]["Tracks"];
             }
             
             if(d == 1800)
             {
-                yr["start"] = 0;
-                yr["end"] = that.data[d][0]["Population"];
+                ar["start"] = 0;
+                ar["end"] = that.data[d][0]["Area"];
+
+                pop["start"] = 0;
+                pop["end"] = that.data[d][0]["Population"];
             }
             else
             {
-                yr["start"] = that.data[d-10][0]["Population"];
-                yr["end"] = that.data[d][0]["Population"];
+                ar["start"] = that.data[d-10][0]["Area"];
+                ar["end"] = that.data[d][0]["Area"];
+
+                pop["start"] = that.data[d-10][0]["Population"];
+                pop["end"] = that.data[d][0]["Population"];
             }
-            populations.push(yr);
-            tracks.push(tmp);
+            populations.push(pop);
+            tracks.push(trk);
+            areas.push(ar);
         }
     }
+    localdata["Areas"] = areas;
     localdata["Population"] = populations;
     localdata["Tracks"] = tracks;
-
+/*
     var areas = [];
 
     for(var i = 1800; i <= year;i=i+10)
@@ -209,47 +308,19 @@ console.log(that.data);
     }
 
     for(var i = 0; i < localdata["States"].length;i++)
-    { //console.log(localdata["States"]);
-      //console.log(year);
-      
+    { 
         if(localdata["States"][i]["Year"] <= year)
-        {// console.log(year);
+        {
             for(var j = 1800;j <= year;j=j+10)
-            {//console.log("c");
+            {
                 if(localdata["States"][i]["Year"] < j)
                     areas[j] = areas[j] + localdata["States"][i]["Area"];
             }
         }
     }
 
-    localdata["Areas"] = areas;
-
-    console.log(localdata); 
-
-    // Set filter to a function that accepts all items
-    // ONLY if the parameter _filter is NOT null use this parameter
-    /*var filter = function(){return true;}
-    if (_filter != null){
-        filter = _filter;
-    }*/
-    //Dear JS hipster, a more hip variant of this construct would be:
-    // var filter = _filter || function(){return true;}
-
-    var that = this;
-
-    // create an array of values for age 0-100
-    var res = d3.range(100).map(function () {
-        return 0;
-    });
-
-
-    // accumulate all values that fulfill the filter criterion
-
-    // TODO: implement the function that filters the data and sums the values
-
-
-
-    return res;
+    localdata["Areas"] = areas;*/
+    return localdata;
 
 }
 

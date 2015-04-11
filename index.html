@@ -53,39 +53,20 @@
 
         <div class="row">
             <div class="col-md-2" id="infoVis">
-                <!-- TODO: delete placeholder svg element 
-                <svg width="150" height="330" style="background-color: lightyellow;border: 2.5px solid black">
-                    <text x="50" y="50">HERE should be InfoVis</text>
-                </svg> -->
             </div>
 
             <div class="col-md-8" id="mapVis">
-                <!-- TODO: delete placeholder svg element 
-                <svg width="650" height="330"  style="background-color: lightblue;border: 2.5px solid black">
-                    <text x="100" y="50">HERE should be MapVis</text>
-                    </svg>-->
             </div>
             <div class="col-md-2" id="chartVis">
-                <!-- TODO: delete placeholder svg element 
-                <svg width="200" height="330" style="background-color: lightcoral;border: 2.5px solid black">
-                    <text x="50" y="50">HERE should be ChartVis</text>
-                    </svg> -->
             </div>
         </div>
 
         <div class="row">
            <div class="col-md-2" id="controlVis">
-                <!-- TODO: delete placeholder svg element 
-                <svg width="230" height="330" style="background-color: purple;border: 2.5px solid black">
-                    <text x="50" y="50">HERE should be ControlVis</text>
-                </svg>-->
-            </div>
-
+           <form class="displaySelection">
+		   </form>
+        </div>
             <div class="col-md-10" id="summaryVis">
-                <!-- TODO: delete placeholder svg element 
-                <svg width="650" height="440" style="background-color: lightgreen;border: 2.5px solid black">
-                    <text x="50" y="50">HERE should be SummaryVis</text>
-                </svg> -->
             </div>
         </div>
     </div>
@@ -117,9 +98,10 @@
                 var MyEventHandler = new Object();
                 //TODO: Instantiate all Vis iObjects here
 
-             //   var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
-               // var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
-                var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
+                //var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
+                //var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
+                //var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
+                var control_vis = new ControlVis(d3.select("#controlVis"), allData, MyEventHandler);
 
 
                 // TODO: bind the eventHandler to the Vis Objects

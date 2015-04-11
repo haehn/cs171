@@ -52,6 +52,8 @@ line{
   stroke-width:6;
 }
 
+
+
 .color0{
     stroke: rgb(255,255,255);
     fill: rgb(255,255,255);
@@ -123,6 +125,11 @@ line{
   fill: none;
 }
 
+.statesSummary text{
+    stroke: black;
+	font-size: 13px;
+	font-weight:normal;
+}
 .counties{
     stroke: #d3d3d3;
     stroke-width: 0.5px;

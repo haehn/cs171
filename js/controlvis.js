@@ -13,18 +13,19 @@
  * */
 
 /**
- * AgeVis object for HW3 of CS171
+ * ControlVis object for HW3 of CS171
  * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
  * @param _data -- the data array
  * @param _metaData -- the meta-data / data description object
  * @constructor
  */
-AgeVis = function(_parentElement, _data, _metaData){
+ControlVis = function(_parentElement, _data, _metaData){
     this.parentElement = _parentElement;
     this.data = _data;
     this.metaData = _metaData;
     this.displayData = [];
-
+    this.height = 300;
+	this.width = 200;
 
 
     // TODO: define all constants here
@@ -38,9 +39,71 @@ AgeVis = function(_parentElement, _data, _metaData){
 /**
  * Method that sets up the SVG and the variables
  */
-AgeVis.prototype.initVis = function(){
+ControlVis.prototype.initVis = function(){
 
     var that = this; // read about the this
+
+
+/*
+           <form class="displaySelection">
+						                 <input type="radio" name="encoding" value="cities">  Population by City</input><br>
+										                <input type="radio" name="encoding" value="counties">  Population by County</input><br>
+														               <input type="checkbox" name="railroads" value="railroads">Railroad Expansion</input><br>
+																	                  Years:<br>
+																					                 <input type="range" name="yearSelector" min="1800" max="1900" step="10" id="slider" value="1800"></input> 
+																									                <div style="float-left;display:inline-block;width:133px">1800</div><div style="float-right;display:inline-block;width:32px">1900</div> 
+
+																													           </form>
+																															    
+
+*/
+
+    this.displayForm = this.parentElement.select(".displaySelection");
+	that.displayForm.append("text")
+	   .text("Display: ");
+
+    this.displayForm.append("br");
+
+    this.displayForm.append("input")
+	    .attr("type", "radio")
+		.attr("name", "encoding")
+		.attr("value", "counties")
+	this.displayForm.append("text").text("  Population by County");
+this.displayForm.append("br");
+    this.displayForm.append("input")
+	    .attr("type", "radio")
+		.attr("name", "encoding")
+		.attr("value", "cities")
+    this.displayForm.append("text").text("  Population by City");
+this.displayForm.append("br");
+this.displayForm.append("input")
+	    .attr("type", "checkbox")
+		.attr("name", "railroads")
+		.attr("value", "railroads")
+    this.displayForm.append("text").text("  Railroad Expansion");
+this.displayForm.append("br");
+this.displayForm.append("text").text("Years:");
+this.displayForm.append("br");
+
+this.displayForm.append("input")
+	    .attr("type", "range")
+		.attr("name", "yearSelector")
+		.attr("min", "1800")
+		.attr("max", "1900")
+		.attr("value", "1800")
+		.text("Population by City");
+
+    this.displayForm.append("div")
+	    .attr("style", "float-left;display:inline-block;width:133px")
+		.text("1800");
+
+this.displayForm.append("div")
+	    .attr("style", "float-right;display:inline-block;width:32px")
+		.text("1900");
+
+
+
+
 
 
     //TODO: construct or select SVG
@@ -58,7 +121,7 @@ AgeVis.prototype.initVis = function(){
  * Method to wrangle the data. In this case it takes an options object
  * @param _filterFunction - a function that filters data or "null" if none
  */
-AgeVis.prototype.wrangleData= function(_filterFunction){
+ControlVis.prototype.wrangleData= function(_filterFunction){
 
     // displayData should hold the data which is visualized
     this.displayData = this.filterAndAggregate(_filterFunction);
@@ -79,7 +142,7 @@ AgeVis.prototype.wrangleData= function(_filterFunction){
 /**
  * the drawing function - should use the D3 selection, enter, exit
  */
-AgeVis.prototype.updateVis = function(){
+ControlVis.prototype.updateVis = function(){
 
     // Dear JS hipster,
     // you might be able to pass some options as parameter _option
@@ -101,7 +164,7 @@ AgeVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-AgeVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+ControlVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
@@ -126,7 +189,7 @@ AgeVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
  * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
  * @returns {Array|*}
  */
-AgeVis.prototype.filterAndAggregate = function(_filter){
+ControlVis.prototype.filterAndAggregate = function(_filter){
 
 
     // Set filter to a function that accepts all items

@@ -55,15 +55,17 @@ SummaryVis.prototype.initVis = function(){
         .attr("width", this.width)
         .attr("height", this.height)
         .attr("style", "border: 2px solid black")
-        this.svg.append("g").attr("class", "populations");
-        this.svg.append("g").attr("class", "tracks");
-        this.svg.append("g").attr("class", "area");
-        //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+        this.svg.append("g").attr("class", "populationsSummary");
+        this.svg.append("g").attr("class", "tracksSummary");
+        this.svg.append("g").attr("class", "areaSummary");
+        this.svg.append("g").attr("class", "statesSummary");
 
-    this.displaylocations.tracks = (this.height/4)*1;
-    this.displaylocations.area = (this.height/4)*2
-    this.displaylocations.population = (this.height/4)*3;
-    this.displaylocations.states = (this.height/4)*4;
+		//.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+    this.displaylocations.tracks = (this.height/4)*0.25;
+    this.displaylocations.area = (this.height/4)*.75;
+    this.displaylocations.population = (this.height/4)*1.5;
+    this.displaylocations.states = this.height-5;
 
     //Find the range of years
 
@@ -80,7 +82,7 @@ SummaryVis.prototype.initVis = function(){
             that.year.end = d;
     }
 
-    that.year.current = 1900; //that.year.start;
+    that.year.current = 1860; //that.year.start;
 
     // creates axis and scales
     // Land Area
@@ -90,10 +92,10 @@ SummaryVis.prototype.initVis = function(){
     // Population
     this.populationX = d3.scale.linear()
       .range([0, this.width])  // ouput
-      .domain([0, that.data[that.year.end][0]["Population"]]);
+      .domain([0, Math.round(that.data[that.year.end][0]["Population"]/1000000)]);
 
     // Number of states
-    this.statesX = d3.scale.linear()
+    this.statesX = d3.scale.ordinal()
       .range([0, this.width])  // ouput
       .domain([0, that.data[that.year.end][0]["States"]]);
 
@@ -142,7 +144,6 @@ SummaryVis.prototype.wrangleData= function(year){
 SummaryVis.prototype.updateVis = function(){
 
     var that = this;
-    console.log(this.displayData);
     // Create train line
 /*
     var tracks       = this.svg.selectAll("line")
@@ -158,7 +159,7 @@ SummaryVis.prototype.updateVis = function(){
                           .attr("class", function(d, i){;return "color" + i;});
 
 */
-    var tracks       = this.svg.select(".tracks").selectAll("rect")
+    var tracks       = this.svg.select(".tracksSummary").selectAll("rect")
                           .data(that.displayData["Tracks"])
                           .enter()
                           .append("rect")
@@ -170,7 +171,7 @@ SummaryVis.prototype.updateVis = function(){
                           .attr("style", "outline: solid black 1px")
                           .attr("class", function(d, i){;return "color" + i;});
 
-    var area       = this.svg.select(".area").selectAll("rect")
+    var area       = this.svg.select(".areaSummary").selectAll("rect")
                           .data(that.displayData["Areas"])
                           .enter()
                           .append("rect")
@@ -181,15 +182,42 @@ SummaryVis.prototype.updateVis = function(){
                           .attr("height", 10)
                           .attr("style", "outline: solid black 1px")
                           .attr("class", function(d, i){;return "color" + i;});
-    
-    
-    for(e in that.data["Population"])
-    {
-        for(var i = 1; i < that.displayData["Population"][e]
-        this.svg.select(".populations").append("circle");
-    }
+    var circleCounter = 0;    
+   //console.log(that.displayData["Population"]); 
+    for(e in that.displayData["Population"])
+    {   //console.log(e);
+	    var circles = Math.round((that.displayData["Population"][e]["end"] - that.displayData["Population"][e]["start"])/1000000);
+        for(var i = 1; i <= circles;i++)
+		{
+		    circleCounter++;
+            that.svg.select(".populationsSummary")
+			    .append("circle")
+				.attr("r", 5)
+				.attr("cx", that.populationX(circleCounter))
+				.attr("cy", that.displaylocations.population)
+				//.attr("fill", "red")
+				.attr("class", function() {return "color" + e});
+        }
+	}
 
 
+	console.log(that.displayData["States"]);
+
+	that.svg.select(".statesSummary").selectAll("text")
+	        .data(that.displayData["States"])
+			.enter()
+			.append("text")
+			.sort(function(a,b)
+			{
+			    return d3.ascending(a.Year, b.Year);
+			})
+			.attr("x", function(d,i){return (i *19)+25;})
+			.attr("y", that.displaylocations.states)
+			.text(function(d){console.log(d);return d.State + ", " + d.Year;})
+			.style("text-anchor", "start")
+			.attr("transform", function(d,i){ return "rotate(-65," +((i*19)+25)  + "," + that.displaylocations.states + ")";});;
+
+/*
     var populations = this.svg.select(".populations").selectAll("circle")
                           .data(that.displayData["Population"])
                           .enter()
@@ -201,7 +229,7 @@ SummaryVis.prototype.updateVis = function(){
                           .attr("height", 10)
                           .attr("style", "outline: solid black 1px")
                           .attr("class", function(d, i){;return "color" + i;});
-
+*/
 
 
 

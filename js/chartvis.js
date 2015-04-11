@@ -18,7 +18,7 @@ ChartVis = function(_parentElement, _data, _eventHandler){
     this.eventHandler = _eventHandler;
     this.displayData = [];
 
-    this.year = "1900";
+    this.year = "1860";
     this.display = "cities";
 
     // defines constants

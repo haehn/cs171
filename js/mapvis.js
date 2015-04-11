@@ -144,7 +144,7 @@ MapVis.prototype.wrangleData= function(){
 MapVis.prototype.updateVis = function(){
 
     // TODO: implement update graphs (D3: update, enter, exit)
-    var year = 1900;
+    var year = 1860;
     var that = this;
     var projection = d3.geo.albersUsa()
                        .scale([1000]);

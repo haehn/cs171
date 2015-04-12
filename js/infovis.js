@@ -101,15 +101,26 @@ AgeVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-AgeVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+/*AgeVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
     this.updateVis();
 
 
-}
+}*/
+AgeVis.prototype.onSelectionChange= function (encoding, tracks, year){
 
+    console.log(encoding);
+	    console.log(tracks);       
+		    console.log(year);
+
+			    // TODO: call wrangle function
+
+				    // do nothing -- no update when brushing
+
+
+					}
 
 /*
 *

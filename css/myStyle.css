@@ -119,11 +119,18 @@ line{
   fill: none;
 }
 
-.states{
+.incorporated{
   stroke: purple;
   stroke-width: 1px;
   fill: none;
 }
+
+.notincorporated{
+  stroke: green;
+  stroke-width: 1px;
+  fill: none;
+}
+
 
 .statesSummary text{
     stroke: black;

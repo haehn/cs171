@@ -98,16 +98,37 @@
                 var MyEventHandler = new Object();
                 //TODO: Instantiate all Vis iObjects here
 
-                //var map_vis = new MapVis(d3.select("#mapVis"), allData, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
-                //var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
-                //var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
+                var map_vis = new MapVis(d3.select("#mapVis"), allData, stateMappings, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
+                var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
+                var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
                 var control_vis = new ControlVis(d3.select("#controlVis"), allData, MyEventHandler);
 
 
                 // TODO: bind the eventHandler to the Vis Objects
                 // events will be created from the CountVis object (nothing to do here)
                 // events will be consumed by the PrioVis and AgeVis object (binding should happen here)
-            }
+
+          $(MyEventHandler).bind("selectionChanged", function(event, encoding, tracks, year)
+		  {
+    	      chart_vis.onSelectionChange(encoding, tracks, year);
+		      //info_vis.onSelectionChange(encoding, tracks, year);
+		      map_vis.onSelectionChange(encoding, tracks, year);
+		      summary_vis.onSelectionChange(encoding, tracks, year);
+
+
+
+
+
+
+
+		      /*console.log("index.html");
+			  console.log(encoding);
+			  console.log(tracks);
+			  console.log(year);*/
+		  })
+
+
+    }
             // call this function after both files are loaded -- error should be "null" if no error
             var dataLoaded = function (error, _states, _cityData, _countyData, _countyMap, _stateMap, _1800_CountryMap, _1810CountryMap, _1820CountryMap, _1830CountryMap, _1830RailMap, _1840CountryMap, _1840RailMap, _1850CountryMap, _1850RailMap, _1860CountryMap, _1860RailMap, _1870CountryMap, _1870RailMap, _1880CountryMap, _1880RailMap, _1890CountryMap, _1890RailMap, _1900CountryMap, _1900RailMap, _summary) {
               var that = this;
@@ -127,7 +148,7 @@
                             }
                         }
                     }
-
+//console.log(stateMappings);
 
                     
                     // make our data look nicer and more useful:

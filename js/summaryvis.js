@@ -82,7 +82,7 @@ SummaryVis.prototype.initVis = function(){
             that.year.end = d;
     }
 
-    that.year.current = 1860; //that.year.start;
+    that.year.current = that.year.start;
 
     // creates axis and scales
     // Land Area
@@ -201,7 +201,7 @@ SummaryVis.prototype.updateVis = function(){
 	}
 
 
-	console.log(that.displayData["States"]);
+	//console.log(that.displayData["States"]);
 
 	that.svg.select(".statesSummary").selectAll("text")
 	        .data(that.displayData["States"])
@@ -213,7 +213,7 @@ SummaryVis.prototype.updateVis = function(){
 			})
 			.attr("x", function(d,i){return (i *19)+25;})
 			.attr("y", that.displaylocations.states)
-			.text(function(d){console.log(d);return d.State + ", " + d.Year;})
+			.text(function(d){/*console.log(d);*/return d.State + ", " + d.Year;})
 			.style("text-anchor", "start")
 			.attr("transform", function(d,i){ return "rotate(-65," +((i*19)+25)  + "," + that.displaylocations.states + ")";});;
 
@@ -242,7 +242,7 @@ SummaryVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+/*SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
@@ -251,7 +251,21 @@ SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
     
 
 
-}
+}*/
+
+SummaryVis.prototype.onSelectionChange= function (encoding, tracks, year){
+    this.year.current = year;
+	this.wrangleData(year);
+  /*  console.log(encoding);
+	    console.log(tracks);       
+		    console.log(year);
+*/
+			    // TODO: call wrangle function
+
+				    // do nothing -- no update when brushing
+    this.updateVis();
+
+					}
 
 
 /*
@@ -270,7 +284,7 @@ SummaryVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
  * @returns {Array|*}
  */
 SummaryVis.prototype.filterAndAggregate = function(year){
-console.log(this.data);
+//console.log(this.data);
     var that = this;
     var localdata = [];
 

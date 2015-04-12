@@ -19,10 +19,10 @@
  * @param _metaData -- the meta-data / data description object
  * @constructor
  */
-ControlVis = function(_parentElement, _data, _metaData){
+ControlVis = function(_parentElement, _data, _event){
     this.parentElement = _parentElement;
     this.data = _data;
-    this.metaData = _metaData;
+    this.eventHandler = _event;
     this.displayData = [];
     this.height = 300;
 	this.width = 200;
@@ -68,36 +68,59 @@ ControlVis.prototype.initVis = function(){
 	    .attr("type", "radio")
 		.attr("name", "encoding")
 		.attr("value", "counties")
+		.attr("id", "counties")
+        .on("click", function() {
+		    that.updateView();
+		})
+
 	this.displayForm.append("text").text("  Population by County");
-this.displayForm.append("br");
+    document.getElementById('counties').checked = true;
+
+    this.displayForm.append("br");
     this.displayForm.append("input")
 	    .attr("type", "radio")
 		.attr("name", "encoding")
 		.attr("value", "cities")
+        .on("click", function() {
+		    that.updateView();
+		})
+
     this.displayForm.append("text").text("  Population by City");
-this.displayForm.append("br");
-this.displayForm.append("input")
+    this.displayForm.append("br");
+
+    this.displayForm.append("input")
 	    .attr("type", "checkbox")
 		.attr("name", "railroads")
 		.attr("value", "railroads")
-    this.displayForm.append("text").text("  Railroad Expansion");
-this.displayForm.append("br");
-this.displayForm.append("text").text("Years:");
-this.displayForm.append("br");
+		.attr("id", "railroads")
+        .on("click", function() {
+		    that.updateView();
+		});
 
-this.displayForm.append("input")
+	document.getElementById('railroads').checked = true;
+
+    this.displayForm.append("text").text("  Railroad Expansion");
+    this.displayForm.append("br");
+    this.displayForm.append("text").text("Years:");
+    this.displayForm.append("br");
+
+    this.displayForm.append("input")
 	    .attr("type", "range")
 		.attr("name", "yearSelector")
 		.attr("min", "1800")
 		.attr("max", "1900")
+		.attr("step", "10")
 		.attr("value", "1800")
+		.on("click", function() {
+		    that.updateView();
+		})
 		.text("Population by City");
 
     this.displayForm.append("div")
 	    .attr("style", "float-left;display:inline-block;width:133px")
 		.text("1800");
 
-this.displayForm.append("div")
+    this.displayForm.append("div")
 	    .attr("style", "float-right;display:inline-block;width:32px")
 		.text("1900");
 
@@ -113,7 +136,7 @@ this.displayForm.append("div")
     this.wrangleData(null);
 
     // call the update method
-    this.updateVis();
+    this.updateView();
 }
 
 
@@ -182,7 +205,29 @@ ControlVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 *
 * */
 
+ControlVis.prototype.updateView = function() {
 
+
+    var that = this;
+    // We are going to create an array of settings to make set up the display.
+	var settings = [];
+
+    settings.push($("input[name=encoding]:checked").val());
+    settings.push($("input[name=railroads]").prop("checked"));
+    settings.push($("input[name=yearSelector]").val());
+
+	//console.log(settings);
+
+	$(that.eventHandler).trigger("selectionChanged", settings);
+
+/*    if(document.getElementbyID('counties').)
+	    console.log("counties")
+	else
+	    console.log("cities");
+i*/
+//console.log(document.getElementsbyName('encoding'));
+
+}
 
 /**
  * The aggregate function that creates the counts for each age for a given filter.

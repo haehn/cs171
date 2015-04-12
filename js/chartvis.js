@@ -18,13 +18,14 @@ ChartVis = function(_parentElement, _data, _eventHandler){
     this.eventHandler = _eventHandler;
     this.displayData = [];
 
-    this.year = "1860";
-    this.display = "cities";
+    this.year = "1800";
+    this.display = "counties";
+	this.railroads = true;
 
     // defines constants
     this.margin = {top: 20, right: 20, bottom: 30, left: 0},
     this.width = 200;//getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
-    this.height = 1000;//400 - this.margin.top - this.margin.bottom;
+    this.height = 500;//400 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }
@@ -96,7 +97,7 @@ ChartVis.prototype.wrangleData= function(year, display){
  */
 ChartVis.prototype.updateVis = function(){
 
-console.log(this.displayData);
+//console.log(this.displayData);
 
     var that = this;
 
@@ -184,12 +185,31 @@ console.log(this.displayData);
  * be defined here.
  * @param selection
  */
-ChartVis.prototype.onSelectionChange = function (selectionStart, selectionEnd){
+/*ChartVis.prototype.onSelectionChange = function (selectionStart, selectionEnd){
 
     // TODO: call wrangle function
 
     this.updateVis();
-}
+}*/
+
+ChartVis.prototype.onSelectionChange= function (encoding, tracks, year){
+    this.year = year;
+	this.display = encoding;
+	this.railroads = tracks;
+
+	this.updateVis();
+
+/*
+    console.log(encoding);
+	    console.log(tracks);       
+		    console.log(year);
+*/
+			    // TODO: call wrangle function
+
+				    // do nothing -- no update when brushing
+
+
+					}
 
 
 /**

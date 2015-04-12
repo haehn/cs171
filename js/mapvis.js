@@ -19,16 +19,19 @@
  * @param _eventHandler -- the Eventhandling Object to emit data to (see Task 4)
  * @constructor
  */
-MapVis = function(_parentElement, _data, _country, _state, _county, _rail, _eventHandler){
+MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _rail, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
+	this.stateMappings = _mappings;
     this.countryMaps = _country;
     this.stateMaps = _state;
     this.countyMaps = _county;
     this.railMaps = _rail;
     this.eventHandler = _eventHandler;
     this.displayData = [];
-
+    this.year = 1800;
+    this.encoding = "counties";
+	this.tracks = true;
     this.width = 760;
     this.height = 500;
     this.color = d3.scale.quantize(); // We need to define this here because
@@ -128,11 +131,69 @@ this.svg.append("g")
  * Method to wrangle the data. In this case it takes an options object
   */
 MapVis.prototype.wrangleData= function(){
+    //console.log(this.data);
+    var that = this;
+	var displayStates = true;
+	that.displayData = [];
+    //console.log(this.year);
+    //  TODO: Country, States, Counties, Cities, Railroads
+    that.displayData.country = that.countryMaps[that.year];
+    that.displayData.states = that.stateMaps;
+	that.displayData.counties = that.countyMaps;
+	that.displayData.railroads = [];
+//	console.log(that.stateMappings);
+//	console.log(that.displayData.states);
 
-    // displayData should hold the data which is visualized
-    // pretty simple in this case -- no modifications needed
-    this.displayData = this.data;
+    if(displayStates == true)
+	{
+        for(var i = 0; i < that.displayData.states.features.length;i++)
+	    { 
+	        if(that.getYear(that.displayData.states.features[i].properties.NAME) < that.year)
+		        that.displayData.states.features[i].properties.inc = true;
+		    else
+		        that.displayData.states.features[i].properties.inc = false;
+	    }
+	}
+	else
+	    that.displayData.states.features = [];
 
+    if(that.encoding == "counties")
+	{
+	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
+        {
+            var state = that.displayData.counties.features[i].properties["STATE"];
+            var county = that.displayData.counties.features[i].properties["NAME"];
+            var population = -100;
+            //console.log(that.countyMaps.features[i]);
+            try{
+        
+                var population = that.data[state]["counties"][county][that.year][0]["Population"];
+            }
+            catch(err){
+//                console.log("Error for: "  + year + county + ", " + state);
+                population = -1;
+            }
+            that.displayData.counties.features[i].properties.population = population;
+            //console.log(that.countyMaps.features[i].properties);
+        }
+        that.displayData.cities = [];
+	}
+	else // cities
+	{
+	    that.displayData.counties = [];
+	}
+ //   console.log(that.railMaps);
+	if(that.tracks)
+	{
+	    for(y in that.railMaps)
+		{
+		    if(y <= that.year)
+			    that.displayData.railroads.push(that.railMaps[y]);
+		}
+	}
+
+    //this.displayData = this.data;
+   // console.log(that.displayData);
 }
 
 
@@ -142,9 +203,9 @@ MapVis.prototype.wrangleData= function(){
  * @param _options -- only needed if different kinds of updates are needed
  */
 MapVis.prototype.updateVis = function(){
-
+//    console.log("update");
     // TODO: implement update graphs (D3: update, enter, exit)
-    var year = 1860;
+    //var year = 1860;
     var that = this;
     var projection = d3.geo.albersUsa()
                        .scale([1000]);
@@ -157,35 +218,15 @@ MapVis.prototype.updateVis = function(){
     //console.log(that.countyMaps);
     //console.log(that.displayData);
     // Here we need to bind the population data to the county data 
-    for(var i = 0; i < that.countyMaps.features.length;i++)  //change later to that.countyMaps.features.length
-    {
-        var state = that.countyMaps.features[i].properties["STATE"];
-        var county = that.countyMaps.features[i].properties["NAME"];
-        var population = -100;
-        //console.log(that.countyMaps.features[i]);
-        try{
-        
-            var population = that.displayData[state]["counties"][county][year][0]["Population"];
-        }
-        catch(err){
-//            console.log("Error for: "  + year + county + ", " + state);
-            population = -1;
-        }
-        that.countyMaps.features[i].properties.population = population;
-        //console.log(that.countyMaps.features[i].properties);
-    }
-
+    
     svg.select(".counties").selectAll("path")
-       .data(that.countyMaps.features)
+       .data(that.displayData.counties.features)
        .enter()
        .append("path")
-       .attr("d", path)
-       .attr("id", function(d) {
-           return d.properties.population;
-       })
-    //   .style("stroke", "black")
-    //   .style("stroke-width", "0.5px")
-       .attr("class", function(d){
+       .attr("d", path);
+    
+	svg.select(".counties").selectAll("path")
+	       .attr("class", function(d){
            if(d.properties.population == -1)
               return "nocolor";
            else
@@ -193,27 +234,77 @@ MapVis.prototype.updateVis = function(){
        });
 
     svg.select(".states").selectAll("path")
-       .data(that.stateMaps.features)
+       .data(that.displayData.states.features)
        .enter()
        .append("path")
        .attr("d", path);
-       //.attr("stroke", "black")
-       //.attr("stroke-width", "2");
- 
-    svg.select(".country").selectAll("path")
-       .data(that.countryMaps[year].features)
-       .enter()
-       .append("path")
-       .attr("d", path);
-       //.attr("stroke", "black")
-       //.attr("stroke-width", "2");
- 
 
-    svg.select(".rails").selectAll("path")
-       .data(that.railMaps[year].features)
-       .enter()
-       .append("path")
-       .attr("d", path)
+	svg.select(".states").selectAll("path")
+	    .attr("class", function(d){
+		   if(d.properties.inc)
+		       return "notincorporated";
+		   else
+		       return "incorporated";
+	   });
+
+    var country = svg.select(".country").selectAll("path")
+       .data(that.displayData.country.features);
+    
+	country.enter()
+       .append("path");
+
+	country.attr("d", path)
+	   .attr("class", "countryBorder");
+
+    country.exit().remove();
+
+
+    // Create the parent objects that will maintain the railroads by year
+	var railgroup = svg.select(".rails").selectAll("g")
+	    .data(that.displayData.railroads);
+
+	railgroup.enter()
+	    .append("g")
+		.attr("class", function(d,i)
+		{
+			return "rail" + i;
+		});
+
+	railgroup.exit().remove();
+
+    for(var i = 0; i < that.displayData.railroads.length;i++)
+	{
+	    var railline = svg.select(".rails").select(".rail" + i).selectAll("path")
+		    .data(that.displayData.railroads[i].features);
+
+		railline.enter()
+		    .append("path");
+
+		railline.attr("d", path)
+		    .attr("class", "railtrack");
+	}
+
+/*
+console.log(that.displayData.railroads);
+console.log(svg.select(".rails"));
+    svg.select(".rails").selectAll("g")
+	    .data(that.displayData.railroads)
+		.append("g")
+		.attr("class", "lauren");
+	*/	/*.attr("class", function(d){
+		    console.log(d);
+		       //return d.features.properties.name;
+		});*/
+/*
+    for(y in that.displayData.railroads)
+	{
+        svg.select(".rails").selectAll("path." + y + "rail")
+           .data(that.displayData.railroads[y].features)
+           .enter()
+           .append("path")
+           .attr("d", path)
+		   .attr("class", y + "rail");
+    }*/
       // .attr("stroke", "black")
       // .attr("stroke-width", "2");
        //.attr("class", function(d) {console.log(d)});
@@ -228,12 +319,21 @@ MapVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+MapVis.prototype.onSelectionChange= function (encoding, tracks, year){
+
+    var that = this;
+
+    that.year = year;
+	that.encoding = encoding;
+	that.tracks = tracks;
+    //console.log(encoding);
+	//console.log(tracks);               
+	//console.log(year);
 
     // TODO: call wrangle function
-
+    this.wrangleData();
     // do nothing -- no update when brushing
-
+    this.updateVis();
 
 }
 
@@ -308,7 +408,18 @@ MapVis.prototype.addSlider = function(svg){
 }
 
 
-
+MapVis.prototype.getYear = function(state)
+{
+    var that = this;
+    for(var i = 0;i < that.stateMappings.length;i++)
+	{
+	    if(that.stateMappings[i].State == state)
+		{
+		    return that.stateMappings[i].Year;
+		}
+	}
+    
+}
 
 
 

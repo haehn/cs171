@@ -22,7 +22,7 @@
 MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _rail, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
-	this.stateMappings = _mappings;
+    this.stateMappings = _mappings;
     this.countryMaps = _country;
     this.stateMaps = _state;
     this.countyMaps = _county;
@@ -31,10 +31,11 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
     this.displayData = [];
     this.year = 1800;
     this.encoding = "counties";
-	this.tracks = true;
+    this.tracks = true;
     this.width = 760;
     this.height = 500;
     this.color = d3.scale.quantize(); // We need to define this here because
+    this.cityScale = d3.scale.linear().domain([0,3500000]).range([2,20]);
     // the values stay the same across all views
 
     // TODO: define all "constants" here
@@ -78,11 +79,13 @@ MapVis.prototype.initVis = function(){
         .attr("class", "counties");
         //.attr("transform", "translate(-100,0)");
 
-this.svg.append("g")
+    this.svg.append("g")
         .attr("class", "states");
-  this.svg.append("g")
+    this.svg.append("g")
         .attr("class", "country");
- 
+    this.svg.append("g")
+        .attr("class", "cities");
+
     this.svg.append("g")
         .attr("class", "rails");
         //.attr("transform", "translate(-100,0)");
@@ -131,7 +134,6 @@ this.svg.append("g")
  * Method to wrangle the data. In this case it takes an options object
   */
 MapVis.prototype.wrangleData= function(){
-    //console.log(this.data);
     var that = this;
 	var displayStates = true;
 	that.displayData = [];
@@ -141,7 +143,8 @@ MapVis.prototype.wrangleData= function(){
     that.displayData.states = that.stateMaps;
 	that.displayData.counties = that.countyMaps;
 	that.displayData.railroads = [];
-//	console.log(that.stateMappings);
+        that.displayData.cities = [];
+	//console.log(that.data);
 //	console.log(that.displayData.states);
 
     if(displayStates == true)
@@ -156,31 +159,44 @@ MapVis.prototype.wrangleData= function(){
 	}
 	else
 	    that.displayData.states.features = [];
-
+//console.log(that.countyMaps);
     if(that.encoding == "counties")
 	{
 	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
-        {
-            var state = that.displayData.counties.features[i].properties["STATE"];
-            var county = that.displayData.counties.features[i].properties["NAME"];
-            var population = -100;
+            {
+                var state = that.displayData.counties.features[i].properties["STATE"];
+                var county = that.displayData.counties.features[i].properties["NAME"];
+                var population = -100;
             //console.log(that.countyMaps.features[i]);
-            try{
+                try{
         
-                var population = that.data[state]["counties"][county][that.year][0]["Population"];
-            }
-            catch(err){
+                    var population = that.data[state]["counties"][county][that.year][0]["Population"];
+                }
+                catch(err){
 //                console.log("Error for: "  + year + county + ", " + state);
-                population = -1;
-            }
-            that.displayData.counties.features[i].properties.population = population;
+                    population = -1;
+                }
+                that.displayData.counties.features[i].properties.population = population;
             //console.log(that.countyMaps.features[i].properties);
-        }
-        that.displayData.cities = [];
+            }
+            that.displayData.cities = [];
 	}
 	else // cities
 	{
-	    that.displayData.counties = [];
+                that.displayData.counties = [];
+            for(code in that.data)
+            {   
+                for(city in that.data[code].cities)
+                {
+                    if(typeof that.data[code].cities[city][that.year] != "undefined")
+                    {
+                        that.displayData.cities.push(that.data[code].cities[city][that.year][0]);
+                    } 
+                }
+            }
+  
+//console.log(that.displayData.cities);
+
 	}
  //   console.log(that.railMaps);
 	if(that.tracks)
@@ -214,24 +230,89 @@ MapVis.prototype.updateVis = function(){
 
     var svg = that.parentElement.select("svg").select("g");
 
+    
+
     // TODO:  We need to add the layers, from bottom to top: counties, states, countries
     //console.log(that.countyMaps);
     //console.log(that.displayData);
     // Here we need to bind the population data to the county data 
-    
-    svg.select(".counties").selectAll("path")
-       .data(that.displayData.counties.features)
-       .enter()
-       .append("path")
-       .attr("d", path);
-    
-	svg.select(".counties").selectAll("path")
-	       .attr("class", function(d){
+
+    //console.log(that.displayData.counties);
+   // if(that.encoding == "counties")
+    //{
+    var codisplay = [];
+    if(that.encoding == "counties")
+        codisplay = [1];
+	
+        var countygroup = svg.select(".counties").selectAll("g")
+	    .data(codisplay);
+
+	countygroup.enter()
+	    .append("g")
+		.attr("class", function(d,i)
+		{
+			return "county" + i;
+		});
+
+	countygroup.exit().remove();
+
+    if(that.encoding == "counties")
+	{
+	    var coline = svg.select(".counties").select(".county0").selectAll("path")
+		    .data(that.displayData.counties.features);
+
+		coline.enter()
+		    .append("path");
+
+		coline.attr("d", path)
+                    .attr("class", function(d){
+                        if(d.properties.population == -1)
+                            return "nocolor";
+                        else
+                            return that.color(d.properties.population);
+           });
+
+
+	}
+
+
+/*
+    console.log(that.displayData);
+        var countyshapes = svg.select(".counties").selectAll("path")
+           .data(that.displayData.counties.features);
+
+        countyshapes.enter()
+           .append("path");
+           
+        countyshapes.attr("d", path)
+	   .attr("class", function(d){
            if(d.properties.population == -1)
               return "nocolor";
            else
               return that.color(d.properties.population);
-       });
+           });
+
+        countyshapes.exit().remove();
+*/
+
+    //}
+    //else if(that.encoding == "cities")
+    //{
+        var citycircle = svg.select(".cities").selectAll("circle")
+            .data(that.displayData.cities);
+            
+        citycircle.enter()
+            .append("circle");
+
+        citycircle.attr("r", function(d){return that.cityScale(d.Population);})
+            .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
+            .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
+
+            citycircle.attr("class", "city-circle");
+  
+        citycircle.exit().remove();
+
+    //}
 
     svg.select(".states").selectAll("path")
        .data(that.displayData.states.features)

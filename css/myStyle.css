@@ -38,7 +38,9 @@ body{
     pointer-events: none;
 }
 
-
+.city-circle{
+    fill: white;
+}
 
 .subbar{
     opacity: 0.25;

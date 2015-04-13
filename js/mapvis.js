@@ -83,11 +83,13 @@ MapVis.prototype.initVis = function(){
         .attr("class", "states");
     this.svg.append("g")
         .attr("class", "country");
-    this.svg.append("g")
-        .attr("class", "cities");
 
     this.svg.append("g")
         .attr("class", "rails");
+
+    this.svg.append("g")
+        .attr("class", "cities");
+
         //.attr("transform", "translate(-100,0)");
 
 
@@ -295,6 +297,30 @@ MapVis.prototype.updateVis = function(){
         countyshapes.exit().remove();
 */
 
+    // Create the parent objects that will maintain the railroads by year
+	var railgroup = svg.select(".rails").selectAll("g")
+	    .data(that.displayData.railroads);
+
+	railgroup.enter()
+	    .append("g")
+		.attr("class", function(d,i)
+		{
+			return "rail" + i;
+		});
+
+	railgroup.exit().remove();
+
+    for(var i = 0; i < that.displayData.railroads.length;i++)
+	{
+	    var railline = svg.select(".rails").select(".rail" + i).selectAll("path")
+		    .data(that.displayData.railroads[i].features);
+
+		railline.enter()
+		    .append("path");
+
+		railline.attr("d", path)
+		    .attr("class", "railtrack");
+	}
     //}
     //else if(that.encoding == "cities")
     //{
@@ -340,30 +366,6 @@ MapVis.prototype.updateVis = function(){
     country.exit().remove();
 
 
-    // Create the parent objects that will maintain the railroads by year
-	var railgroup = svg.select(".rails").selectAll("g")
-	    .data(that.displayData.railroads);
-
-	railgroup.enter()
-	    .append("g")
-		.attr("class", function(d,i)
-		{
-			return "rail" + i;
-		});
-
-	railgroup.exit().remove();
-
-    for(var i = 0; i < that.displayData.railroads.length;i++)
-	{
-	    var railline = svg.select(".rails").select(".rail" + i).selectAll("path")
-		    .data(that.displayData.railroads[i].features);
-
-		railline.enter()
-		    .append("path");
-
-		railline.attr("d", path)
-		    .attr("class", "railtrack");
-	}
 
 /*
 console.log(that.displayData.railroads);

@@ -124,9 +124,9 @@ ChartVis.prototype.updateVis = function(){
     bar_enter.append("text");
 
     // Add click interactivity
-    bar_enter.on("click", function(d) {
+    /*bar_enter.on("click", function(d) {
        $(that.eventHandler).trigger("selectionChanged", d.Name);
-    })
+    })*/
 
     // Add attributes (position) to all bars
     bar
@@ -136,7 +136,7 @@ ChartVis.prototype.updateVis = function(){
 
     this.svg.selectAll(".bar")
         .sort(function(a,b)
-        {
+        {   
              return d3.descending(parseInt(a.Population), parseInt(b.Population));
         })
         .attr("transform", function(d,i)
@@ -156,7 +156,7 @@ ChartVis.prototype.updateVis = function(){
     bar.selectAll("rect")
       .attr("x", 0)
       .attr("y", 0)
-      .attr("height", this.y.rangeBand())
+      .attr("height",10)// this.y.rangeBand())
       .attr("fill", function(d,i) {
         return that.color(d.Name);
       })

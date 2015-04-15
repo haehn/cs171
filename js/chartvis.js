@@ -19,7 +19,7 @@ ChartVis = function(_parentElement, _data, _eventHandler){
     this.displayData = [];
 
     this.year = "1800";
-    this.display = "counties";
+    this.display = "cities";
 	this.railroads = true;
 
     // defines constants
@@ -35,7 +35,6 @@ ChartVis = function(_parentElement, _data, _eventHandler){
  * Method that sets up the SVG and the variables
  */
 ChartVis.prototype.initVis = function(){
-
     // constructs SVG layout
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
@@ -66,8 +65,12 @@ ChartVis.prototype.initVis = function(){
     this.svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")");
+
+    this.svg.append("g")
+        .attr("class", "bars");
 //    console.log("init");
     // filter, aggregate, modify data
+   // console.log(this.data);
     this.wrangleData(this.year, this.display);
 
     // call the update method
@@ -82,10 +85,11 @@ ChartVis.prototype.initVis = function(){
 ChartVis.prototype.wrangleData= function(year, display){
   //  console.log("wrangle");
     // displayData should hold the data whiche is visualized
-    this.displayData = this.filterAndAggregate(year, display);
+    var that = this;
+    that.displayData = that.filterAndAggregate(year, display);
  
     //// you might be able to pass some options,
-    //// if you don't pass options -- set the default options
+    //// if you don't pass options -- set the default options
     //// the default is: var options = {filter: function(){return true;} }
     //var options = _options || {filter: function(){return true;}};
 }
@@ -96,10 +100,11 @@ ChartVis.prototype.wrangleData= function(year, display){
  * the drawing function - should use the D3 selection, enter, exit
  */
 ChartVis.prototype.updateVis = function(){
-
+    //console.log("update");
 //console.log(this.displayData);
 
     var that = this;
+    var svg = that.parentElement.select("svg").select("g");
 
     // updates scales
     this.x.domain(d3.extent(this.displayData, function(d) { return parseInt(d.Population); }));
@@ -109,9 +114,62 @@ ChartVis.prototype.updateVis = function(){
     // updates axis
     this.svg.select(".x.axis")
         .call(this.xAxis);
+    console.log(that.displayData);
+    var bar_group = svg.select(".bars").selectAll("g")
+        .data(that.displayData);
 
+    var bar_enter = bar_group.enter()
+       .append("g")
+      
+       
+    bar_group.sort(function(a,b)
+        {   
+             return d3.descending(parseInt(a.Population), parseInt(b.Population));
+        })
+        .attr("transform", function(d,i)
+        {
+            return "translate(0, " + (i *10 +10) + ")";
+        })
+       .attr("class", function(d,i)
+       { //console.log(d,i);
+           return "bargroup"+ (((i%2))*4);
+       });  
+
+
+    bar_enter.append("rect");
+    bar_enter.append("text");
+    bar_enter.append("title");
+
+    bar_group.exit().remove();
+
+    bar_group.selectAll("rect")
+         //.attr("class", function(d, i){ console.log(d,i);return "color" + (((i%2))*4)})
+         .attr("x", 0)
+         .attr("y", 0)
+         .attr("height",8)// this.y.rangeBand())
+        // .attr("fill", function(d,i) {
+          //   return that.color(d.Name);
+          //})
+         .transition()
+         .attr("width", function(d, i) {
+      //      return 10;
+      console.log(d.City, d.Population);
+              return that.x(d.Population);
+         })
+         
+         bar_group.selectAll("title")
+         .text(function(d, i)
+         {//console.log("title");
+             return d.City + ", Population: " + d.Population;
+         });
+
+
+
+/*
+ *  Below is the original bar work.  I'm rewriting this.
+ */
     // updates graph
-
+/*
     // Data join
     var bar = this.svg.selectAll(".bar")
       .data(this.displayData);
@@ -121,12 +179,12 @@ ChartVis.prototype.updateVis = function(){
 
     // Append a rect and a text only for the Enter set (new g)
     bar_enter.append("rect");
-    bar_enter.append("text");
+    bar_enter.append("text");
 
     // Add click interactivity
-    /*bar_enter.on("click", function(d) {
-       $(that.eventHandler).trigger("selectionChanged", d.Name);
-    })*/
+    //bar_enter.on("click", function(d) {
+    //   $(that.eventHandler).trigger("selectionChanged", d.Name);
+    //})
 
     // Add attributes (position) to all bars
     bar
@@ -141,7 +199,7 @@ ChartVis.prototype.updateVis = function(){
         })
         .attr("transform", function(d,i)
         {
-            return "translate(10, " + (i *10 +10) + ")";
+            return "translate(0, " + (i *10 +10) + ")";
         });
 
     // Remove the extra bars
@@ -149,7 +207,12 @@ ChartVis.prototype.updateVis = function(){
       .remove();
 
     this.svg.selectAll(".bar").select("rect")
-       .attr("class", function(d, i){ return "color" + (((i%2)+1)*4)});
+       .attr("class", function(d, i){ return "color" + (((i%2))*4)})
+       .append("title")
+      .text(function(d)
+      {
+          return "Population: " + d.Population;
+      });;;
 
     // Update all inner rects and texts (both update and enter sets)
 
@@ -164,18 +227,25 @@ ChartVis.prototype.updateVis = function(){
       .attr("width", function(d, i) {
       //      return 10;
           return that.x(d.Population);
-      });
+      })
+      
 
     bar.selectAll("text")
       .transition()
       .attr("x", function(d) { return that.x(d.Population) + (that.doesLabelFit(d) ? -3 : 5); })
-      .attr("y", function(d,i) { return that.y.rangeBand() / 2; })
-      .text(function(d) { return d.Name + ", " + d.StateCode; })
+      .attr("y", function(d,i) { return that.y.rangeBand() / 2 + 3; })
+      .text(function(d) { 
+          return d.Name + ", " + d.StateCode; })
       .attr("class", "type-label")
       .attr("dy", ".35em")
       .attr("text-anchor", function(d) { return that.doesLabelFit(d) ? "end" : "start"; })
-      .attr("fill", function(d) { return that.doesLabelFit(d) ? "white" : "black"; });
-
+      .attr("fill", function(d, i) { 
+          console.log(i);
+          if(i%2 == 0)
+              return "black";
+          return that.doesLabelFit(d) ? "white" : "black"; 
+      });
+*/
 }
 
 
@@ -193,10 +263,11 @@ ChartVis.prototype.updateVis = function(){
 }*/
 
 ChartVis.prototype.onSelectionChange= function (encoding, tracks, year){
-    this.year = year;
+        var that = this;
+        this.year = year;
 	this.display = encoding;
 	this.railroads = tracks;
-
+        that.wrangleData(year, encoding);
 	this.updateVis();
 
 /*
@@ -217,8 +288,9 @@ ChartVis.prototype.onSelectionChange= function (encoding, tracks, year){
  * to fit a label inside its bar in a bar chart
  */
 ChartVis.prototype.doesLabelFit = function(datum) {
-  var pixel_per_character = 6;  // obviously a (rough) approximation
-  return (datum.Name.length + 2 + datum.StateCode.length) * pixel_per_character < this.x(datum.count);
+  var pixel_per_character = 5.1;  // obviously a (rough) approximation
+  
+  return (datum.Name.length + datum.StateCode.length + 2) * pixel_per_character < this.x(datum.Population);
 }
 
 /**
@@ -229,6 +301,8 @@ ChartVis.prototype.doesLabelFit = function(datum) {
 ChartVis.prototype.filterAndAggregate = function(year, display){
     //console.log("filter");
     var that = this;
+
+    console.log(year, display);
    // console.log(that.data);
     var filteredData = [];
     
@@ -247,7 +321,6 @@ ChartVis.prototype.filterAndAggregate = function(year, display){
             }
         }
     }
-    //console.log(filteredData);
 
     return filteredData;
 /*

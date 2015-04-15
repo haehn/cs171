@@ -41,7 +41,9 @@ body{
 .city-circle{
     fill: white;
 }
-
+text.type-label{
+    font-size: 10px;
+}
 .subbar{
     opacity: 0.25;
 }
@@ -52,6 +54,16 @@ body{
 
 line{
   stroke-width:6;
+}
+
+.bargroup0{
+    stroke: rgb(255,255,255);
+    fill: rgb(255,255,255);
+}
+
+.bargroup4{
+    stroke: rgb(158,202,225);
+    fill: rgb(158,202,225);
 }
 
 

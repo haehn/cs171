@@ -110,10 +110,10 @@
 
           $(MyEventHandler).bind("selectionChanged", function(event, encoding, tracks, year)
 		  {
-    	              chart_vis.onSelectionChange(encoding, tracks, year);
+    	      chart_vis.onSelectionChange(encoding, tracks, year);
 		      //info_vis.onSelectionChange(encoding, tracks, year);
-		      //map_vis.onSelectionChange(encoding, tracks, year);
-		      //summary_vis.onSelectionChange(encoding, tracks, year);
+		      map_vis.onSelectionChange(encoding, tracks, year);
+		      summary_vis.onSelectionChange(encoding, tracks, year);
 
 
 

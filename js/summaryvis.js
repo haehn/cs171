@@ -301,20 +301,23 @@ SummaryVis.prototype.updateVis = function(){
     {//console.log("add circles");
         for(e in that.displayData["Population"])
         {   //console.log(e);
-	    var yearcircles = Math.round((that.displayData["Population"][e]["end"] - that.displayData["Population"][e]["start"])/1000000);
+	        var yearcircles = Math.round((that.displayData["Population"][e]["end"] - that.displayData["Population"][e]["start"])/1000000);
             for(var i = 1; i <= yearcircles;i++)
-	    {
+	        {
                 that.existingCircles++;
-	        circleCounter++;
-                that.svg.select(".populationsSummary")
-	            .append("circle")
-		    .attr("r", 5)
-		    .attr("cx", that.populationX(circleCounter))
-		    .attr("cy", that.displaylocations.population)
+	            circleCounter++;
+				if(circleCounter >= that.existingCircles)
+				{
+                    that.svg.select(".populationsSummary")
+	                    .append("circle")
+		                .attr("r", 5)
+		                .attr("cx", that.populationX(circleCounter))
+		                .attr("cy", that.displaylocations.population)
 				//.attr("fill", "red")
-		    .attr("class", function() {return "color" + e})
-                    .attr("id", function(){return "summaryCircle" + circleCounter});
-            }
+		                .attr("class", function() {return "color" + e})
+                        .attr("id", function(){return "summaryCircle" + circleCounter});
+                }
+			}
         }
     }
     // We need to remove circles

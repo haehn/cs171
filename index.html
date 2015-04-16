@@ -99,8 +99,8 @@
                 //TODO: Instantiate all Vis iObjects here
 
                 //var map_vis = new MapVis(d3.select("#mapVis"), allData, stateMappings, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
-                var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
-                //var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
+                //var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
+                var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
                 var control_vis = new ControlVis(d3.select("#controlVis"), allData, MyEventHandler);
 
 
@@ -110,10 +110,10 @@
 
           $(MyEventHandler).bind("selectionChanged", function(event, encoding, tracks, year)
 		  {
-    	              chart_vis.onSelectionChange(encoding, tracks, year);
+    	              //chart_vis.onSelectionChange(encoding, tracks, year);
 		      //info_vis.onSelectionChange(encoding, tracks, year);
 		      //map_vis.onSelectionChange(encoding, tracks, year);
-		      //summary_vis.onSelectionChange(encoding, tracks, year);
+		      summary_vis.onSelectionChange(encoding, tracks, year);
 
 
 

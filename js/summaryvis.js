@@ -30,10 +30,13 @@ SummaryVis = function(_parentElement, _data, _states,  _event){
     this.year.end = 0;
     this.year.current = 0;
     this.displaylocations = [];
+    this.titles = [];
+    this.existingCircles = 0;
     
     // TODO: define all constants here
     this.width = 900;
-    this.height = 200;
+    this.height = 300;
+    this.margin = {top: 0, right: 0, bottom: 0, left: 70};
     this.initVis();
 
 }
@@ -46,6 +49,21 @@ SummaryVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
+    this.displaylocations.tracks = (this.height/4)*0.25;
+    this.displaylocations.area = (this.height/4)*.75;
+    this.displaylocations.population = (this.height/4)*1.5;
+    this.displaylocations.states = (this.height/4)*3.5;
+    this.displaylocations.legend = this.height - 5;
+
+    this.titles.tracks1 = "Miles of";
+    this.titles.tracks2 = "Railroad";
+    this.titles.tracks3 = "Tracks: ";
+    this.titles.area = "Land Area: ";
+    this.titles.population = "Population: ";
+    this.titles.states = "States: ";
+    this.titles.legend = "Legend: ";
+
+
 
     //TODO: construct or select SVG
     //TODO: create axis and scales
@@ -55,17 +73,84 @@ SummaryVis.prototype.initVis = function(){
         .attr("width", this.width)
         .attr("height", this.height)
         .attr("style", "border: 2px solid black")
-        this.svg.append("g").attr("class", "populationsSummary");
-        this.svg.append("g").attr("class", "tracksSummary");
-        this.svg.append("g").attr("class", "areaSummary");
-        this.svg.append("g").attr("class", "statesSummary");
+        this.svg.append("g").attr("class", "populationsSummary")
+            .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.population+5)
+            .text(this.titles.population);
+       
 
+        this.svg.append("g").attr("class", "tracksSummary")
+            .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.tracks - 8)
+            .text(this.titles.tracks1);
+        this.svg.select(".tracksSummary")
+            .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.tracks+7)
+            .text(this.titles.tracks2);
+        this.svg.select(".tracksSummary")
+            .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.tracks + 20)
+            .text(this.titles.tracks3);
+        
+
+
+        this.svg.append("g").attr("class", "areaSummary")
+      .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.area+8)
+            .text(this.titles.area);
+
+      
+        this.svg.append("g").attr("class", "statesSummary")
+     .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.states+7)
+            .text(this.titles.states);
+
+       
+        this.svg.append("g").attr("class", "legendSummary")
+    .append("text")
+            .attr("class", "summarytitle")
+            .attr("x", 0)
+            .attr("y", that.displaylocations.legend - 2)
+            .text(this.titles.legend);
+
+        for(var i = 0; i < 11;i++)
+        {
+            var j = 1800 + (i*10);
+            this.svg.select(".legendSummary")
+                .append("rect")
+                .attr("class", "color" + i)
+                .attr("x", function(){
+                    return that.margin.left + i*70;
+                })
+                .attr("y", that.displaylocations.legend-15)
+                .attr("height", 15)
+                .attr("width", 15);
+      
+      
+            this.svg.select(".legendSummary")
+                .append("text")
+                .attr("class", "legend")
+                .attr("x", function(){
+                    return that.margin.left + 20 + i*70;
+                })
+                .attr("y", that.displaylocations.legend - 2)
+                .text(j);
+      
+      
+        }
 		//.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
-
-    this.displaylocations.tracks = (this.height/4)*0.25;
-    this.displaylocations.area = (this.height/4)*.75;
-    this.displaylocations.population = (this.height/4)*1.5;
-    this.displaylocations.states = this.height-5;
 
     //Find the range of years
 
@@ -87,21 +172,21 @@ SummaryVis.prototype.initVis = function(){
     // creates axis and scales
     // Land Area
     this.landX = d3.scale.linear()
-      .range([0, this.width])  // ouput
+      .range([this.margin.left, this.width - this.margin.right])  // ouput
       .domain([0, that.data[that.year.end][0]["Area"]]);
     // Population
     this.populationX = d3.scale.linear()
-      .range([0, this.width])  // ouput
+      .range([this.margin.left, this.width - this.margin.right])  // ouput
       .domain([0, Math.round(that.data[that.year.end][0]["Population"]/1000000)]);
 
     // Number of states
     this.statesX = d3.scale.ordinal()
-      .range([0, this.width])  // ouput
+      .range([this.margin.left, this.width - this.margin.right])  // ouput
       .domain([0, that.data[that.year.end][0]["States"]]);
 
     // Miles of railroad tracks
     this.tracksX = d3.scale.linear()
-      .range([0, this.width])  // ouput
+      .range([this.margin.left, this.width - this.margin.right])  // ouput
       .domain([0, that.data[that.year.end][0]["Tracks"]]);
 
 
@@ -159,46 +244,91 @@ SummaryVis.prototype.updateVis = function(){
                           .attr("class", function(d, i){;return "color" + i;});
 
 */
-    var tracks       = this.svg.select(".tracksSummary").selectAll("rect")
-                          .data(that.displayData["Tracks"])
-                          .enter()
-                          .append("rect")
-                          .attr("y", that.displaylocations.tracks)
-                          .attr("x", function(d){return that.tracksX(d.start)})
-                          .attr("width", function(d){return that.tracksX(d.end) - that.tracksX(d.start)})
-                          //.attr("stroke", "black")
-                          .attr("height", 6)
-                          .attr("style", "outline: solid black 1px")
-                          .attr("class", function(d, i){;return "color" + i;});
 
-    var area       = this.svg.select(".areaSummary").selectAll("rect")
-                          .data(that.displayData["Areas"])
-                          .enter()
-                          .append("rect")
-                          .attr("y", that.displaylocations.area)
-                          .attr("x", function(d){return that.landX(d.start)})
-                          .attr("width", function(d){return that.landX(d.end-d.start)})
+
+    var tracks = this.svg.select(".tracksSummary").selectAll("rect")
+                          .data(that.displayData["Tracks"]);
+
+        tracks.enter()
+              .append("rect")
+              .append("title");
+                          
+        tracks.attr("y", that.displaylocations.tracks)
+              .attr("x", function(d){return that.tracksX(d.start)})
+              .attr("width", function(d){return that.tracksX(d.end) - that.tracksX(d.start)})
                           //.attr("stroke", "black")
-                          .attr("height", 10)
-                          .attr("style", "outline: solid black 1px")
-                          .attr("class", function(d, i){;return "color" + i;});
-    var circleCounter = 0;    
+              .attr("height", 6)
+              .attr("style", "outline: solid black 1px")
+              .attr("class", function(d, i){;return "color" + i;});
+
+        tracks.exit().remove();
+
+    var tracktitles = tracks.select("title")
+        .text(function(d){/*console.log(d);*/ return d.Year + ", " + d.end + " Miles"});
+
+    var area = this.svg.select(".areaSummary").selectAll("rect")
+               .data(that.displayData["Areas"]);
+
+    area.enter()
+        .append("rect")
+        .append("title");
+                          
+    area.attr("y", that.displaylocations.area)
+        .attr("x", function(d){return that.landX(d.start)})
+        .attr("width", function(d){return that.landX(d.end) - that.landX(d.start)})
+                          //.attr("stroke", "black")
+        .attr("height", 10)
+        .attr("style", "outline: solid black 1px")
+        .attr("class", function(d, i){;return "color" + i;});
+
+    area.exit().remove();
+
+    var areatitles = area.select("title")
+        .text(function(d) {/*console.log(d);*/ return d.Year + ", " + d.end + " Square Miles";});
+    //console.log(that.displayData["Population"]);
+    
+    var circleCounter = 0;
+    
+    //var totalCircles = Math.round(that.displayData["Population"][that.displayData["Population"][length -1]].end/1000000); 
+    var totalCircles = Math.round(that.displayData["Population"][(that.displayData["Population"].length) -1].end/1000000); 
+    console.log(that.existingCircles, totalCircles); 
+ 
+   //console.log(totalCircles);
    //console.log(that.displayData["Population"]); 
-    for(e in that.displayData["Population"])
-    {   //console.log(e);
-	    var circles = Math.round((that.displayData["Population"][e]["end"] - that.displayData["Population"][e]["start"])/1000000);
-        for(var i = 1; i <= circles;i++)
-		{
-		    circleCounter++;
-            that.svg.select(".populationsSummary")
-			    .append("circle")
-				.attr("r", 5)
-				.attr("cx", that.populationX(circleCounter))
-				.attr("cy", that.displaylocations.population)
+
+    // We need to add circles if we don't have the right number
+    if(that.existingCircles < totalCircles)
+    {//console.log("add circles");
+        for(e in that.displayData["Population"])
+        {   //console.log(e);
+	    var yearcircles = Math.round((that.displayData["Population"][e]["end"] - that.displayData["Population"][e]["start"])/1000000);
+            for(var i = 1; i <= yearcircles;i++)
+	    {
+                that.existingCircles++;
+	        circleCounter++;
+                that.svg.select(".populationsSummary")
+	            .append("circle")
+		    .attr("r", 5)
+		    .attr("cx", that.populationX(circleCounter))
+		    .attr("cy", that.displaylocations.population)
 				//.attr("fill", "red")
-				.attr("class", function() {return "color" + e});
+		    .attr("class", function() {return "color" + e})
+                    .attr("id", function(){return "summaryCircle" + circleCounter});
+            }
         }
-	}
+    }
+    // We need to remove circles
+    else if(that.existingCircles > totalCircles)
+    {;
+        for(var i = totalCircles+1;that.existingCircles > totalCircles;i++)
+        {//   console.log(i);
+            that.svg.selectAll("#summaryCircle" + i).remove();
+            that.existingCircles--;
+        }
+    }
+
+    //that.svg.select(".populationSummary").selectAll("circle")
+    //    .attr("r", function(d, i) {return });
 
 
 	//console.log(that.displayData["States"]);

@@ -107,41 +107,109 @@ ChartVis.prototype.updateVis = function(){
     var svg = that.parentElement.select("svg").select("g");
 
     // updates scales
-    this.x.domain(d3.extent(this.displayData, function(d) { return parseInt(d.Population); }));
-    this.y.domain(this.displayData.map(function(d) { return d.Name; }));
-    this.color.domain(this.displayData.map(function(d) { return d.Name }));
+    that.x.domain(d3.extent(that.displayData, function(d) { return parseInt(d.Population); }));
+    that.y.domain(that.displayData.map(function(d) { return d.Name; }));
+    that.color.domain(that.displayData.map(function(d) { return d.Name }));
 
     // updates axis
     this.svg.select(".x.axis")
         .call(this.xAxis);
     console.log(that.displayData);
-    var bar_group = svg.select(".bars").selectAll("g")
+
+    var bars = svg.select(".bars").selectAll("rect")
         .data(that.displayData);
 
-    var bar_enter = bar_group.enter()
-       .append("g")
+    bars.enter()
+       .append("rect")
+       .append("title");
       
        
-    bar_group.sort(function(a,b)
+    bars.sort(function(a,b)
         {   
              return d3.descending(parseInt(a.Population), parseInt(b.Population));
         })
-        .attr("transform", function(d,i)
+        .attr("x", 0)
+        .attr("y", function(d,i)
         {
-            return "translate(0, " + (i *10 +10) + ")";
+            return (i *10 +10);
+        })
+        .attr("height", 8)
+        .attr("width", function(d)
+        {
+            return that.x(d.Population);
         })
        .attr("class", function(d,i)
        { //console.log(d,i);
            return "bargroup"+ (((i%2))*4);
-       });  
+       });
+
+    var titles = bars.select("title")
+        .text(function(d){/*console.log(d);*/return d.Name + ", " + d.State + ", " + d.Population;});
 
 
+    var names = svg.select(".bars").selectAll("text")
+        .data(that.displayData);
+
+    names.enter()
+       .append("text");
+      
+       
+    names.sort(function(a,b)
+        {   
+             return d3.descending(parseInt(a.Population), parseInt(b.Population));
+        })
+          .attr("x", function(d) { return that.x(d.Population) + (that.doesLabelFit(d) ? -3 : 5); })
+      .attr("y", function(d,i) { return (i*10+13) })
+      .text(function(d) { 
+          return d.Name + ", " + d.StateCode; })
+      .attr("class", "type-label")
+      .attr("dy", ".35em")
+      .attr("text-anchor", function(d) { return that.doesLabelFit(d) ? "end" : "start"; })
+      .attr("fill", function(d, i) { 
+          //console.log(i);
+          if(i%2 == 0)
+              return "black";
+          return that.doesLabelFit(d) ? "white" : "black"; 
+      });
+
+
+
+/*
+var bars = svg.select(".bars").selectAll("rect")
+        .data(that.displayData);
+
+    bars.enter()
+       .append("rect")
+      
+       
+    bars.sort(function(a,b)
+        {   
+             return d3.descending(parseInt(a.Population), parseInt(b.Population));
+        })
+        .attr("x", 0)
+        .attr("y", function(d,i)
+        {
+            return (i *10 +10);
+        })
+        .attr("height", 8)
+        .attr("width", function(d)
+        {
+            return that.x(d.Population);
+        })
+       .attr("class", function(d,i)
+       { //console.log(d,i);
+           return "bargroup"+ (((i%2))*4);
+       }); 
+
+*/
+
+/*
     bar_enter.append("rect");
     bar_enter.append("text");
     bar_enter.append("title");
-
-    bar_group.exit().remove();
-
+*/
+    bars.exit().remove();
+/*
     bar_group.selectAll("rect")
          //.attr("class", function(d, i){ console.log(d,i);return "color" + (((i%2))*4)})
          .attr("x", 0)
@@ -154,7 +222,7 @@ ChartVis.prototype.updateVis = function(){
          .attr("width", function(d, i) {
       //      return 10;
       console.log(d.City, d.Population);
-              return that.x(d.Population);
+              return 10;//that.x(d.Population);
          })
          
          bar_group.selectAll("title")
@@ -162,7 +230,7 @@ ChartVis.prototype.updateVis = function(){
          {//console.log("title");
              return d.City + ", Population: " + d.Population;
          });
-
+*/
 
 
 /*

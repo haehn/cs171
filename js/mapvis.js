@@ -161,7 +161,7 @@ MapVis.prototype.wrangleData= function(){
 	}
 	else
 	    that.displayData.states.features = [];
-//console.log(that.stateMappings);
+console.log(that.getYear("Oregon"));
     if(that.encoding == "counties")
 	{
 	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
@@ -180,7 +180,7 @@ MapVis.prototype.wrangleData= function(){
                     population = -1;
                 }
                 that.displayData.counties.features[i].properties.population = population;
-                if(inc < that.year)
+                if(inc <= that.year)
                     that.displayData.counties.features[i].properties.inc = true;
                 else
                     that.displayData.counties.features[i].properties.inc = false;
@@ -275,8 +275,7 @@ MapVis.prototype.updateVis = function(){
                     .attr("class", function(d)
                     {
                         if(d.properties.inc == false)
-                        {
-                            //console.log(d);
+                        {   
                             return "invis";
                         }
                         if(d.properties.population <= 0)
@@ -414,7 +413,6 @@ MapVis.prototype.updateVis = function(){
 		   else
 		       return "notincorporated";
 	   });
-
     var country = svg.select(".country").selectAll("path")
        .data(that.displayData.country.features);
     
@@ -559,6 +557,7 @@ MapVis.prototype.getStateNamebyID = function(id)
         if(that.stateMappings[i].ID == id)
             return that.stateMappings[i].State;
     }
+//    console.log(id);
 }
 
 MapVis.prototype.getYear = function(state)

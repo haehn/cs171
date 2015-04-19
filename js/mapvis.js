@@ -67,7 +67,7 @@ MapVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-        .attr("style", "border: 2px solid black")
+//        .attr("style", "border: 2px solid black")
         .append("g")
         .attr("transform", "translate(-100, 0)");
 
@@ -161,7 +161,7 @@ MapVis.prototype.wrangleData= function(){
 	}
 	else
 	    that.displayData.states.features = [];
-//console.log(that.countyMaps);
+//console.log(that.stateMappings);
     if(that.encoding == "counties")
 	{
 	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
@@ -169,16 +169,21 @@ MapVis.prototype.wrangleData= function(){
                 var state = that.displayData.counties.features[i].properties["STATE"];
                 var county = that.displayData.counties.features[i].properties["NAME"];
                 var population = -100;
+                var stateName = "";
+                var inc = that.getYear(that.getStateNamebyID(state)); 
             //console.log(that.countyMaps.features[i]);
                 try{
-        
-                    var population = that.data[state]["counties"][county][that.year][0]["Population"];
+                    population = that.data[state]["counties"][county][that.year][0]["Population"];
                 }
                 catch(err){
 //                console.log("Error for: "  + year + county + ", " + state);
                     population = -1;
                 }
                 that.displayData.counties.features[i].properties.population = population;
+                if(inc < that.year)
+                    that.displayData.counties.features[i].properties.inc = true;
+                else
+                    that.displayData.counties.features[i].properties.inc = false;
             //console.log(that.countyMaps.features[i].properties);
             }
             that.displayData.cities = [];
@@ -197,9 +202,9 @@ MapVis.prototype.wrangleData= function(){
                 }
             }
   
-//console.log(that.displayData.cities);
 
 	}
+//console.log(that.displayData);
  //   console.log(that.railMaps);
 	if(that.tracks)
 	{
@@ -242,7 +247,7 @@ MapVis.prototype.updateVis = function(){
     //console.log(that.displayData.counties);
    // if(that.encoding == "counties")
     //{
-    var codisplay = [];
+  /*  var codisplay = [];
     if(that.encoding == "counties")
         codisplay = [1];
 	
@@ -257,25 +262,81 @@ MapVis.prototype.updateVis = function(){
 		});
 
 	countygroup.exit().remove();
-
+*/
     if(that.encoding == "counties")
 	{
-	    var coline = svg.select(".counties").select(".county0").selectAll("path")
+	    var coline = svg.select(".counties").selectAll("path")
 		    .data(that.displayData.counties.features);
 
 		coline.enter()
 		    .append("path");
 
 		coline.attr("d", path)
-                    .attr("class", function(d){
-                        if(d.properties.population == -1)
-                            return "nocolor";
+                    .attr("class", function(d)
+                    {
+                        if(d.properties.inc == false)
+                        {
+                            //console.log(d);
+                            return "invis";
+                        }
+                        if(d.properties.population <= 0)
+                            return "color0";
                         else
                             return that.color(d.properties.population);
            });
 
 
 	}
+    else if(that.encoding == "cities")
+    {
+        var coline = svg.select(".counties").selectAll("path");
+
+
+        coline.attr("class", "invisible");
+    }
+
+/*
+
+    var codisplay = []; 
+    if(that.encoding == "counties")
+        codisplay = [1];
+    
+        var countygroup = svg.select(".counties").selectAll("g")
+            .data(codisplay);
+
+        countygroup.enter()
+            .append("g")
+                .attr("class", function(d,i)
+                {   
+                        return "county" + i;
+                }); 
+
+        countygroup.exit().remove();
+
+    if(that.encoding == "counties")
+        {   
+            var coline = svg.select(".counties").select(".county0").selectAll("path")
+                    .data(that.displayData.counties.features);
+
+                coline.enter()
+                    .append("path");
+
+                coline.attr("d", path)
+                    .attr("class", function(d){
+                        if(d.properties.population == -1) 
+                            return "nocolor";
+                        else
+                            return that.color(d.properties.population);
+           }); 
+
+
+        }   
+
+
+
+
+
+*/
 
 
 /*
@@ -349,9 +410,9 @@ MapVis.prototype.updateVis = function(){
 	svg.select(".states").selectAll("path")
 	    .attr("class", function(d){
 		   if(d.properties.inc)
-		       return "notincorporated";
-		   else
 		       return "incorporated";
+		   else
+		       return "notincorporated";
 	   });
 
     var country = svg.select(".country").selectAll("path")
@@ -490,18 +551,29 @@ MapVis.prototype.addSlider = function(svg){
 
 }
 
-
-MapVis.prototype.getYear = function(state)
+MapVis.prototype.getStateNamebyID = function(id)
 {
     var that = this;
     for(var i = 0;i < that.stateMappings.length;i++)
+    {
+        if(that.stateMappings[i].ID == id)
+            return that.stateMappings[i].State;
+    }
+}
+
+MapVis.prototype.getYear = function(state)
+{
+//    console.log(state);
+    var that = this;
+    for(var i = 0;i < that.stateMappings.length;i++)
 	{
+//console.log(that.stateMappings[0]);
 	    if(that.stateMappings[i].State == state)
 		{
 		    return that.stateMappings[i].Year;
 		}
 	}
-    
+//    console.log(state);    
 }
 
 

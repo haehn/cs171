@@ -31,7 +31,7 @@ SummaryVis = function(_parentElement, _data, _states,  _event){
     this.year.current = 0;
     this.displaylocations = [];
     this.titles = [];
-    this.existingCircles = 0;
+    this.existingCircles = 0;  // Number of population circles we have in the summary pane
     
     // TODO: define all constants here
     this.width = 900;
@@ -72,7 +72,7 @@ SummaryVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-        .attr("style", "border: 2px solid black")
+//        .attr("style", "border: 2px solid black")
         this.svg.append("g").attr("class", "populationsSummary")
             .append("text")
             .attr("class", "summarytitle")
@@ -249,6 +249,9 @@ SummaryVis.prototype.updateVis = function(){
     var tracks = this.svg.select(".tracksSummary").selectAll("rect")
                           .data(that.displayData["Tracks"]);
 
+    var trackTies = this.svg.select(".tracksSummary").selectAll("g")
+                          .data(that.displayData["Tracks"]);
+
         tracks.enter()
               .append("rect")
               .append("title");
@@ -257,11 +260,42 @@ SummaryVis.prototype.updateVis = function(){
               .attr("x", function(d){return that.tracksX(d.start)})
               .attr("width", function(d){return that.tracksX(d.end) - that.tracksX(d.start)})
                           //.attr("stroke", "black")
-              .attr("height", 6)
-              .attr("style", "outline: solid black 1px")
+              .attr("height", 2)
+              //.attr("style", "outline: solid black 1px")
               .attr("class", function(d, i){;return "color" + i;});
 
         tracks.exit().remove();
+
+    trackTies.enter()
+             .append("g")
+             .attr("class", function(d){return "ties" + d.Year})
+             .append("title");
+
+    var trackInterval = 20;
+    var trackLocation = 0;
+    var arrayLen = that.displayData["Tracks"].length;
+    for(var i = 0; i < arrayLen;i++)
+    {
+        //console.log("for loop", i);
+        var trackStart = that.tracksX(that.displayData["Tracks"][i].start);
+        var trackEnd = that.tracksX(that.displayData["Tracks"][i].end);
+        //console.log(trackStart, trackEnd);
+        if(i == 0)
+            trackLocation = trackStart + trackInterval;
+        while(trackLocation < trackEnd)
+        {
+            console.log("while");
+            that.svg.select(".ties" + that.displayData["Tracks"][i].Year)
+                .append("rect")
+                .attr("x", trackLocation)
+                .attr("y", that.displaylocations.tracks-6)
+                .attr("width", 1)
+                .attr("height", 14)
+                .attr("class", function() { return "color" + i});
+            trackLocation = trackLocation + trackInterval;
+        }
+    }
+    trackTies.exit().remove();
 
     var tracktitles = tracks.select("title")
         .text(function(d){/*console.log(d);*/ return d.Year + ", " + d.end + " Miles"});
@@ -287,43 +321,42 @@ SummaryVis.prototype.updateVis = function(){
         .text(function(d) {/*console.log(d);*/ return d.Year + ", " + d.end + " Square Miles";});
     //console.log(that.displayData["Population"]);
     
-    var circleCounter = 0;
     
-    //var totalCircles = Math.round(that.displayData["Population"][that.displayData["Population"][length -1]].end/1000000); 
+    // The number of circles we should have on the page
     var totalCircles = Math.round(that.displayData["Population"][(that.displayData["Population"].length) -1].end/1000000); 
-    console.log(that.existingCircles, totalCircles); 
- 
-   //console.log(totalCircles);
-   //console.log(that.displayData["Population"]); 
+    //console.log(that.existingCircles, totalCircles); 
+    //console.log(that.displayData.Population[0].end); 
 
     // We need to add circles if we don't have the right number
     if(that.existingCircles < totalCircles)
-    {//console.log("add circles");
-        for(e in that.displayData["Population"])
-        {   //console.log(e);
-	        var yearcircles = Math.round((that.displayData["Population"][e]["end"] - that.displayData["Population"][e]["start"])/1000000);
-            for(var i = 1; i <= yearcircles;i++)
-	        {
-                that.existingCircles++;
-	            circleCounter++;
-				if(circleCounter >= that.existingCircles)
-				{
+    {
+        var arrLen = that.displayData.Population.length;
+        for(var i = 0; i < arrLen;i++)
+        {
+            var decadeEndCircles = Math.round(that.displayData["Population"][i].end/1000000);
+            var decadeTotalCircles = Math.round((that.displayData["Population"][i].end - that.displayData["Population"][i].start)/1000000);
+            if(decadeEndCircles > that.existingCircles)
+            {
+                for(var j = 1; j <= decadeTotalCircles;j++)
+                {
                     that.svg.select(".populationsSummary")
 	                    .append("circle")
 		                .attr("r", 5)
-		                .attr("cx", that.populationX(circleCounter))
+		                .attr("cx", that.populationX(that.existingCircles))
 		                .attr("cy", that.displaylocations.population)
 				//.attr("fill", "red")
-		                .attr("class", function() {return "color" + e})
-                        .attr("id", function(){return "summaryCircle" + circleCounter});
+		                .attr("class", function() {;return "color" + i})
+                        .attr("id", function(){return "summaryCircle" + that.existingCircles});
+                    that.existingCircles++;
                 }
-			}
+	    }		
         }
     }
     // We need to remove circles
     else if(that.existingCircles > totalCircles)
-    {;
-        for(var i = totalCircles+1;that.existingCircles > totalCircles;i++)
+    {
+      //  console.log("remove circles");
+        for(var i = totalCircles;that.existingCircles > totalCircles;i++)
         {//   console.log(i);
             that.svg.selectAll("#summaryCircle" + i).remove();
             that.existingCircles--;

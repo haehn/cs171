@@ -11,7 +11,7 @@ Adams,Wisconsin,187
 Adams,Mississippi,18601
 Adams,Pennsylvania,25981
 Adams,Indiana,5797
-Adams-Sauk,Wisconsin,N/a
+Adams-Sauk,Wisconsin,1
 Addison,Vermont,26549
 Alachua,Florida,2524
 Alamance,North Carolina,11444
@@ -222,7 +222,7 @@ Cass,Michigan,10907
 Cass,Georgia,13300
 Cass,Illinois,7253
 Cass,Indiana,11021
-Cass-Gordon,Georgia,N/a
+Cass-Gordon,Georgia,0
 Cass/davis,Texas,4991
 Cass/van Buren,Missouri,6090
 Caswell,North Carolina,15269
@@ -318,11 +318,11 @@ Columbia,Pennsylvania,17710
 Columbiana,Ohio,33621
 Columbus,North Carolina,5909
 Colusa,California,115
-Colusa-Shasta-Tri,California,N/a
+Colusa-Shasta-Tri,California,0
 Comal,Texas,1723
 Concordia,Louisiana,7758
 Conecuh,Alabama,9322
-Contra Costa,California,N/a
+Contra Costa,California,0
 Conway,Arkansas,3583
 Cook,Illinois,43385
 Cooke,Texas,220
@@ -1038,7 +1038,7 @@ Nash,North Carolina,10657
 Nassau,Florida,2164
 Natchitoches,Louisiana,14228
 Navarro,Texas,2190
-Navarro-Ellis-Tar,Texas,N/a
+Navarro-Ellis-Tar,Texas,0
 Nelson,Kentucky,14789
 Nelson,Virginia,12758
 Neshoba,Mississippi,4728
@@ -1281,7 +1281,7 @@ Sandusky,Ohio,14305
 Sangamon,Illinois,19228
 Sanilac,Michigan,2112
 Santa Barbara,California,1185
-Santa Clara,California,N/a
+Santa Clara,California,0
 Santa Cruz,California,643
 Santa Rosa,Florida,2883
 Saratoga,New York,45646
@@ -1368,7 +1368,7 @@ Stanly,North Carolina,6922
 Stark,Illinois,3710
 Stark,Ohio,39878
 Starke,Indiana,557
-Starr,Texas,N/a
+Starr,Texas,0
 Ste Genevieve,Missouri,5313
 Stephenson,Illinois,11666
 Steuben,Indiana,6104
@@ -1477,7 +1477,7 @@ Wabash,Indiana,12138
 Wabash,Illinois,4690
 Wabasha,Minnesota,243
 Wahnahta,Minnesota,160
-Wahnahta-Mankahta,Minnesota,N/a
+Wahnahta-Mankahta,Minnesota,0
 Wake,North Carolina,24888
 Wakulla,Florida,1955
 Waldo,Maine,47230
@@ -1547,7 +1547,7 @@ Wayne,Iowa,340
 Wayne,Pennsylvania,21890
 Wayne,Illinois,6825
 Weakley,Tennessee,14608
-Webb,Texas,N/a
+Webb,Texas,0
 Wells,Indiana,6152
 West Baton Rouge,Louisiana,6270
 West Feliciana,Louisiana,13245

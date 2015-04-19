@@ -1,6 +1,6 @@
 body{
     font-family: 'PT Sans', sans-serif;
-    background-color: #d3d3d3;
+    background-color: #E9E9E9;
 }
 .axis text {
     font: 10px sans-serif;
@@ -66,8 +66,14 @@ line{
     fill: rgb(158,202,225);
 }
 
+.invis{
+    fill: none;
+    stroke: none;
+}
 
-
+.wrongcolor{
+    fill: red;
+}
 .color0{
     stroke: rgb(255,255,255);
     fill: rgb(255,255,255);
@@ -128,19 +134,19 @@ line{
 }
 
 .country{
-  stroke: red;
-  stroke-width: 2px;
+  stroke: rgb(8,48,107);
+  stroke-width: 3px;
   fill: none;
 }
 
 .incorporated{
-  stroke: purple;
-  stroke-width: 1px;
+  stroke: #d3d3d3;
+  stroke-width: 2px;
   fill: none;
 }
 
 .notincorporated{
-  stroke: green;
+  stroke: white;
   stroke-width: 1px;
   fill: none;
 }

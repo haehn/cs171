@@ -934,8 +934,8 @@ Year,County,State,StateID,Population
 1850,Butte,California,42,3574
 1850,Calaveras,California,42,16884
 1850,Colusa,California,42,115
-1850,Colusa-Shasta-Tri,California,42,N/a
-1850,Contra Costa,California,42,N/a
+1850,Colusa-Shasta-Tri,California,42,0
+1850,Contra Costa,California,42,0
 1850,El Dorado,California,42,20057
 1850,Los Angeles,California,42,3530
 1850,Marin,California,42,323
@@ -945,11 +945,11 @@ Year,County,State,StateID,Population
 1850,Napa,California,42,405
 1850,Sacramento,California,42,9087
 1850,San Diego,California,42,798
-1850,San Francisco,California,42,N/a
+1850,San Francisco,California,42,0
 1850,San Joaquin,California,42,3647
 1850,San Luis Obispo,California,42,336
 1850,Santa Barbara,California,42,1185
-1850,Santa Clara,California,42,N/a
+1850,Santa Clara,California,42,0
 1850,Santa Cruz,California,42,643
 1850,Shasta,California,42,378
 1850,Solano,California,42,580
@@ -1171,7 +1171,7 @@ Year,County,State,StateID,Population
 1900,Fresno,California,42,37862
 1900,Glenn,California,42,5150
 1900,Humboldt,California,42,27104
-1900,Hupa Valley Res,California,42,N/a
+1900,Hupa Valley Res,California,42,0
 1900,Inyo,California,42,4377
 1900,Kern,California,42,16480
 1900,Kings,California,42,9871
@@ -1183,7 +1183,7 @@ Year,County,State,StateID,Population
 1900,Mariposa,California,42,4720
 1900,Mendocino,California,42,20465
 1900,Merced,California,42,9215
-1900,Mission Res,California,42,N/a
+1900,Mission Res,California,42,0
 1900,Modoc,California,42,5076
 1900,Mono,California,42,2167
 1900,Monterey,California,42,19380
@@ -1193,7 +1193,7 @@ Year,County,State,StateID,Population
 1900,Placer,California,42,15786
 1900,Plumas,California,42,4657
 1900,Riverside,California,42,17897
-1900,Round Valley Res,California,42,N/a
+1900,Round Valley Res,California,42,0
 1900,Sacramento,California,42,45915
 1900,San Benito,California,42,6633
 1900,San Bernardino,California,42,27929
@@ -1215,7 +1215,7 @@ Year,County,State,StateID,Population
 1900,Tehama,California,42,10996
 1900,Trinity,California,42,4383
 1900,Tulare,California,42,18375
-1900,Tule River Res,California,42,N/a
+1900,Tule River Res,California,42,0
 1900,Tuolumne,California,42,11166
 1900,Ventura,California,42,14367
 1900,Yolo,California,42,13618
@@ -1381,7 +1381,7 @@ Year,County,State,StateID,Population
 1900,San Juan,Colorado,42,2342
 1900,San Miguel,Colorado,42,5379
 1900,Sedgwick,Colorado,42,971
-1900,Southern Ute Res,Colorado,42,N/a
+1900,Southern Ute Res,Colorado,42,0
 1900,Summit,Colorado,42,2744
 1900,Teller,Colorado,42,29002
 1900,Washington,Colorado,42,1241
@@ -2052,7 +2052,7 @@ Year,County,State,StateID,Population
 1850,Campbell,Georgia,42,7232
 1850,Carroll,Georgia,42,9357
 1850,Cass,Georgia,42,13300
-1850,Cass-Gordon,Georgia,42,N/a
+1850,Cass-Gordon,Georgia,42,0
 1850,Chatham,Georgia,42,23901
 1850,Chattooga,Georgia,42,6815
 1850,Cherokee,Georgia,42,12800
@@ -2837,16 +2837,16 @@ Year,County,State,StateID,Population
 1900,Boise,Idaho,42,4174
 1900,Canyon,Idaho,42,7497
 1900,Cassia,Idaho,42,3951
-1900,Coeur D'alene Res,Idaho,42,N/a
+1900,Coeur D'alene Res,Idaho,42,0
 1900,Custer,Idaho,42,2049
 1900,Elmore,Idaho,42,2286
-1900,Fort Hall Res,Idaho,42,N/a
+1900,Fort Hall Res,Idaho,42,0
 1900,Fremont,Idaho,42,12821
 1900,Idaho,Idaho,42,9121
 1900,Kootenai,Idaho,42,10216
 1900,Latah,Idaho,42,13451
 1900,Lemhi,Idaho,42,3446
-1900,Lemhi Res,Idaho,42,N/a
+1900,Lemhi Res,Idaho,42,0
 1900,Lincoln,Idaho,42,1784
 1900,Nez Perce,Idaho,42,13748
 1900,Oneida,Idaho,42,8933
@@ -4479,7 +4479,7 @@ Year,County,State,StateID,Population
 1860,Linn,Iowa,42,18947
 1860,Louisa,Iowa,42,10370
 1860,Lucas,Iowa,42,5766
-1860,Lyon/buncombe,Iowa,42,N/a
+1860,Lyon/buncombe,Iowa,42,0
 1860,Madison,Iowa,42,7339
 1860,Mahaska,Iowa,42,14816
 1860,Marion,Iowa,42,16813
@@ -4491,7 +4491,7 @@ Year,County,State,StateID,Population
 1860,Montgomery,Iowa,42,1256
 1860,Muscatine,Iowa,42,16444
 1860,O Brien,Iowa,42,8
-1860,Osceola,Iowa,42,N/a
+1860,Osceola,Iowa,42,0
 1860,Page,Iowa,42,4419
 1860,Palo Alto,Iowa,42,132
 1860,Plymouth,Iowa,42,148
@@ -4590,7 +4590,7 @@ Year,County,State,StateID,Population
 1870,Montgomery,Iowa,42,5934
 1870,Muscatine,Iowa,42,21688
 1870,O Brien,Iowa,42,715
-1870,Osceola,Iowa,42,N/a
+1870,Osceola,Iowa,42,0
 1870,Page,Iowa,42,9975
 1870,Palo Alto,Iowa,42,1336
 1870,Plymouth,Iowa,42,2199
@@ -4897,7 +4897,7 @@ Year,County,State,StateID,Population
 1900,Poweshiek,Iowa,42,19414
 1900,Ringgold,Iowa,42,15325
 1900,Sac,Iowa,42,17639
-1900,Sac And Fox Res,Iowa,42,N/a
+1900,Sac And Fox Res,Iowa,42,0
 1900,Scott,Iowa,42,51558
 1900,Shelby,Iowa,42,17932
 1900,Sioux,Iowa,42,23337
@@ -4979,10 +4979,10 @@ Year,County,State,StateID,Population
 1870,Ellsworth,Kansas,42,1185
 1870,Ford,Kansas,42,427
 1870,Franklin,Kansas,42,10385
-1870,Gove,Kansas,42,N/a
+1870,Gove,Kansas,42,0
 1870,Greenwood,Kansas,42,3484
 1870,Howard,Kansas,42,2794
-1870,Hunter,Kansas,42,N/a
+1870,Hunter,Kansas,42,0
 1870,Jackson,Kansas,42,6053
 1870,Jefferson,Kansas,42,12526
 1870,Jewell,Kansas,42,207
@@ -4992,7 +4992,7 @@ Year,County,State,StateID,Population
 1870,Lincoln,Kansas,42,516
 1870,Linn,Kansas,42,12174
 1870,Lyon,Kansas,42,8014
-1870,Madison,Kansas,42,N/a
+1870,Madison,Kansas,42,0
 1870,Marion,Kansas,42,768
 1870,Marshall,Kansas,42,6901
 1870,Mcpherson,Kansas,42,738
@@ -5005,7 +5005,7 @@ Year,County,State,StateID,Population
 1870,Ness,Kansas,42,2
 1870,Osage,Kansas,42,7648
 1870,Osborne,Kansas,42,33
-1870,Otoe,Kansas,42,N/a
+1870,Otoe,Kansas,42,0
 1870,Ottawa,Kansas,42,2127
 1870,Pawnee,Kansas,42,179
 1870,Pottawatomie,Kansas,42,7848
@@ -5287,7 +5287,7 @@ Year,County,State,StateID,Population
 1900,Jewell,Kansas,42,19420
 1900,Johnson,Kansas,42,18104
 1900,Kearny,Kansas,42,1107
-1900,Kickapoo Res,Kansas,42,N/a
+1900,Kickapoo Res,Kansas,42,0
 1900,Kingman,Kansas,42,10663
 1900,Kiowa,Kansas,42,2365
 1900,Labette,Kansas,42,27387
@@ -5315,7 +5315,7 @@ Year,County,State,StateID,Population
 1900,Ottawa,Kansas,42,11182
 1900,Pawnee,Kansas,42,5084
 1900,Phillips,Kansas,42,14442
-1900,Pottawatomi Res,Kansas,42,N/a
+1900,Pottawatomi Res,Kansas,42,0
 1900,Pottawatomie,Kansas,42,18470
 1900,Pratt,Kansas,42,7085
 1900,Rawlins,Kansas,42,5241
@@ -5326,7 +5326,7 @@ Year,County,State,StateID,Population
 1900,Rooks,Kansas,42,7960
 1900,Rush,Kansas,42,6134
 1900,Russell,Kansas,42,8489
-1900,Sac And Fox Res,Kansas,42,N/a
+1900,Sac And Fox Res,Kansas,42,0
 1900,Saline,Kansas,42,17076
 1900,Scott,Kansas,42,1098
 1900,Sedgwick,Kansas,42,44037
@@ -7065,7 +7065,7 @@ Year,County,State,StateID,Population
 1870,Allegany,Maryland,42,38536
 1870,Anne Arundel,Maryland,42,24457
 1870,Baltimore,Maryland,42,330741
-1870,Baltimore City,Maryland,42,N/a
+1870,Baltimore City,Maryland,42,0
 1870,Calvert,Maryland,42,9865
 1870,Caroline,Maryland,42,12101
 1870,Carroll,Maryland,42,28619
@@ -7480,7 +7480,7 @@ Year,County,State,StateID,Population
 1870,Eaton,Michigan,42,25171
 1870,Emmet,Michigan,42,1211
 1870,Genesee,Michigan,42,33900
-1870,Gladwin,Michigan,42,N/a
+1870,Gladwin,Michigan,42,0
 1870,Grand Traverse,Michigan,42,4443
 1870,Gratiot,Michigan,42,11810
 1870,Hillsdale,Michigan,42,31684
@@ -7512,7 +7512,7 @@ Year,County,State,StateID,Population
 1870,Missaukee,Michigan,42,130
 1870,Monroe,Michigan,42,27483
 1870,Montcalm,Michigan,42,13629
-1870,Montmorency,Michigan,42,N/a
+1870,Montmorency,Michigan,42,0
 1870,Muskegon,Michigan,42,14894
 1870,Newaygo,Michigan,42,7294
 1870,Oakland,Michigan,42,40867
@@ -7521,13 +7521,13 @@ Year,County,State,StateID,Population
 1870,Ontonagon,Michigan,42,2845
 1870,Osceola,Michigan,42,2093
 1870,Oscoda,Michigan,42,70
-1870,Otsego,Michigan,42,N/a
+1870,Otsego,Michigan,42,0
 1870,Ottawa,Michigan,42,26651
 1870,Presque Isle,Michigan,42,355
-1870,Roscommon,Michigan,42,N/a
+1870,Roscommon,Michigan,42,0
 1870,Saginaw,Michigan,42,39097
 1870,Sanilac,Michigan,42,14562
-1870,Schoolcraft,Michigan,42,N/a
+1870,Schoolcraft,Michigan,42,0
 1870,Shiawassee,Michigan,42,20858
 1870,St Clair,Michigan,42,36661
 1870,St Joseph,Michigan,42,26275
@@ -7790,7 +7790,7 @@ Year,County,State,StateID,Population
 1850,Ramsey,Minnesota,42,2227
 1850,Wabasha,Minnesota,42,243
 1850,Wahnahta,Minnesota,42,160
-1850,Wahnahta-Mankahta,Minnesota,42,N/a
+1850,Wahnahta-Mankahta,Minnesota,42,0
 1850,Washington,Minnesota,42,1056
 1860,Aitkin,Minnesota,42,2
 1860,Anoka,Minnesota,42,2106
@@ -7891,11 +7891,11 @@ Year,County,State,StateID,Population
 1870,Lac Qui Parle,Minnesota,42,145
 1870,Lake,Minnesota,42,135
 1870,Le Sueur,Minnesota,42,11607
-1870,Lincoln,Minnesota,42,N/a
-1870,Mankahta,Minnesota,42,N/a
+1870,Lincoln,Minnesota,42,0
+1870,Mankahta,Minnesota,42,0
 1870,Martin,Minnesota,42,3867
 1870,Mcleod,Minnesota,42,5643
-1870,Mcphail,Minnesota,42,N/a
+1870,Mcphail,Minnesota,42,0
 1870,Meeker,Minnesota,42,6090
 1870,Mille Lacs,Minnesota,42,1109
 1870,Monongalia,Minnesota,42,3161
@@ -7907,8 +7907,8 @@ Year,County,State,StateID,Population
 1870,Olmsted,Minnesota,42,19793
 1870,Otter Tail,Minnesota,42,1968
 1870,Pine,Minnesota,42,648
-1870,Pipestone,Minnesota,42,N/a
-1870,Polk,Minnesota,42,N/a
+1870,Pipestone,Minnesota,42,0
+1870,Polk,Minnesota,42,0
 1870,Pope,Minnesota,42,2691
 1870,Ramsey,Minnesota,42,23085
 1870,Redwood,Minnesota,42,1829
@@ -8149,7 +8149,7 @@ Year,County,State,StateID,Population
 1900,Pope,Minnesota,42,12577
 1900,Ramsey,Minnesota,42,170554
 1900,Red Lake,Minnesota,42,12195
-1900,Red Lake Res,Minnesota,42,N/a
+1900,Red Lake Res,Minnesota,42,0
 1900,Redwood,Minnesota,42,17261
 1900,Renville,Minnesota,42,23693
 1900,Rice,Minnesota,42,26080
@@ -8172,7 +8172,7 @@ Year,County,State,StateID,Population
 1900,Watonwan,Minnesota,42,11496
 1900,White Earth Res,Minnesota,42,3486
 1900,Wilkin/toombs,Minnesota,42,8080
-1900,Winnibigoshish Re,Minnesota,42,N/a
+1900,Winnibigoshish Re,Minnesota,42,0
 1900,Winona,Minnesota,42,35686
 1900,Wright,Minnesota,42,29157
 1900,Yellow Medicine,Minnesota,42,14602
@@ -9481,7 +9481,7 @@ Year,County,State,StateID,Population
 1890,Silver Bow,Montana,42,23744
 1890,Yellowstone,Montana,42,2065
 1900,Beaverhead,Montana,42,5615
-1900,Blackfeet Res,Montana,42,N/a
+1900,Blackfeet Res,Montana,42,0
 1900,Broadwater,Montana,42,2641
 1900,Carbon,Montana,42,7533
 1900,Cascade,Montana,42,25777
@@ -9492,8 +9492,8 @@ Year,County,State,StateID,Population
 1900,Deer Lodge,Montana,42,17393
 1900,Fergus,Montana,42,6937
 1900,Flathead,Montana,42,9375
-1900,Flathead Res,Montana,42,N/a
-1900,Fort Peck Res,Montana,42,N/a
+1900,Flathead Res,Montana,42,0
+1900,Fort Peck Res,Montana,42,0
 1900,Gallatin,Montana,42,9553
 1900,Granite,Montana,42,4328
 1900,Jefferson,Montana,42,5330
@@ -9501,7 +9501,7 @@ Year,County,State,StateID,Population
 1900,Madison,Montana,42,7695
 1900,Meagher,Montana,42,2526
 1900,Missoula,Montana,42,13964
-1900,N Cheyenne Res,Montana,42,N/a
+1900,N Cheyenne Res,Montana,42,0
 1900,Park,Montana,42,7341
 1900,Ravalli,Montana,42,7822
 1900,Silver Bow,Montana,42,47635
@@ -9550,7 +9550,7 @@ Year,County,State,StateID,Population
 1870,Buffalo,Nebraska,42,193
 1870,Burt,Nebraska,42,2847
 1870,Butler,Nebraska,42,1290
-1870,Calhoun,Nebraska,42,N/a
+1870,Calhoun,Nebraska,42,0
 1870,Cass,Nebraska,42,8151
 1870,Cedar,Nebraska,42,1032
 1870,Cheyenne,Nebraska,42,190
@@ -9563,18 +9563,18 @@ Year,County,State,StateID,Population
 1870,Dodge,Nebraska,42,4212
 1870,Douglas,Nebraska,42,19982
 1870,Fillmore,Nebraska,42,238
-1870,Fort Randall,Nebraska,42,N/a
+1870,Fort Randall,Nebraska,42,0
 1870,Franklin,Nebraska,42,26
 1870,Gage,Nebraska,42,3359
 1870,Grant,Nebraska,42,484
-1870,Green,Nebraska,42,N/a
+1870,Green,Nebraska,42,0
 1870,Hall,Nebraska,42,1057
 1870,Hamilton,Nebraska,42,130
 1870,Harrison,Nebraska,42,631
 1870,Jackson,Nebraska,42,9
 1870,Jefferson,Nebraska,42,2440
 1870,Johnson/johnston,Nebraska,42,3429
-1870,Jones,Nebraska,42,N/a
+1870,Jones,Nebraska,42,0
 1870,Kearney,Nebraska,42,58
 1870,Knox/l'eau Qui Co,Nebraska,42,261
 1870,Lancaster,Nebraska,42,7074
@@ -9595,7 +9595,7 @@ Year,County,State,StateID,Population
 1870,Sarpy,Nebraska,42,2913
 1870,Saunders,Nebraska,42,4547
 1870,Seward,Nebraska,42,2953
-1870,Shorter,Nebraska,42,N/a
+1870,Shorter,Nebraska,42,0
 1870,Stanton,Nebraska,42,636
 1870,Taylor,Nebraska,42,97
 1870,Washington,Nebraska,42,4452
@@ -9861,7 +9861,7 @@ Year,County,State,StateID,Population
 1860,Carson,Nevada,42,6712
 1860,Humboldt,Nevada,42,40
 1860,St Marys,Nevada,42,105
-1870,Carson,Nevada,42,N/a
+1870,Carson,Nevada,42,0
 1870,Churchill,Nevada,42,196
 1870,Douglas,Nevada,42,1215
 1870,Elko,Nevada,42,3447
@@ -9872,9 +9872,9 @@ Year,County,State,StateID,Population
 1870,Lyon,Nevada,42,1837
 1870,Nye,Nevada,42,1087
 1870,Ormsby,Nevada,42,3668
-1870,Pah Ute,Nevada,42,N/a
+1870,Pah Ute,Nevada,42,0
 1870,Roop,Nevada,42,133
-1870,St Marys,Nevada,42,N/a
+1870,St Marys,Nevada,42,0
 1870,Storey,Nevada,42,11359
 1870,Washoe,Nevada,42,3091
 1870,White Pine,Nevada,42,7189
@@ -9911,7 +9911,7 @@ Year,County,State,StateID,Population
 1890,White Pine,Nevada,42,1721
 1900,Churchill,Nevada,42,830
 1900,Douglas,Nevada,42,1534
-1900,Duck Valley Res,Nevada,42,N/a
+1900,Duck Valley Res,Nevada,42,0
 1900,Elko,Nevada,42,5688
 1900,Esmeralda,Nevada,42,1972
 1900,Eureka,Nevada,42,1954
@@ -9921,9 +9921,9 @@ Year,County,State,StateID,Population
 1900,Lyon,Nevada,42,2268
 1900,Nye,Nevada,42,1140
 1900,Ormsby,Nevada,42,2893
-1900,Pyramid Lake Res,Nevada,42,N/a
+1900,Pyramid Lake Res,Nevada,42,0
 1900,Storey,Nevada,42,3673
-1900,Walker River Res,Nevada,42,N/a
+1900,Walker River Res,Nevada,42,0
 1900,Washoe,Nevada,42,9141
 1900,White Pine,Nevada,42,1961
 1800,Cheshire,New Hampshire,42,38825
@@ -11670,7 +11670,7 @@ Year,County,State,StateID,Population
 1900,Wilson,North Carolina,42,23596
 1900,Yadkin,North Carolina,42,14083
 1900,Yancey,North Carolina,42,11464
-1890,Alred,North Dakota,42,N/a
+1890,Alred,North Dakota,42,0
 1890,Barnes,North Dakota,42,7045
 1890,Benson,North Dakota,42,2460
 1890,Billings,North Dakota,42,170
@@ -11732,11 +11732,11 @@ Year,County,State,StateID,Population
 1900,Burleigh,North Dakota,42,6081
 1900,Cass,North Dakota,42,28625
 1900,Cavalier,North Dakota,42,12580
-1900,Devils Lake Res,North Dakota,42,N/a
+1900,Devils Lake Res,North Dakota,42,0
 1900,Dickey,North Dakota,42,6061
 1900,Eddy,North Dakota,42,3330
 1900,Emmons,North Dakota,42,4349
-1900,Fort Berthold Res,North Dakota,42,N/a
+1900,Fort Berthold Res,North Dakota,42,0
 1900,Foster,North Dakota,42,3770
 1900,Grand Forks,North Dakota,42,24459
 1900,Griggs,North Dakota,42,4744
@@ -11763,7 +11763,7 @@ Year,County,State,StateID,Population
 1900,Stutsman,North Dakota,42,9143
 1900,Towner,North Dakota,42,6491
 1900,Traill,North Dakota,42,13107
-1900,Turtle Mt Res,North Dakota,42,N/a
+1900,Turtle Mt Res,North Dakota,42,0
 1900,Walsh,North Dakota,42,20288
 1900,Ward,North Dakota,42,7961
 1900,Wells,North Dakota,42,8310
@@ -12647,13 +12647,13 @@ Year,County,State,StateID,Population
 1900,Curry,Oregon,42,1868
 1900,Douglas,Oregon,42,14565
 1900,Gilliam,Oregon,42,3201
-1900,Grand Ronde Res,Oregon,42,N/a
+1900,Grand Ronde Res,Oregon,42,0
 1900,Grant,Oregon,42,5948
 1900,Harney,Oregon,42,2598
 1900,Jackson,Oregon,42,13698
 1900,Josephine,Oregon,42,7517
 1900,Klamath,Oregon,42,3970
-1900,Klamath Res,Oregon,42,N/a
+1900,Klamath Res,Oregon,42,0
 1900,Lake,Oregon,42,2847
 1900,Lane,Oregon,42,19604
 1900,Lincoln,Oregon,42,3575
@@ -12664,13 +12664,13 @@ Year,County,State,StateID,Population
 1900,Multnomah,Oregon,42,103167
 1900,Polk,Oregon,42,9923
 1900,Sherman,Oregon,42,3477
-1900,Siletz Res,Oregon,42,N/a
+1900,Siletz Res,Oregon,42,0
 1900,Tillamook,Oregon,42,4471
 1900,Umatilla,Oregon,42,18049
-1900,Umatilla Res,Oregon,42,N/a
+1900,Umatilla Res,Oregon,42,0
 1900,Union,Oregon,42,16070
 1900,Wallowa,Oregon,42,5538
-1900,Warm Springs Res,Oregon,42,N/a
+1900,Warm Springs Res,Oregon,42,0
 1900,Wasco,Oregon,42,13199
 1900,Washington,Oregon,42,14467
 1900,Wheeler,Oregon,42,2443
@@ -13664,7 +13664,7 @@ Year,County,State,StateID,Population
 1900,Barnwell,South Carolina,45,35504
 1900,Beaufort,South Carolina,45,35495
 1900,Berkeley,South Carolina,45,30454
-1900,Catawba Res,South Carolina,45,N/a
+1900,Catawba Res,South Carolina,45,0
 1900,Charleston,South Carolina,45,88006
 1900,Cherokee,South Carolina,45,21359
 1900,Chester,South Carolina,45,28616
@@ -13701,7 +13701,7 @@ Year,County,State,StateID,Population
 1890,Aurora,South Dakota,46,5045
 1890,Beadle,South Dakota,46,9586
 1890,Bon Homme,South Dakota,46,9057
-1890,Boreman,South Dakota,46,N/a
+1890,Boreman,South Dakota,46,0
 1890,Brookings,South Dakota,46,10132
 1890,Brown,South Dakota,46,16855
 1890,Brule,South Dakota,46,6737
@@ -13718,7 +13718,7 @@ Year,County,State,StateID,Population
 1890,Day,South Dakota,46,9168
 1890,Delano,South Dakota,46,40
 1890,Deuel,South Dakota,46,4574
-1890,Dewey,South Dakota,46,N/a
+1890,Dewey,South Dakota,46,0
 1890,Douglas,South Dakota,46,4600
 1890,Edmunds,South Dakota,46,4399
 1890,Ewing,South Dakota,46,16
@@ -13734,20 +13734,20 @@ Year,County,State,StateID,Population
 1890,Hutchinson,South Dakota,46,10469
 1890,Hyde,South Dakota,46,1860
 1890,Jackson,South Dakota,46,30
-1890,Jayne,South Dakota,46,N/a
+1890,Jayne,South Dakota,46,0
 1890,Jerauld,South Dakota,46,3605
 1890,Kingsbury,South Dakota,46,8562
 1890,Lake,South Dakota,46,7508
 1890,Lawrence,South Dakota,46,11673
 1890,Lincoln,South Dakota,46,9143
-1890,Lugenbeel,South Dakota,46,N/a
+1890,Lugenbeel,South Dakota,46,0
 1890,Lyman,South Dakota,46,233
 1890,Marshall,South Dakota,46,4544
 1890,Martin,South Dakota,46,7
 1890,Mccook,South Dakota,46,6448
 1890,Mcpherson,South Dakota,46,5940
 1890,Meade,South Dakota,46,4640
-1890,Meyer,South Dakota,46,N/a
+1890,Meyer,South Dakota,46,0
 1890,Miner,South Dakota,46,5165
 1890,Minnehaha,South Dakota,46,21879
 1890,Moody,South Dakota,46,5941
@@ -13757,23 +13757,23 @@ Year,County,State,StateID,Population
 1890,Potter,South Dakota,46,2910
 1890,Pratt,South Dakota,46,23
 1890,Presho,South Dakota,46,181
-1890,Rinehart,South Dakota,46,N/a
+1890,Rinehart,South Dakota,46,0
 1890,Roberts,South Dakota,46,1997
 1890,Sanborn,South Dakota,46,4610
-1890,Schnasse,South Dakota,46,N/a
+1890,Schnasse,South Dakota,46,0
 1890,Scobey,South Dakota,46,32
-1890,Shannon,South Dakota,46,N/a
+1890,Shannon,South Dakota,46,0
 1890,Spink,South Dakota,46,10581
 1890,Stanley,South Dakota,46,1028
 1890,Sterling,South Dakota,46,96
 1890,Sully,South Dakota,46,2412
 1890,Todd,South Dakota,46,188
-1890,Tripp,South Dakota,46,N/a
+1890,Tripp,South Dakota,46,0
 1890,Turner,South Dakota,46,10256
 1890,Union,South Dakota,46,9130
-1890,Wagner,South Dakota,46,N/a
+1890,Wagner,South Dakota,46,0
 1890,Walworth,South Dakota,46,2153
-1890,Washabaugh,South Dakota,46,N/a
+1890,Washabaugh,South Dakota,46,0
 1890,Washington,South Dakota,46,40
 1890,Yankton,South Dakota,46,10444
 1890,Ziebach,South Dakota,46,510
@@ -13781,7 +13781,7 @@ Year,County,State,StateID,Population
 1900,Aurora,South Dakota,46,4011
 1900,Beadle,South Dakota,46,8081
 1900,Bon Homme,South Dakota,46,10379
-1900,Boreman,South Dakota,46,N/a
+1900,Boreman,South Dakota,46,0
 1900,Brookings,South Dakota,46,12561
 1900,Brown,South Dakota,46,15286
 1900,Brule,South Dakota,46,5401
@@ -13793,12 +13793,12 @@ Year,County,State,StateID,Population
 1900,Clark,South Dakota,46,6942
 1900,Clay,South Dakota,46,9316
 1900,Codington,South Dakota,46,8770
-1900,Crow Creek Res,South Dakota,46,N/a
+1900,Crow Creek Res,South Dakota,46,0
 1900,Custer,South Dakota,46,2728
 1900,Davison,South Dakota,46,7483
 1900,Day,South Dakota,46,12254
 1900,Deuel,South Dakota,46,6656
-1900,Dewey,South Dakota,46,N/a
+1900,Dewey,South Dakota,46,0
 1900,Douglas,South Dakota,46,5012
 1900,Edmunds,South Dakota,46,4916
 1900,Fall River,South Dakota,46,3541
@@ -13811,20 +13811,20 @@ Year,County,State,StateID,Population
 1900,Hughes,South Dakota,46,3684
 1900,Hutchinson,South Dakota,46,11897
 1900,Hyde,South Dakota,46,1492
-1900,Jackson,South Dakota,46,N/a
+1900,Jackson,South Dakota,46,0
 1900,Jerauld,South Dakota,46,2798
 1900,Kingsbury,South Dakota,46,9866
 1900,Lake,South Dakota,46,9137
 1900,Lawrence,South Dakota,46,17897
 1900,Lincoln,South Dakota,46,12161
-1900,Lower Brule Res,South Dakota,46,N/a
-1900,Lugenbeel,South Dakota,46,N/a
+1900,Lower Brule Res,South Dakota,46,0
+1900,Lugenbeel,South Dakota,46,0
 1900,Lyman,South Dakota,46,2632
 1900,Marshall,South Dakota,46,5942
 1900,Mccook,South Dakota,46,8689
 1900,Mcpherson,South Dakota,46,6327
 1900,Meade,South Dakota,46,4907
-1900,Meyer,South Dakota,46,N/a
+1900,Meyer,South Dakota,46,0
 1900,Miner,South Dakota,46,5864
 1900,Minnehaha,South Dakota,46,23926
 1900,Moody,South Dakota,46,8326
@@ -13834,18 +13834,18 @@ Year,County,State,StateID,Population
 1900,Roberts,South Dakota,46,12216
 1900,Rosebud Res,South Dakota,46,5201
 1900,Sanborn,South Dakota,46,4464
-1900,Schnasse,South Dakota,46,N/a
-1900,Shannon,South Dakota,46,N/a
+1900,Schnasse,South Dakota,46,0
+1900,Shannon,South Dakota,46,0
 1900,Spink,South Dakota,46,9487
 1900,Standing Rock Res,South Dakota,46,1658
 1900,Stanley,South Dakota,46,1341
 1900,Sully,South Dakota,46,1715
-1900,Tripp,South Dakota,46,N/a
+1900,Tripp,South Dakota,46,0
 1900,Turner,South Dakota,46,13175
 1900,Union,South Dakota,46,11153
 1900,Walworth,South Dakota,46,3839
-1900,Washabaugh,South Dakota,46,N/a
-1900,Washington,South Dakota,46,N/a
+1900,Washabaugh,South Dakota,46,0
+1900,Washington,South Dakota,46,0
 1900,Yankton,South Dakota,46,12649
 1800,Blount,Tennessee,47,5587
 1800,Carter,Tennessee,47,4813
@@ -14671,7 +14671,7 @@ Year,County,State,StateID,Population
 1850,Montgomery,Texas,48,2384
 1850,Nacogdoches,Texas,48,5193
 1850,Navarro,Texas,48,2190
-1850,Navarro-Ellis-Tar,Texas,48,N/a
+1850,Navarro-Ellis-Tar,Texas,48,0
 1850,Newton,Texas,48,1689
 1850,Nueces,Texas,48,698
 1850,Panola,Texas,48,3871
@@ -14685,7 +14685,7 @@ Year,County,State,StateID,Population
 1850,San Patricio,Texas,48,200
 1850,Shelby,Texas,48,4239
 1850,Smith,Texas,48,4292
-1850,Starr,Texas,48,N/a
+1850,Starr,Texas,48,0
 1850,Tarrant,Texas,48,664
 1850,Titus,Texas,48,3636
 1850,Travis,Texas,48,3138
@@ -14695,7 +14695,7 @@ Year,County,State,StateID,Population
 1850,Victoria,Texas,48,2019
 1850,Walker,Texas,48,3964
 1850,Washington,Texas,48,5983
-1850,Webb,Texas,48,N/a
+1850,Webb,Texas,48,0
 1850,Wharton,Texas,48,1752
 1850,Williamson,Texas,48,1568
 1860,Anderson,Texas,48,10398
@@ -14704,7 +14704,7 @@ Year,County,State,StateID,Population
 1860,Austin,Texas,48,10139
 1860,Bandera,Texas,48,399
 1860,Bastrop,Texas,48,7006
-1860,Baylor,Texas,48,N/a
+1860,Baylor,Texas,48,0
 1860,Bee,Texas,48,910
 1860,Bell,Texas,48,4799
 1860,Bexar,Texas,48,14454
@@ -14718,28 +14718,28 @@ Year,County,State,StateID,Population
 1860,Burnet,Texas,48,2487
 1860,Caldwell,Texas,48,4481
 1860,Calhoun,Texas,48,2642
-1860,Callahan,Texas,48,N/a
+1860,Callahan,Texas,48,0
 1860,Cameron,Texas,48,6028
 1860,Cass/davis,Texas,48,8411
 1860,Chambers,Texas,48,1508
 1860,Cherokee,Texas,48,12098
 1860,Clay,Texas,48,109
-1860,Coleman,Texas,48,N/a
+1860,Coleman,Texas,48,0
 1860,Collin,Texas,48,9264
 1860,Colorado,Texas,48,7885
 1860,Comal,Texas,48,4030
 1860,Comanche,Texas,48,709
-1860,Concho,Texas,48,N/a
+1860,Concho,Texas,48,0
 1860,Cooke,Texas,48,3760
 1860,Coryell,Texas,48,2666
 1860,Dallas,Texas,48,8665
 1860,Dawson,Texas,48,281
 1860,De Witt,Texas,48,5108
 1860,Denton,Texas,48,5031
-1860,Dimmit,Texas,48,N/a
-1860,Duval,Texas,48,N/a
+1860,Dimmit,Texas,48,0
+1860,Duval,Texas,48,0
 1860,Eastland,Texas,48,99
-1860,Edwards,Texas,48,N/a
+1860,Edwards,Texas,48,0
 1860,El Paso,Texas,48,4051
 1860,Ellis,Texas,48,5246
 1860,Encinal,Texas,48,43
@@ -14758,11 +14758,11 @@ Year,County,State,StateID,Population
 1860,Grimes,Texas,48,10307
 1860,Guadalupe,Texas,48,5444
 1860,Hamilton,Texas,48,489
-1860,Hardeman,Texas,48,N/a
+1860,Hardeman,Texas,48,0
 1860,Hardin,Texas,48,1353
 1860,Harris,Texas,48,9070
 1860,Harrison,Texas,48,15001
-1860,Haskell,Texas,48,N/a
+1860,Haskell,Texas,48,0
 1860,Hays,Texas,48,2126
 1860,Henderson,Texas,48,4595
 1860,Hidalgo,Texas,48,1192
@@ -14775,14 +14775,14 @@ Year,County,State,StateID,Population
 1860,Jasper,Texas,48,4037
 1860,Jefferson,Texas,48,1995
 1860,Johnson,Texas,48,4305
-1860,Jones,Texas,48,N/a
+1860,Jones,Texas,48,0
 1860,Karnes,Texas,48,2171
 1860,Kaufman,Texas,48,3936
 1860,Kerr,Texas,48,634
-1860,Kimble,Texas,48,N/a
+1860,Kimble,Texas,48,0
 1860,Kinney,Texas,48,61
-1860,Knox,Texas,48,N/a
-1860,La Salle,Texas,48,N/a
+1860,Knox,Texas,48,0
+1860,La Salle,Texas,48,0
 1860,Lamar,Texas,48,10136
 1860,Lampasas,Texas,48,1028
 1860,Lavaca,Texas,48,5945
@@ -14796,11 +14796,11 @@ Year,County,State,StateID,Population
 1860,Mason,Texas,48,630
 1860,Matagorda,Texas,48,3454
 1860,Maverick,Texas,48,726
-1860,Mcculloch,Texas,48,N/a
+1860,Mcculloch,Texas,48,0
 1860,Mclennan,Texas,48,6206
-1860,Mcmullen,Texas,48,N/a
+1860,Mcmullen,Texas,48,0
 1860,Medina,Texas,48,1838
-1860,Menora,Texas,48,N/a
+1860,Menora,Texas,48,0
 1860,Milam,Texas,48,5175
 1860,Montague,Texas,48,849
 1860,Montgomery,Texas,48,5479
@@ -14817,7 +14817,7 @@ Year,County,State,StateID,Population
 1860,Red River,Texas,48,8535
 1860,Refugio,Texas,48,1600
 1860,Robertson,Texas,48,4997
-1860,Runnels,Texas,48,N/a
+1860,Runnels,Texas,48,0
 1860,Rusk,Texas,48,15803
 1860,Sabine,Texas,48,2750
 1860,San Augustine,Texas,48,4094
@@ -14829,7 +14829,7 @@ Year,County,State,StateID,Population
 1860,Starr,Texas,48,2406
 1860,Stephens/buchanan,Texas,48,230
 1860,Tarrant,Texas,48,6020
-1860,Taylor,Texas,48,N/a
+1860,Taylor,Texas,48,0
 1860,Throckmorton,Texas,48,124
 1860,Titus,Texas,48,9648
 1860,Travis,Texas,48,8080
@@ -14851,12 +14851,12 @@ Year,County,State,StateID,Population
 1860,Zavala,Texas,48,26
 1870,Anderson,Texas,48,9229
 1870,Angelina,Texas,48,3985
-1870,Archer,Texas,48,N/a
+1870,Archer,Texas,48,0
 1870,Atascosa,Texas,48,2915
 1870,Austin,Texas,48,15087
 1870,Bandera,Texas,48,649
 1870,Bastrop,Texas,48,12290
-1870,Baylor,Texas,48,N/a
+1870,Baylor,Texas,48,0
 1870,Bee,Texas,48,1082
 1870,Bell,Texas,48,9771
 1870,Bexar,Texas,48,16043
@@ -14871,28 +14871,28 @@ Year,County,State,StateID,Population
 1870,Burnet,Texas,48,3688
 1870,Caldwell,Texas,48,6572
 1870,Calhoun,Texas,48,3443
-1870,Callahan,Texas,48,N/a
+1870,Callahan,Texas,48,0
 1870,Cameron,Texas,48,10999
 1870,Cass/davis,Texas,48,8875
 1870,Chambers,Texas,48,1503
 1870,Cherokee,Texas,48,11079
-1870,Clay,Texas,48,N/a
+1870,Clay,Texas,48,0
 1870,Coleman,Texas,48,347
 1870,Collin,Texas,48,14013
 1870,Colorado,Texas,48,8326
 1870,Comal,Texas,48,5283
 1870,Comanche,Texas,48,1001
-1870,Concho,Texas,48,N/a
+1870,Concho,Texas,48,0
 1870,Cooke,Texas,48,5315
 1870,Coryell,Texas,48,4124
 1870,Dallas,Texas,48,13314
-1870,Dawson,Texas,48,N/a
+1870,Dawson,Texas,48,0
 1870,De Witt,Texas,48,6443
 1870,Denton,Texas,48,7251
 1870,Dimmit,Texas,48,109
 1870,Duval,Texas,48,1083
 1870,Eastland,Texas,48,88
-1870,Edwards,Texas,48,N/a
+1870,Edwards,Texas,48,0
 1870,El Paso,Texas,48,3671
 1870,Ellis,Texas,48,7514
 1870,Encinal,Texas,48,427
@@ -14911,11 +14911,11 @@ Year,County,State,StateID,Population
 1870,Grimes,Texas,48,13218
 1870,Guadalupe,Texas,48,7282
 1870,Hamilton,Texas,48,733
-1870,Hardeman,Texas,48,N/a
+1870,Hardeman,Texas,48,0
 1870,Hardin,Texas,48,1460
 1870,Harris,Texas,48,17375
 1870,Harrison,Texas,48,13241
-1870,Haskell,Texas,48,N/a
+1870,Haskell,Texas,48,0
 1870,Hays,Texas,48,4088
 1870,Henderson,Texas,48,6786
 1870,Hidalgo,Texas,48,2387
@@ -14929,14 +14929,14 @@ Year,County,State,StateID,Population
 1870,Jasper,Texas,48,4218
 1870,Jefferson,Texas,48,1906
 1870,Johnson,Texas,48,4923
-1870,Jones,Texas,48,N/a
+1870,Jones,Texas,48,0
 1870,Karnes,Texas,48,1705
 1870,Kaufman,Texas,48,6895
 1870,Kendall,Texas,48,1536
 1870,Kerr,Texas,48,1042
 1870,Kimble,Texas,48,72
 1870,Kinney,Texas,48,1204
-1870,Knox,Texas,48,N/a
+1870,Knox,Texas,48,0
 1870,La Salle,Texas,48,69
 1870,Lamar,Texas,48,15790
 1870,Lampasas,Texas,48,1344
@@ -14956,7 +14956,7 @@ Year,County,State,StateID,Population
 1870,Mcmullen,Texas,48,230
 1870,Medina,Texas,48,2078
 1870,Menard,Texas,48,667
-1870,Menora,Texas,48,N/a
+1870,Menora,Texas,48,0
 1870,Milam,Texas,48,8984
 1870,Montague,Texas,48,890
 1870,Montgomery,Texas,48,6483
@@ -14965,7 +14965,7 @@ Year,County,State,StateID,Population
 1870,Newton,Texas,48,2187
 1870,Nueces,Texas,48,3975
 1870,Orange,Texas,48,1255
-1870,Palo Pinto,Texas,48,N/a
+1870,Palo Pinto,Texas,48,0
 1870,Panola,Texas,48,10119
 1870,Parker,Texas,48,4186
 1870,Polk,Texas,48,8707
@@ -14973,7 +14973,7 @@ Year,County,State,StateID,Population
 1870,Red River,Texas,48,10653
 1870,Refugio,Texas,48,2324
 1870,Robertson,Texas,48,9990
-1870,Runnels,Texas,48,N/a
+1870,Runnels,Texas,48,0
 1870,Rusk,Texas,48,16916
 1870,Sabine,Texas,48,3256
 1870,San Augustine,Texas,48,4196
@@ -14985,8 +14985,8 @@ Year,County,State,StateID,Population
 1870,Starr,Texas,48,4154
 1870,Stephens/buchanan,Texas,48,330
 1870,Tarrant,Texas,48,5788
-1870,Taylor,Texas,48,N/a
-1870,Throckmorton,Texas,48,N/a
+1870,Taylor,Texas,48,0
+1870,Throckmorton,Texas,48,0
 1870,Titus,Texas,48,11339
 1870,Travis,Texas,48,13153
 1870,Trinity,Texas,48,4141
@@ -14999,8 +14999,8 @@ Year,County,State,StateID,Population
 1870,Washington,Texas,48,23104
 1870,Webb,Texas,48,2615
 1870,Wharton,Texas,48,3426
-1870,Wichita,Texas,48,N/a
-1870,Wilbarger,Texas,48,N/a
+1870,Wichita,Texas,48,0
+1870,Wilbarger,Texas,48,0
 1870,Williamson,Texas,48,6368
 1870,Wilson,Texas,48,2556
 1870,Wise,Texas,48,1450
@@ -15009,14 +15009,14 @@ Year,County,State,StateID,Population
 1870,Zapata,Texas,48,1488
 1870,Zavala,Texas,48,133
 1880,Anderson,Texas,48,17395
-1880,Andrews,Texas,48,N/a
+1880,Andrews,Texas,48,0
 1880,Angelina,Texas,48,5239
 1880,Aransas,Texas,48,996
 1880,Archer,Texas,48,596
 1880,Armstrong,Texas,48,31
 1880,Atascosa,Texas,48,4217
 1880,Austin,Texas,48,14429
-1880,Bailey,Texas,48,N/a
+1880,Bailey,Texas,48,0
 1880,Bandera,Texas,48,2158
 1880,Bastrop,Texas,48,17215
 1880,Baylor,Texas,48,715
@@ -15038,14 +15038,14 @@ Year,County,State,StateID,Population
 1880,Callahan,Texas,48,3453
 1880,Cameron,Texas,48,14959
 1880,Camp,Texas,48,5931
-1880,Carson,Texas,48,N/a
+1880,Carson,Texas,48,0
 1880,Cass/davis,Texas,48,16724
-1880,Castro,Texas,48,N/a
+1880,Castro,Texas,48,0
 1880,Chambers,Texas,48,2187
 1880,Cherokee,Texas,48,16723
 1880,Childress,Texas,48,25
 1880,Clay,Texas,48,5045
-1880,Cochran,Texas,48,N/a
+1880,Cochran,Texas,48,0
 1880,Coleman,Texas,48,3603
 1880,Collin,Texas,48,25983
 1880,Collingsworth,Texas,48,6
@@ -15058,7 +15058,7 @@ Year,County,State,StateID,Population
 1880,Cottle,Texas,48,24
 1880,Crockett,Texas,48,127
 1880,Crosby,Texas,48,82
-1880,Dallam,Texas,48,N/a
+1880,Dallam,Texas,48,0
 1880,Dallas,Texas,48,33488
 1880,Dawson,Texas,48,24
 1880,De Witt,Texas,48,10082
@@ -15095,7 +15095,7 @@ Year,County,State,StateID,Population
 1880,Gregg,Texas,48,8530
 1880,Grimes,Texas,48,18603
 1880,Guadalupe,Texas,48,12202
-1880,Hale,Texas,48,N/a
+1880,Hale,Texas,48,0
 1880,Hall,Texas,48,36
 1880,Hamilton,Texas,48,6365
 1880,Hansford,Texas,48,18
@@ -15110,7 +15110,7 @@ Year,County,State,StateID,Population
 1880,Henderson,Texas,48,9735
 1880,Hidalgo,Texas,48,4347
 1880,Hill,Texas,48,16554
-1880,Hockley,Texas,48,N/a
+1880,Hockley,Texas,48,0
 1880,Hood,Texas,48,6125
 1880,Hopkins,Texas,48,15461
 1880,Houston,Texas,48,16702
@@ -15134,7 +15134,7 @@ Year,County,State,StateID,Population
 1880,Knox,Texas,48,77
 1880,La Salle,Texas,48,789
 1880,Lamar,Texas,48,27193
-1880,Lamb,Texas,48,N/a
+1880,Lamb,Texas,48,0
 1880,Lampasas,Texas,48,5421
 1880,Lavaca,Texas,48,13641
 1880,Lee,Texas,48,8937
@@ -15161,7 +15161,7 @@ Year,County,State,StateID,Population
 1880,Mitchell,Texas,48,117
 1880,Montague,Texas,48,11257
 1880,Montgomery,Texas,48,10154
-1880,Moore,Texas,48,N/a
+1880,Moore,Texas,48,0
 1880,Morris,Texas,48,5032
 1880,Motley,Texas,48,24
 1880,Nacogdoches,Texas,48,11590
@@ -15169,13 +15169,13 @@ Year,County,State,StateID,Population
 1880,Newton,Texas,48,4359
 1880,Nolan,Texas,48,640
 1880,Nueces,Texas,48,7673
-1880,Ochiltree,Texas,48,N/a
+1880,Ochiltree,Texas,48,0
 1880,Oldham,Texas,48,287
 1880,Orange,Texas,48,2938
 1880,Palo Pinto,Texas,48,5885
 1880,Panola,Texas,48,12219
 1880,Parker,Texas,48,15870
-1880,Parmer,Texas,48,N/a
+1880,Parmer,Texas,48,0
 1880,Pecos,Texas,48,1807
 1880,Polk,Texas,48,7189
 1880,Potter,Texas,48,28
@@ -15206,7 +15206,7 @@ Year,County,State,StateID,Population
 1880,Swisher,Texas,48,4
 1880,Tarrant,Texas,48,24671
 1880,Taylor,Texas,48,1736
-1880,Terry,Texas,48,N/a
+1880,Terry,Texas,48,0
 1880,Throckmorton,Texas,48,711
 1880,Titus,Texas,48,5959
 1880,Tom Green,Texas,48,3615
@@ -15229,7 +15229,7 @@ Year,County,State,StateID,Population
 1880,Wilson,Texas,48,7118
 1880,Wise,Texas,48,16601
 1880,Wood,Texas,48,11212
-1880,Yoakum,Texas,48,N/a
+1880,Yoakum,Texas,48,0
 1880,Young,Texas,48,4726
 1880,Zapata,Texas,48,3636
 1880,Zavala,Texas,48,410
@@ -15769,7 +15769,7 @@ Year,County,State,StateID,Population
 1900,Summit,Utah,49,9439
 1900,Tooele,Utah,49,7361
 1900,Uintah,Utah,49,6458
-1900,Uintah Valley Res,Utah,49,N/a
+1900,Uintah Valley Res,Utah,49,0
 1900,Utah,Utah,49,32456
 1900,Wasatch,Utah,49,4736
 1900,Washington,Utah,49,4612
@@ -15930,9 +15930,9 @@ Year,County,State,StateID,Population
 1800,Augusta,Virginia,51,11712
 1800,Bath,Virginia,51,5508
 1800,Bedford,Virginia,51,14125
-1800,Berkeley,Virginia,51,22006
+1800,Berkeley,West Virginia,51,22006
 1800,Botetourt,Virginia,51,10422
-1800,Brooke,Virginia,51,4706
+1800,Brooke,West Virginia,51,4706
 1800,Brunswick,Virginia,51,16339
 1800,Buckingham,Virginia,51,13389
 1800,Campbell,Virginia,51,9866
@@ -15953,18 +15953,18 @@ Year,County,State,StateID,Population
 1800,Gloucester,Virginia,51,8181
 1800,Goochland,Virginia,51,9696
 1800,Grayson,Virginia,51,3912
-1800,Greenbrier,Virginia,51,4345
+1800,Greenbrier,West Virginia,51,4345
 1800,Greensville,Virginia,51,6727
 1800,Halifax,Virginia,51,19377
-1800,Hampshire,Virginia,51,8348
+1800,Hampshire,West Virginia,51,8348
 1800,Hanover,Virginia,51,14403
 1800,Hardy,Virginia,51,6627
-1800,Harrison,Virginia,51,4848
+1800,Harrison,West Virginia,51,4848
 1800,Henrico,Virginia,51,9149
 1800,Henry,Virginia,51,5259
 1800,Isle Of Wight,Virginia,51,9342
 1800,James City,Virginia,51,3931
-1800,Kanawha,Virginia,51,3239
+1800,Kanawha,West Virginia,51,3239
 1800,King And Queen,Virginia,51,9538
 1800,King George,Virginia,51,6749
 1800,King William,Virginia,51,9055
@@ -15977,8 +15977,8 @@ Year,County,State,StateID,Population
 1800,Mathews,Virginia,51,5806
 1800,Mecklenburg,Virginia,51,17008
 1800,Middlesex,Virginia,51,4203
-1800,Monongalia,Virginia,51,8540
-1800,Monroe,Virginia,51,4188
+1800,Monongalia,West Virginia,51,8540
+1800,Monroe,West Virginia,51,4188
 1800,Montgomery,Virginia,51,9044
 1800,Nansemond,Virginia,51,11127
 1800,New Kent,Virginia,51,6363
@@ -15987,10 +15987,10 @@ Year,County,State,StateID,Population
 1800,Northampton,Virginia,51,6763
 1800,Northumberland,Virginia,51,7803
 1800,Nottoway,Virginia,51,9401
-1800,Ohio,Virginia,51,4740
+1800,Ohio,West Virginia,51,4740
 1800,Orange,Virginia,51,11449
 1800,Patrick,Virginia,51,4331
-1800,Pendleton,Virginia,51,3962
+1800,Pendleton,West Virginia,51,3962
 1800,Petersburg,Virginia,51,3521
 1800,Pittsylvania,Virginia,51,12697
 1800,Powhatan,Virginia,51,7769
@@ -15998,7 +15998,7 @@ Year,County,State,StateID,Population
 1800,Prince George,Virginia,51,7425
 1800,Prince William,Virginia,51,12733
 1800,Princess Anne,Virginia,51,8859
-1800,Randolph,Virginia,51,1826
+1800,Randolph,West Virginia,51,1826
 1800,Richmond City,Virginia,51,5737
 1800,Richmond-Westmore,Virginia,51,13744
 1800,Rockbridge,Virginia,51,8945
@@ -16013,7 +16013,7 @@ Year,County,State,StateID,Population
 1800,Tazewell,Virginia,51,2127
 1800,Warwick,Virginia,51,1659
 1800,Washington,Virginia,51,9536
-1800,Wood,Virginia,51,1217
+1800,Wood,West Virginia,51,1217
 1800,Wythe,Virginia,51,6380
 1800,York,Virginia,51,3231
 1810,Accomack,Virginia,51,15743
@@ -17191,7 +17191,7 @@ Year,County,State,StateID,Population
 1900,Clallam,Washington,53,5603
 1900,Clark,Washington,53,13419
 1900,Columbia,Washington,53,7128
-1900,Colville Res,Washington,53,N/a
+1900,Colville Res,Washington,53,0
 1900,Cowlitz,Washington,53,7877
 1900,Douglas,Washington,53,4926
 1900,Ferry,Washington,53,4562
@@ -17206,29 +17206,29 @@ Year,County,State,StateID,Population
 1900,Klickitat,Washington,53,6407
 1900,Lewis,Washington,53,15157
 1900,Lincoln,Washington,53,11969
-1900,Lummi Res,Washington,53,N/a
-1900,Makah Res,Washington,53,N/a
+1900,Lummi Res,Washington,53,0
+1900,Makah Res,Washington,53,0
 1900,Mason,Washington,53,3810
-1900,Muckleshoot Res,Washington,53,N/a
+1900,Muckleshoot Res,Washington,53,0
 1900,Okanogan,Washington,53,4689
 1900,Pacific,Washington,53,5983
 1900,Pierce,Washington,53,55515
-1900,Queniult Res,Washington,53,N/a
+1900,Queniult Res,Washington,53,0
 1900,San Juan,Washington,53,2928
 1900,Skagit,Washington,53,14272
 1900,Skamania,Washington,53,1688
 1900,Snohomish,Washington,53,23950
 1900,Spokane,Washington,53,57542
 1900,Stevens,Washington,53,10543
-1900,Swinomish Res,Washington,53,N/a
+1900,Swinomish Res,Washington,53,0
 1900,Thurston,Washington,53,9927
-1900,Tulalip Res,Washington,53,N/a
+1900,Tulalip Res,Washington,53,0
 1900,Wahkiakum,Washington,53,2819
 1900,Walla Walla,Washington,53,18680
 1900,Whatcom,Washington,53,24116
 1900,Whitman,Washington,53,25360
 1900,Yakima,Washington,53,13462
-1900,Yakima Res,Washington,53,N/a
+1900,Yakima Res,Washington,53,0
 1870,Barbour,West Virginia,54,10312
 1870,Berkeley,West Virginia,54,14900
 1870,Boone,West Virginia,54,4553
@@ -17468,7 +17468,7 @@ Year,County,State,StateID,Population
 1840,Washington,Wisconsin,55,343
 1840,Winnebago,Wisconsin,55,135
 1850,Adams,Wisconsin,55,187
-1850,Adams-Sauk,Wisconsin,55,N/a
+1850,Adams-Sauk,Wisconsin,55,0
 1850,Bayfield/la Point,Wisconsin,55,489
 1850,Brown,Wisconsin,55,6215
 1850,Calumet,Wisconsin,55,1743
@@ -17778,7 +17778,7 @@ Year,County,State,StateID,Population
 1900,Kenosha,Wisconsin,55,21707
 1900,Kewaunee,Wisconsin,55,17212
 1900,La Crosse,Wisconsin,55,42997
-1900,La Pointe Res,Wisconsin,55,N/a
+1900,La Pointe Res,Wisconsin,55,0
 1900,Lafayette,Wisconsin,55,20959
 1900,Langlade,Wisconsin,55,12553
 1900,Lincoln,Wisconsin,55,16269
@@ -17786,12 +17786,12 @@ Year,County,State,StateID,Population
 1900,Marathon,Wisconsin,55,43256
 1900,Marinette,Wisconsin,55,30822
 1900,Marquette,Wisconsin,55,10509
-1900,Menominee Res,Wisconsin,55,N/a
+1900,Menominee Res,Wisconsin,55,0
 1900,Milwaukee,Wisconsin,55,330017
 1900,Monroe,Wisconsin,55,28103
 1900,Oconto,Wisconsin,55,20874
 1900,Oneida,Wisconsin,55,8875
-1900,Oneida Res,Wisconsin,55,N/a
+1900,Oneida Res,Wisconsin,55,0
 1900,Outagamie,Wisconsin,55,46247
 1900,Ozaukee,Wisconsin,55,16363
 1900,Pepin,Wisconsin,55,7905
@@ -17842,7 +17842,7 @@ Year,County,State,StateID,Population
 1900,Laramie,Wyoming,56,20181
 1900,Natrona,Wyoming,56,1785
 1900,Sheridan,Wyoming,56,5122
-1900,Shoshone Res,Wyoming,56,N/a
+1900,Shoshone Res,Wyoming,56,0
 1900,Sweetwater,Wyoming,56,8455
 1900,Uinta,Wyoming,56,12223
 1900,Weston,Wyoming,56,3203

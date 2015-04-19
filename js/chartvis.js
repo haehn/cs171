@@ -19,7 +19,7 @@ ChartVis = function(_parentElement, _data, _eventHandler){
     this.displayData = [];
 
     this.year = "1800";
-    this.display = "cities";
+    this.display = "counties";
 	this.railroads = true;
 
     // defines constants
@@ -39,7 +39,7 @@ ChartVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-        .attr("style", "border: 2px solid black")
+    //    .attr("style", "border: 2px solid black")
         .append("g")
         //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
@@ -114,7 +114,7 @@ ChartVis.prototype.updateVis = function(){
     // updates axis
     this.svg.select(".x.axis")
         .call(this.xAxis);
-    console.log(that.displayData);
+    //console.log(that.displayData);
 
     var bars = svg.select(".bars").selectAll("rect")
         .data(that.displayData);
@@ -122,8 +122,12 @@ ChartVis.prototype.updateVis = function(){
     bars.enter()
        .append("rect")
        .append("title");
-      
-       
+    var median_location = Math.round(that.displayData.length/2);
+    var bars_count = 0; 
+    var bars_pop = 0;
+    var bar_max = 0;
+    var bar_min = 0;
+    var median = 0;
     bars.sort(function(a,b)
         {   
              return d3.descending(parseInt(a.Population), parseInt(b.Population));
@@ -134,14 +138,23 @@ ChartVis.prototype.updateVis = function(){
             return (i *10 +10);
         })
         .attr("height", 8)
-        .attr("width", function(d)
-        {
+        .attr("width", function(d,i)
+        { 
+            if(i == median_location)
+                median = d.Population;
+            if(d.Population > bar_max)
+                bar_max = d.Population;
+          //console.log(d.Population);
+          bars_count++;
+          bars_pop = bars_pop +  d.Population;
             return that.x(d.Population);
         })
        .attr("class", function(d,i)
        { //console.log(d,i);
            return "bargroup"+ (((i%2))*4);
        });
+
+      // console.log(bar_max, median, (bars_pop/bars_count));
 
     var titles = bars.select("title")
         .text(function(d){/*console.log(d);*/return d.Name + ", " + d.State + ", " + d.Population;});
@@ -370,7 +383,7 @@ ChartVis.prototype.filterAndAggregate = function(year, display){
     //console.log("filter");
     var that = this;
 
-    console.log(year, display);
+    //console.log(year, display);
    // console.log(that.data);
     var filteredData = [];
     

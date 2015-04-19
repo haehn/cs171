@@ -103,7 +103,7 @@ Bath,Kentucky,12113
 Bath,Virginia,3676
 Bay,Michigan,3164
 Bayfield/la Point,Wisconsin,353
-Baylor,Texas,N/a
+Baylor,Texas,
 Beaufort,South Carolina,40053
 Beaufort,North Carolina,14766
 Beaver,Pennsylvania,29140
@@ -242,7 +242,7 @@ Calhoun,Illinois,5144
 Calhoun,Mississippi,9518
 Calhoun,Michigan,29564
 Calhoun/benton,Alabama,21539
-Callahan,Texas,N/a
+Callahan,Texas,0
 Callaway,Missouri,17449
 Calloway,Kentucky,9915
 Calumet,Wisconsin,7895
@@ -403,7 +403,7 @@ Coffee,Alabama,9623
 Coffee,Tennessee,9689
 Coffey,Kansas,2842
 Cole,Missouri,9697
-Coleman,Texas,N/a
+Coleman,Texas,0
 Coles,Illinois,14203
 Colleton,South Carolina,41916
 Collin,Texas,9264
@@ -421,7 +421,7 @@ Columbus,North Carolina,8597
 Colusa,California,2274
 Comal,Texas,4030
 Comanche,Texas,709
-Concho,Texas,N/a
+Concho,Texas,0
 Concordia,Louisiana,13805
 Conecuh,Alabama,11311
 Contra Costa,California,5328
@@ -524,7 +524,7 @@ Desha,Arkansas,6459
 Dickinson,Iowa,180
 Dickinson,Kansas,378
 Dickson,Tennessee,9982
-Dimmit,Texas,N/a
+Dimmit,Texas,0
 Dinwiddie,Virginia,30198
 Dixon,Nebraska,217
 Doddridge,Virginia,5203
@@ -552,7 +552,7 @@ Dunklin,Missouri,5026
 Dunn,Wisconsin,2704
 Duplin,North Carolina,15784
 Dutchess,New York,64941
-Duval,Texas,N/a
+Duval,Texas,0
 Duval,Florida,5074
 Dyer,Tennessee,10536
 Early,Georgia,6149
@@ -567,7 +567,7 @@ Edgecombe,North Carolina,17376
 Edgefield,South Carolina,39887
 Edmonson,Kentucky,4645
 Edwards,Illinois,5454
-Edwards,Texas,N/a
+Edwards,Texas,0
 Effingham,Georgia,4755
 Effingham,Illinois,7816
 El Dorado,California,20562
@@ -772,7 +772,7 @@ Hancock,Tennessee,7020
 Hancock,Kentucky,6213
 Hanover,Virginia,17222
 Haralson,Georgia,3039
-Hardeman,Texas,N/a
+Hardeman,Texas,0
 Hardeman,Tennessee,17769
 Hardin,Kentucky,15189
 Hardin,Illinois,3759
@@ -797,7 +797,7 @@ Harrison,Mississippi,4819
 Hart,Georgia,6137
 Hart,Kentucky,10348
 Hartford,Connecticut,89962
-Haskell,Texas,N/a
+Haskell,Texas,0
 Hawkins,Tennessee,16162
 Hays,Texas,2126
 Haywood,Tennessee,19232
@@ -955,7 +955,7 @@ Johnson/johnston,Nebraska,528
 Johnston,North Carolina,15656
 Jones,Nebraska,122
 Jones,North Carolina,5730
-Jones,Texas,N/a
+Jones,Texas,0
 Jones,Georgia,9107
 Jones,Mississippi,3323
 Jones,Iowa,13306
@@ -984,7 +984,7 @@ Keokuk,Iowa,13271
 Kerr,Texas,634
 Kershaw,South Carolina,13086
 Kewaunee,Wisconsin,5530
-Kimble,Texas,N/a
+Kimble,Texas,0
 King And Queen,Virginia,10328
 King George,Virginia,6571
 King William,Virginia,8530
@@ -996,7 +996,7 @@ Knox,Illinois,28663
 Knox,Kentucky,7707
 Knox,Indiana,16056
 Knox,Tennessee,22813
-Knox,Texas,N/a
+Knox,Texas,0
 Knox,Missouri,8727
 Knox,Ohio,27735
 Knox,Maine,32716
@@ -1006,7 +1006,7 @@ Kossuth,Iowa,416
 La Crosse,Wisconsin,12186
 La Porte,Indiana,22919
 La Salle,Illinois,48332
-La Salle,Texas,N/a
+La Salle,Texas,0
 Laclede,Missouri,5182
 Lafayette,Mississippi,16125
 Lafayette,Arkansas,8464
@@ -1114,7 +1114,7 @@ Lunenburg,Virginia,11983
 Luzerne,Pennsylvania,90244
 Lycoming,Pennsylvania,37399
 Lyon,Kentucky,5307
-Lyon/buncombe,Iowa,N/a
+Lyon/buncombe,Iowa,
 Mackinac/michilim,Michigan,1938
 Macomb,Michigan,22843
 Macon,Illinois,13738
@@ -1199,7 +1199,7 @@ Mathews,Virginia,7091
 Maury,Tennessee,32498
 Maverick,Texas,726
 Mccracken,Kentucky,10360
-Mcculloch,Texas,N/a
+Mcculloch,Texas,0
 Mcdonald,Missouri,4038
 Mcdonough,Illinois,20069
 Mcdowell,North Carolina,7120
@@ -1212,7 +1212,7 @@ Mclean,Kentucky,6144
 Mclennan,Texas,6206
 Mcleod,Minnesota,1286
 Mcminn,Tennessee,13555
-Mcmullen,Texas,N/a
+Mcmullen,Texas,0
 Mcnairy,Tennessee,14732
 Meade,Kentucky,8898
 Mecklenburg,North Carolina,17374
@@ -1225,7 +1225,7 @@ Meigs,Ohio,26534
 Meigs,Tennessee,4667
 Menard,Illinois,9584
 Mendocino,California,3967
-Menora,Texas,N/a
+Menora,Texas,0
 Merced,California,1141
 Mercer,Ohio,14104
 Mercer,Kentucky,13700
@@ -1410,7 +1410,7 @@ Orleans,New York,28717
 Orleans,Louisiana,174491
 Osage,Kansas,1113
 Osage,Missouri,7879
-Osceola,Iowa,N/a
+Osceola,Iowa,0
 Osceola,Michigan,27
 Oswego,New York,75958
 Otoe,Kansas,238
@@ -1610,7 +1610,7 @@ Rockland,New York,22492
 Ross,Ohio,35071
 Rowan,North Carolina,14589
 Rowan,Kentucky,2282
-Runnels,Texas,N/a
+Runnels,Texas,0
 Rush,Indiana,16193
 Rusk,Texas,15803
 Russell,Kentucky,6024
@@ -1804,7 +1804,7 @@ Taylor,Florida,1384
 Taylor,Iowa,3590
 Taylor,Georgia,5998
 Taylor,Kentucky,7481
-Taylor,Texas,N/a
+Taylor,Texas,0
 Taylor,Virginia,7463
 Tazewell,Illinois,21470
 Tazewell,Virginia,9920

@@ -66,6 +66,18 @@ line{
     fill: rgb(158,202,225);
 }
 
+.info-heading{
+    font-size: 32px;
+    font-weight:700;
+    stroke: rgb(33,113,181);
+    fill: rgb(33,113,181);
+
+}
+
+.info-pane{
+
+}
+
 .invis{
     fill: none;
     stroke: none;

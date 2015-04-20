@@ -185,7 +185,7 @@ ChartVis.prototype.updateVis = function(){
           return that.doesLabelFit(d) ? "white" : "black"; 
       });
 
-
+     names.exit().remove();
 
 /*
 var bars = svg.select(".bars").selectAll("rect")

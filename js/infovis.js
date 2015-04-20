@@ -24,7 +24,10 @@ InfoVis = function(_parentElement, _data, _eventHandler){
     this.data = _data;
     this.eventHandler = _eventHandler;
     this.displayData = [];
+    this.year = 1800;
 
+    this.width = 200;
+    this.height = 500;
 
 
     // TODO: define all constants here
@@ -46,8 +49,23 @@ InfoVis.prototype.initVis = function(){
     //TODO: construct or select SVG
     //TODO: create axis and scales
 
+    this.svg = this.parentElement.append("svg")
+        .attr("width", this.width)
+        .attr("height", this.height)
+      //  .attr("style", "border: 2px solid black");
+
+    this.svg.append("text")
+        .attr("x", 0)
+        .attr("y", 25)
+        .attr("class", "info-heading");
+
+    this.svg.append("text")
+        .attr("x", 0)
+        .attr("y", 45)
+        .attr("class", "info-pane");
+
     // filter, aggregate, modify data
-    this.wrangleData(null);
+    this.wrangleData(this.year);
 
     // call the update method
     this.updateVis();
@@ -58,11 +76,10 @@ InfoVis.prototype.initVis = function(){
  * Method to wrangle the data. In this case it takes an options object
  * @param _filterFunction - a function that filters data or "null" if none
  */
-InfoVis.prototype.wrangleData= function(_filterFunction){
+InfoVis.prototype.wrangleData= function(year){
 
     // displayData should hold the data which is visualized
-    this.displayData = this.filterAndAggregate(_filterFunction);
-
+    this.displayData = this.filterAndAggregate(year);
     //// you might be able to pass some options,
     //// if you don't pass options -- set the default options
     //// the default is: var options = {filter: function(){return true;} }
@@ -86,11 +103,19 @@ InfoVis.prototype.updateVis = function(){
     // But it's not needed to solve the task.
     // var options = _options || {};
 
+    var that = this;
 
     // TODO: implement...
     // TODO: ...update scales
     // TODO: ...update graphs
+    
+    d3.select(".info-heading")
+      .text("The Year " + that.displayData[0]);
 
+
+
+    d3.select(".info-pane")
+      .text(that.displayData[1]);
 
 }
 
@@ -119,8 +144,10 @@ InfoVis.prototype.onSelectionChange= function (encoding, tracks, year){
 
 				    // do nothing -- no update when brushing
 
-
-					}
+    this.year = year;
+    this.wrangleData(year);
+    this.updateVis();
+    }
 
 /*
 *
@@ -137,24 +164,16 @@ InfoVis.prototype.onSelectionChange= function (encoding, tracks, year){
  * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
  * @returns {Array|*}
  */
-InfoVis.prototype.filterAndAggregate = function(_filter){
+InfoVis.prototype.filterAndAggregate = function(year){
 
-
-    // Set filter to a function that accepts all items
-    // ONLY if the parameter _filter is NOT null use this parameter
-    var filter = function(){return true;}
-    if (_filter != null){
-        filter = _filter;
-    }
     //Dear JS hipster, a more hip variant of this construct would be:
     // var filter = _filter || function(){return true;}
 
     var that = this;
 
     // create an array of values for age 0-100
-    var res = d3.range(100).map(function () {
-        return 0;
-    });
+    var infoData = [year, that.data[year]["summary"][0]["info"]];
+    
 
 
     // accumulate all values that fulfill the filter criterion
@@ -163,7 +182,7 @@ InfoVis.prototype.filterAndAggregate = function(_filter){
 
 
 
-    return res;
+    return infoData;
 
 }
 

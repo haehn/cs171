@@ -284,7 +284,6 @@ SummaryVis.prototype.updateVis = function(){
             trackLocation = trackStart + trackInterval;
         while(trackLocation < trackEnd)
         {
-            console.log("while");
             that.svg.select(".ties" + that.displayData["Tracks"][i].Year)
                 .append("rect")
                 .attr("x", trackLocation)

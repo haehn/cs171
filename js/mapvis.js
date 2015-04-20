@@ -43,6 +43,7 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
 
 
     this.initVis();
+
 }
 
 
@@ -52,7 +53,6 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
 MapVis.prototype.initVis = function(){
 
     var that = this; // read about the this
-
 
 
     //TODO: implement here all things that don't change
@@ -161,7 +161,6 @@ MapVis.prototype.wrangleData= function(){
 	}
 	else
 	    that.displayData.states.features = [];
-console.log(that.getYear("Oregon"));
     if(that.encoding == "counties")
 	{
 	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
@@ -226,6 +225,7 @@ console.log(that.getYear("Oregon"));
  * @param _options -- only needed if different kinds of updates are needed
  */
 MapVis.prototype.updateVis = function(){
+
 //    console.log("update");
     // TODO: implement update graphs (D3: update, enter, exit)
     //var year = 1860;
@@ -574,6 +574,3 @@ MapVis.prototype.getYear = function(state)
 	}
 //    console.log(state);    
 }
-
-
-

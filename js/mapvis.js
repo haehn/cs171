@@ -33,7 +33,7 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
     this.encoding = "counties";
     this.tracks = true;
     this.width = 760;
-    this.height = 500;
+    this.height = 475;
     this.color = d3.scale.quantize(); // We need to define this here because
     this.cityScale = d3.scale.linear().domain([0,3500000]).range([2,20]);
     // the values stay the same across all views

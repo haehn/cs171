@@ -23,9 +23,9 @@ ChartVis = function(_parentElement, _data, _eventHandler){
 	this.railroads = true;
 
     // defines constants
-    this.margin = {top: 20, right: 20, bottom: 30, left: 0},
+    this.margin = {top: 50, right: 20, bottom: 20, left: 0},
     this.width = 200;//getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
-    this.height = 500;//400 - this.margin.top - this.margin.bottom;
+    this.height = 900;//400 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }
@@ -39,8 +39,8 @@ ChartVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-    //    .attr("style", "border: 2px solid black")
-        .append("g")
+        //.attr("style", "border: 2px solid black")
+        .append("g");
         //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
     // creates axis and scales
@@ -48,7 +48,7 @@ ChartVis.prototype.initVis = function(){
       .range([0, this.width]);
 
     this.y = d3.scale.ordinal()
-      .rangeRoundBands([0, this.height], .1);
+      .rangeRoundBands([this.margin.top, this.height], .1);
 
     this.color = d3.scale.category20();
 
@@ -56,18 +56,27 @@ ChartVis.prototype.initVis = function(){
       .scale(this.x)
       .ticks(6)
       .orient("bottom");
-
+/*
     this.yAxis = d3.svg.axis()
       .scale(this.y)
-      .orient("left");
+      .orient("left");*/
+
+    this.svg.append("text")
+        .attr("class", "chartTitle")
+        .attr("x", 40)
+        .attr("y", 10);;
+
+    this.svg.append("g")
+        .attr("class", "bars");
 
     // Add axes visual elements
     this.svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + this.height + ")");
+      .attr("transform", "translate(0," + (this.height-this.margin.bottom) + ")");
 
-    this.svg.append("g")
-        .attr("class", "bars");
+
+
+
 //    console.log("init");
     // filter, aggregate, modify data
    // console.log(this.data);
@@ -116,6 +125,9 @@ ChartVis.prototype.updateVis = function(){
         .call(this.xAxis);
     //console.log(that.displayData);
 
+    this.svg.select(".chartTitle")
+        .text("Largest " + that.display);
+
     var bars = svg.select(".bars").selectAll("rect")
         .data(that.displayData);
 
@@ -135,7 +147,7 @@ ChartVis.prototype.updateVis = function(){
         .attr("x", 0)
         .attr("y", function(d,i)
         {
-            return (i *10 +10);
+            return (i *10 +20);
         })
         .attr("height", 8)
         .attr("width", function(d,i)
@@ -172,7 +184,7 @@ ChartVis.prototype.updateVis = function(){
              return d3.descending(parseInt(a.Population), parseInt(b.Population));
         })
           .attr("x", function(d) { return that.x(d.Population) + (that.doesLabelFit(d) ? -3 : 5); })
-      .attr("y", function(d,i) { return (i*10+13) })
+      .attr("y", function(d,i) { return (i*10+23) })
       .text(function(d) { 
           return d.Name + ", " + d.StateCode; })
       .attr("class", "type-label")

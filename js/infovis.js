@@ -26,8 +26,8 @@ InfoVis = function(_parentElement, _data, _eventHandler){
     this.displayData = [];
     this.year = 1800;
 
-    this.width = 200;
-    this.height = 500;
+    this.width = 175;
+    this.height = 400;
 
 
     // TODO: define all constants here
@@ -52,7 +52,7 @@ InfoVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-      //  .attr("style", "border: 2px solid black");
+    //    .attr("style", "border: 2px solid black");
 
     this.svg.append("text")
         .attr("x", 0)

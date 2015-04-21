@@ -62,7 +62,7 @@ ControlVis.prototype.initVis = function(){
 	that.displayForm.append("text")
 	   .text("Display: ");
 
-    this.displayForm.append("br");
+   // this.displayForm.append("br");
 
     this.displayForm.append("input")
 	    .attr("type", "radio")
@@ -76,7 +76,7 @@ ControlVis.prototype.initVis = function(){
 	this.displayForm.append("text").text("  Population by County");
     document.getElementById('counties').checked = true;
 
-    this.displayForm.append("br");
+    //this.displayForm.append("br");
     this.displayForm.append("input")
 	    .attr("type", "radio")
 		.attr("name", "encoding")
@@ -86,7 +86,7 @@ ControlVis.prototype.initVis = function(){
 		})
 
     this.displayForm.append("text").text("  Population by City");
-    this.displayForm.append("br");
+    //this.displayForm.append("br");
 
     this.displayForm.append("input")
 	    .attr("type", "checkbox")
@@ -100,12 +100,18 @@ ControlVis.prototype.initVis = function(){
 	document.getElementById('railroads').checked = true;
 
     this.displayForm.append("text").text("  Railroad Expansion");
-    this.displayForm.append("br");
+    //this.displayForm.append("br");
     this.displayForm.append("text").text("Years:");
-    this.displayForm.append("br");
+    //this.displayForm.append("br");
+
+    //this.displayForm.append("div")
+   //         .attr("class", "slider-bar")
+   //         .attr("style", "display:inline;width:50px")
+            //.attr("width", 50);;
 
     this.displayForm.append("input")
 	    .attr("type", "range")
+            .attr("width", "20px")
 		.attr("name", "yearSelector")
 		.attr("min", "1800")
 		.attr("max", "1900")
@@ -114,8 +120,8 @@ ControlVis.prototype.initVis = function(){
 		.on("click", function() {
 		    that.updateView();
 		})
-		.text("Population by City");
-
+		//.text("Population by City");
+/*
     this.displayForm.append("div")
 	    .attr("style", "float-left;display:inline-block;width:133px")
 		.text("1800");
@@ -123,10 +129,18 @@ ControlVis.prototype.initVis = function(){
     this.displayForm.append("div")
 	    .attr("style", "float-right;display:inline-block;width:32px")
 		.text("1900");
+*/
+    this.displayForm.append("button")
+        .attr("type", "button")
+        .attr("class", "btn btn-sm btn-primary")
+        .on("click", function(){
+            //e.preventDefault();
+            that.playSequence(1800);
+        })
+        .text("Play Sequence");
 
-
-
-
+    this.displayForm.append("p")
+        .text("  ");
 
 
     //TODO: construct or select SVG
@@ -264,5 +278,18 @@ ControlVis.prototype.filterAndAggregate = function(_filter){
 
 }
 
+ControlVis.prototype.playSequence = function(year)
+{
+    var that = this;
+    //var year = 1800;
+    $("input[name=yearSelector]").val(year);
+    that.updateView();
 
+    setTimeout(function(){
+        year = year + 10;
+        if(year <= 1900)
+            that.playSequence(year);
+                 
+        }, 1500);
+}
 

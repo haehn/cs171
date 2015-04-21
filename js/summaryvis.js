@@ -34,9 +34,9 @@ SummaryVis = function(_parentElement, _data, _states,  _event){
     this.existingCircles = 0;  // Number of population circles we have in the summary pane
     
     // TODO: define all constants here
-    this.width = 900;
+    this.width = 950;
     this.height = 300;
-    this.margin = {top: 0, right: 0, bottom: 0, left: 70};
+    this.margin = {top: 0, right: 20, bottom: 0, left: 75};
     this.initVis();
 
 }
@@ -49,11 +49,11 @@ SummaryVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
-    this.displaylocations.tracks = (this.height/4)*0.25;
-    this.displaylocations.area = (this.height/4)*.75;
-    this.displaylocations.population = (this.height/4)*1.5;
-    this.displaylocations.states = (this.height/4)*3.5;
-    this.displaylocations.legend = this.height - 5;
+    this.displaylocations.tracks = 35;//(this.height/4)*0.25;
+    this.displaylocations.area = 70;//(this.height/4)*.75;
+    this.displaylocations.population = 105;//(this.height/4)*1.5;
+    this.displaylocations.states = 230;//(this.height/4)*3.5;
+    this.displaylocations.legend = 275;//this.height - 5;
 
     this.titles.tracks1 = "Miles of";
     this.titles.tracks2 = "Railroad";
@@ -72,8 +72,14 @@ SummaryVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-//        .attr("style", "border: 2px solid black")
-        this.svg.append("g").attr("class", "populationsSummary")
+        //.attr("style", "border: 2px solid black")
+    this.svg.append("text")
+        .attr("x", 100)
+        .attr("y", 10)
+        .attr("class", "summaryTitle")
+        .text("Numbers by the Decade");
+    
+    this.svg.append("g").attr("class", "populationsSummary")
             .append("text")
             .attr("class", "summarytitle")
             .attr("x", 0)
@@ -111,10 +117,10 @@ SummaryVis.prototype.initVis = function(){
 
       
         this.svg.append("g").attr("class", "statesSummary")
-     .append("text")
+            .append("text")
             .attr("class", "summarytitle")
             .attr("x", 0)
-            .attr("y", that.displaylocations.states+7)
+            .attr("y", that.displaylocations.states-40)
             .text(this.titles.states);
 
        
@@ -368,19 +374,24 @@ SummaryVis.prototype.updateVis = function(){
 
 	//console.log(that.displayData["States"]);
 
-	that.svg.select(".statesSummary").selectAll("text")
-	        .data(that.displayData["States"])
-			.enter()
-			.append("text")
-			.sort(function(a,b)
+	var states = that.svg.select(".statesSummary").selectAll("text.state-name")
+	        .data(that.displayData["States"]);
+
+	states.enter()
+	    .append("text")
+            .attr("class", "state-name");
+
+	states.sort(function(a,b)
 			{
 			    return d3.ascending(a.Year, b.Year);
 			})
-			.attr("x", function(d,i){return (i *19)+25;})
+			.attr("x", function(d,i){return (i *19)+65;})
 			.attr("y", that.displaylocations.states)
 			.text(function(d){/*console.log(d);*/return d.State + ", " + d.Year;})
 			.style("text-anchor", "start")
-			.attr("transform", function(d,i){ return "rotate(-65," +((i*19)+25)  + "," + that.displaylocations.states + ")";});;
+			.attr("transform", function(d,i){ return "rotate(-65," +((i*19)+65)  + "," + that.displaylocations.states + ")";});;
+
+       states.exit().remove();
 
 /*
     var populations = this.svg.select(".populations").selectAll("circle")

@@ -67,7 +67,7 @@ line{
 }
 
 .info-heading{
-    font-size: 32px;
+    font-size: 26px;
     font-weight:700;
     stroke: rgb(33,113,181);
     fill: rgb(33,113,181);
@@ -75,6 +75,19 @@ line{
 }
 
 .info-pane{
+
+}
+
+input[type=range]{
+    width: 100px;
+    display: inline;
+}
+.summaryTitle, .chartTitle{
+
+  font-size:14px;
+  font-weight:700;
+  stroke: rgb(33,113,181);
+  fill: rgb(33,113,181);
 
 }
 

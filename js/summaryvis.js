@@ -36,7 +36,7 @@ SummaryVis = function(_parentElement, _data, _states,  _event){
     // TODO: define all constants here
     this.width = 950;
     this.height = 300;
-    this.margin = {top: 0, right: 20, bottom: 0, left: 75};
+    this.margin = {top: 0, right: 20, bottom: 0, left: 80};
     this.initVis();
 
 }
@@ -53,7 +53,7 @@ SummaryVis.prototype.initVis = function(){
     this.displaylocations.area = 70;//(this.height/4)*.75;
     this.displaylocations.population = 105;//(this.height/4)*1.5;
     this.displaylocations.states = 230;//(this.height/4)*3.5;
-    this.displaylocations.legend = 275;//this.height - 5;
+    this.displaylocations.legend = 255;//this.height - 5;
 
     this.titles.tracks1 = "Miles of";
     this.titles.tracks2 = "Railroad";

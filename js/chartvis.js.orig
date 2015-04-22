@@ -96,7 +96,7 @@ ChartVis.prototype.wrangleData= function(year, display){
     // displayData should hold the data whiche is visualized
     var that = this;
     that.displayData = that.filterAndAggregate(year, display);
-    //console.log(that.displayData); 
+ 
     //// you might be able to pass some options,
     //// if you don't pass options -- set the default options
     //// the default is: var options = {filter: function(){return true;} }
@@ -114,7 +114,7 @@ ChartVis.prototype.updateVis = function(){
 
     var that = this;
     var svg = that.parentElement.select("svg").select("g");
-    
+
     // updates scales
     that.x.domain(d3.extent(that.displayData, function(d) { return parseInt(d.Population); }));
     that.y.domain(that.displayData.map(function(d) { return d.Name; }));
@@ -394,36 +394,11 @@ ChartVis.prototype.doesLabelFit = function(datum) {
 ChartVis.prototype.filterAndAggregate = function(year, display){
     //console.log("filter");
     var that = this;
-    var arrayLen = that.data[display].length;
-   // console.log(arrayLen);
+
     //console.log(year, display);
-   //console.log(that.data);
+   console.log(that.data);
     var filteredData = [];
     
-    for(var i = 0; i < arrayLen;i++)
-    {
-        if(that.data[display][i].Year == year)
-            filteredData.push(that.data[display][i]);
-    }
-
-    var sortedData = filteredData.sort(function(a,b)
-    {   
-        return d3.descending(parseInt(a.Population), parseInt(b.Population));
-    });
-
-    //console.log(sortedData);
-
-    var finalData = [];
-    var filteredLen = filteredData.length;
-    var chartLen = filteredLen < 75 ? filteredLen : 75;
-  //  console.log(chartLen);
-    for(var i = 0; i < chartLen;i++)
-    {
-        finalData.push(sortedData[i]);
-    }
-
-//console.log(finalData);
-/*
     for(state in that.data)
     {
         //console.log(state);
@@ -438,9 +413,9 @@ ChartVis.prototype.filterAndAggregate = function(year, display){
                 }
             }
         }
-    }*/
+    }
 
-    return finalData;
+    return filteredData;
 /*
     // Set filter to a function that accepts all items
     // ONLY if the parameter _filter is NOT null use this parameter

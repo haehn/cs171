@@ -162,8 +162,8 @@
                         }
                     }
 
-                    //console.log(_countyData);
-                    //console.log(_cityData);
+                    console.log(_countyData);
+                    console.log(_cityData);
                     // make our data look nicer and more useful:
                     // per Day we want to have an object looking like this:
                     /*
@@ -183,7 +183,7 @@
                       _countyData[i]["StateCode"] = getCodebyName(_countyData[i]["State"]); 
                       _countyData[i]["Population"] = parseInt(_countyData[i]["Population"]);
                       _countyData[i]["Year"] = parseInt(_countyData[i]["Year"]);
-                      _countyData[i]["StateID"] = getIDbyName(_countyData[i]["State"]);
+
 
                     }
                     
@@ -206,25 +206,24 @@
                     }
 
 //console.log(_countyData);
-  /*                  var countyData = d3.nest()
+                    var countyData = d3.nest()
                                     .key(function(d) {return getIDbyName(d.State);})
                                     .key(function(d) {return "counties";})
                                     .key(function(d) {return d.County})
                                     .key(function(d) { return d.Year})
                                     .map(_countyData);
-*/
+
                    infoData = d3.nest()
                                     .key(function(d) {return parseInt(d.year);})
                                     .key(function(d) {return d.type;})
                                     .map(_info);
 
-                    /*var cityData = d3.nest()
+                    var cityData = d3.nest()
                                     .key(function(d) {return getIDbyCode(d.State);})
                                     .key(function(d) {return "cities";})
                                     .key(function(d) {return d.City})
                                     .key(function(d) {return d.Year})
                                     .map(_cityData);
-                    */
                     summaryData = d3.nest()
                                     .key(function(d) { return d.Year;})
                                     .map(_summary);
@@ -235,8 +234,7 @@
                                     //var tmpData = d3.merge(countyData, cityData);
 
                     // This is temporary until I figure out how to merge the two objects above.
-                    allData.counties = _countyData;
-                    allData.cities = _cityData;
+                    allData = countyData;
                     countryMaps["1800"] = _1800_CountryMap;
                     countryMaps["1810"] = _1810CountryMap;
                     countryMaps["1820"] = _1820CountryMap;
@@ -265,10 +263,10 @@
                     //countyMaps =
                     //railMaps = 
 
-                    /*for(var i in cityData)
+                    for(var i in cityData)
                     {
                       countyData[i]["cities"] = cityData[i]["cities"];
-                    }*/
+                    }
 
                     /*for(var i = 0; i < 3_countyData.length;i++)
                     {

@@ -136,18 +136,16 @@ MapVis.prototype.initVis = function(){
  * Method to wrangle the data. In this case it takes an options object
   */
 MapVis.prototype.wrangleData= function(){
-        
-        var that = this;
-	//console.log(that.data);
-        var displayStates = true;
+    var that = this;
+	var displayStates = true;
 	that.displayData = [];
     //console.log(this.year);
     //  TODO: Country, States, Counties, Cities, Railroads
     that.displayData.country = that.countryMaps[that.year];
     that.displayData.states = that.stateMaps;
-    that.displayData.counties = that.countyMaps;
-    that.displayData.railroads = [];
-    that.displayData.cities = [];
+	that.displayData.counties = that.countyMaps;
+	that.displayData.railroads = [];
+        that.displayData.cities = [];
 	//console.log(that.data);
 //	console.log(that.displayData.states);
 
@@ -164,16 +162,7 @@ MapVis.prototype.wrangleData= function(){
 	else
 	    that.displayData.states.features = [];
     if(that.encoding == "counties")
-	{   
-            var filteredData = [];
-            for(var i = 0; i < that.data.counties.length;i++)
-            {//console.log(that.data.counties[i]);
-                if(that.data.counties[i]["Year"] == that.year)
-                    filteredData.push(that.data.counties[i]);
-            }
-           // console.log(filteredData);
-            //console.log(that.displayData.counties.features);
-
+	{
 	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
             {
                 var state = that.displayData.counties.features[i].properties["STATE"];
@@ -181,53 +170,27 @@ MapVis.prototype.wrangleData= function(){
                 var population = -100;
                 var stateName = "";
                 var inc = that.getYear(that.getStateNamebyID(state)); 
-                if(inc <= that.year)
-                    that.displayData.counties.features[i].properties.inc = true;
-                else
-                    that.displayData.counties.features[i].properties.inc = false;
-            
-
-                if(that.displayData.counties.features[i].properties.inc ==  true)
-                {  
-                    
-                    for(var j = 0; j < filteredData.length;j++)
-                    {
-                        if(filteredData[j].StateID == state && filteredData[j].County == county)
-                        {
-                           population = filteredData[j]["Population"];
-                           break;
-                        }
-                    }
-                    //population = -1;
-                }
-                else
-                    population = -1;
-                //console.log(that.countyMaps.features[i]);
-                /*try{
+            //console.log(that.countyMaps.features[i]);
+                try{
                     population = that.data[state]["counties"][county][that.year][0]["Population"];
                 }
                 catch(err){
 //                console.log("Error for: "  + year + county + ", " + state);
                     population = -1;
-                }*/
+                }
                 that.displayData.counties.features[i].properties.population = population;
-                //console.log(that.countyMaps.features[i].properties);
+                if(inc <= that.year)
+                    that.displayData.counties.features[i].properties.inc = true;
+                else
+                    that.displayData.counties.features[i].properties.inc = false;
+            //console.log(that.countyMaps.features[i].properties);
             }
-            //console.log(that.displayData.counties);
             that.displayData.cities = [];
 	}
 	else // cities
 	{
-            //console.log(that.data.cities);
-            var filteredData = [];
-            for(var i = 0; i < that.data.cities.length;i++)
-            {//console.log(that.data.counties[i]);
-                if(that.data.cities[i]["Year"] == that.year)
-                    filteredData.push(that.data.cities[i]);
-            }
-            that.displayData.cities = filteredData;
-            that.displayData.counties = [];
-            /*for(code in that.data)
+                that.displayData.counties = [];
+            for(code in that.data)
             {   
                 for(city in that.data[code].cities)
                 {
@@ -236,7 +199,7 @@ MapVis.prototype.wrangleData= function(){
                         that.displayData.cities.push(that.data[code].cities[city][that.year][0]);
                     } 
                 }
-            }*/
+            }
   
 
 	}
@@ -427,7 +390,7 @@ MapVis.prototype.updateVis = function(){
         citycircle.enter()
             .append("circle");
 
-        citycircle.attr("r", function(d){/*console.log(d);*/return that.cityScale(d.Population);})
+        citycircle.attr("r", function(d){return that.cityScale(d.Population);})
             .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
             .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
 

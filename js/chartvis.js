@@ -17,13 +17,14 @@ ChartVis = function(_parentElement, _data, _eventHandler){
     this.data = _data;
     this.eventHandler = _eventHandler;
     this.displayData = [];
+    this.order = "popDesc";
 
     this.year = "1800";
     this.display = "counties";
 	this.railroads = true;
 
     // defines constants
-    this.margin = {top: 50, right: 20, bottom: 20, left: 0},
+    this.margin = {top: 50, right: 20, bottom: 100, left: 10},
     this.width = 200;//getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
     this.height = 900;//400 - this.margin.top - this.margin.bottom;
 
@@ -35,6 +36,7 @@ ChartVis = function(_parentElement, _data, _eventHandler){
  * Method that sets up the SVG and the variables
  */
 ChartVis.prototype.initVis = function(){
+    var that = this;
     // constructs SVG layout
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
@@ -43,9 +45,29 @@ ChartVis.prototype.initVis = function(){
         .append("g");
         //.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
+    this.displayForm = this.parentElement.select(".displaySelection");
+
+    this.displayForm.append("button")
+        .attr("type", "button")
+        .attr("class", "btn btn-sm btn-primary")
+        .on("click", function(){
+            that.displayChange("pop");
+        })
+        .text("Population");
+    this.displayForm.append("span")
+        .text("                          ");;
+    this.displayForm.append("button")
+        .attr("type", "button")
+        .attr("class", "btn btn-sm btn-primary")
+        .on("click", function(){
+            that.displayChange("state");
+        })
+        .text("State");
+
+
     // creates axis and scales
     this.x = d3.scale.linear()
-      .range([0, this.width]);
+      .range([this.margin.left, this.width-this.margin.right]);
 
     this.y = d3.scale.ordinal()
       .rangeRoundBands([this.margin.top, this.height], .1);
@@ -55,6 +77,7 @@ ChartVis.prototype.initVis = function(){
     this.xAxis = d3.svg.axis()
       .scale(this.x)
       .ticks(6)
+      .tickSize(1)
       .orient("bottom");
 /*
     this.yAxis = d3.svg.axis()
@@ -111,7 +134,6 @@ ChartVis.prototype.wrangleData= function(year, display){
 ChartVis.prototype.updateVis = function(){
     //console.log("update");
 //console.log(this.displayData);
-
     var that = this;
     var svg = that.parentElement.select("svg").select("g");
     
@@ -122,7 +144,10 @@ ChartVis.prototype.updateVis = function(){
 
     // updates axis
     this.svg.select(".x.axis")
-        .call(this.xAxis);
+        .call(this.xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("transform", "rotate(-65)");
     //console.log(that.displayData);
 
     this.svg.select(".chartTitle")
@@ -141,8 +166,15 @@ ChartVis.prototype.updateVis = function(){
     var bar_min = 0;
     var median = 0;
     bars.sort(function(a,b)
-        {   
-             return d3.descending(parseInt(a.Population), parseInt(b.Population));
+        {  
+             if(that.order == "popDesc")
+                 return d3.descending(parseInt(a.Population), parseInt(b.Population));
+             else if(that.order == "popAsc")
+                 return d3.ascending(parseInt(a.Population), parseInt(b.Population));
+             else if(that.order == "stateAsc")
+                 return d3.ascending(a.State, b.State);
+             else if(that.order == "stateDesc")
+                 return d3.descending(a.State, b.State);
         })
         .attr("x", 0)
         .attr("y", function(d,i)
@@ -181,7 +213,15 @@ ChartVis.prototype.updateVis = function(){
        
     names.sort(function(a,b)
         {   
-             return d3.descending(parseInt(a.Population), parseInt(b.Population));
+            if(that.order == "popDesc")
+                 return d3.descending(parseInt(a.Population), parseInt(b.Population));
+             else if(that.order == "popAsc")
+                 return d3.ascending(parseInt(a.Population), parseInt(b.Population));
+             else if(that.order == "stateAsc")
+                 return d3.ascending(a.State, b.State);
+             else if(that.order == "stateDesc")
+                 return d3.descending(a.State, b.State);
+
         })
           .attr("x", function(d) { return that.x(d.Population) + (that.doesLabelFit(d) ? -3 : 5); })
       .attr("y", function(d,i) { return (i*10+23) })
@@ -474,5 +514,30 @@ ChartVis.prototype.filterAndAggregate = function(year, display){
     return counts;*/
 }
 
+ChartVis.prototype.displayChange = function(order){
+    var that = this;
 
+    if(order == "pop")
+    {
+        if(that.order == "popAsc")
+            that.order = "popDesc";
+        else if(that.order == "popDesc")
+            that.order = "popAsc";
+        else
+            that.order = "popDesc";
+    }
+    else if(order == "state")
+    {
+        if(that.order == "stateAsc")
+            that.order = "stateDesc";
+        else if(that.order == "stateDesc")
+            that.order = "stateAsc";
+        else
+            that.order = "stateAsc";
+
+    }
+
+    that.updateVis();
+}
+ 
 

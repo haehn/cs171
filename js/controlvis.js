@@ -146,7 +146,6 @@ ControlVis.prototype.initVis = function(){
     //TODO: construct or select SVG
     //TODO: create axis and scales
 
-    // filter, aggregate, modify data
     this.wrangleData(null);
 
     // call the update method

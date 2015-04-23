@@ -71,7 +71,8 @@ MapVis.prototype.initVis = function(){
         .append("g")
         .attr("transform", "translate(-100, 0)");
 
-   
+    this.svg.append("g")
+        .attr("class", "legend");
 
    
 
@@ -97,7 +98,7 @@ MapVis.prototype.initVis = function(){
     // TODO: Update the color scale (inspired by Mike Bostock's color scale, bl.ocks.org/mbostock/5925375
     // In order to do this, we need to loop through all populations and find the highest.
     var population = 0;
-    //console.log(that.data);
+    console.log(that.data);
 
     for(var state in that.data)
     {

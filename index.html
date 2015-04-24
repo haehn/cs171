@@ -27,7 +27,8 @@
 </head>
 <body>
     <div class="container">  
-        <div class="row">
+      <div class="row">
+        <!--<svg class="intro"></svg>-->
         </div>
 
         <div class="row">
@@ -73,7 +74,8 @@
           </div>
         </div>
         <div class="col-md-2" id="chartVis">
-        <form class="displaySelection" style="display:inline;padding:0px;margin:0px;white-space:nowrap"></form>
+          <div class="chart-svg"></div>
+          <form class="displaySelection" style="display:inline;padding:0px;margin:0px;white-space:nowrap"></form>
         </div>
 
         
@@ -107,7 +109,6 @@
             // this function can convert Date objects to a string
             // it can also convert strings to Date objects
             // see: https://github.com/mbostock/d3/wiki/Time-Formatting
-            var dateFormatter = d3.time.format("%Y-%m-%d");
             // call this function after Data is loaded, reformatted and bound to the variables
             var initVis = function(){
                 //TODO: Create an eventHandler  --> DONE :)
@@ -130,25 +131,15 @@
 		      info_vis.onSelectionChange(encoding, tracks, year);
 		      map_vis.onSelectionChange(encoding, tracks, year);
 		      summary_vis.onSelectionChange(encoding, tracks, year);
-
-
-
-
-
-
-
-		      /*console.log("index.html");
-			  console.log(encoding);
-			  console.log(tracks);
-			  console.log(year);*/
 		  })
-
+          console.log("init");
 
     }
             // call this function after both files are loaded -- error should be "null" if no error
             var dataLoaded = function (error, _info, _states, _cityData, _countyData, _countyMap, _stateMap, _1800_CountryMap, _1810CountryMap, _1820CountryMap, _1830CountryMap, _1830RailMap, _1840CountryMap, _1840RailMap, _1850CountryMap, _1850RailMap, _1860CountryMap, _1860RailMap, _1870CountryMap, _1870RailMap, _1880CountryMap, _1880RailMap, _1890CountryMap, _1890RailMap, _1900CountryMap, _1900RailMap, _summary) {
               var that = this;
               if (!error) {
+
                     stateMappings = _states;
                     for(var i = 0; i<stateMappings.length;i++)
                     {
@@ -162,20 +153,6 @@
                             }
                         }
                     }
-
-                    //console.log(_countyData);
-                    //console.log(_cityData);
-                    // make our data look nicer and more useful:
-                    // per Day we want to have an object looking like this:
-                    /*
-                    * {
-                    *   time: .. (should be a Date object)
-                    *   count: .. (number of all votes)
-                    *   prios: [..,..,..,...] (array of number of votes per priority -> array length =16)
-                    *   ages: [..,..,..,..] (array counts of votes per age 0-99)
-                    *
-                    * */
-                    //console.log(getIDbyName("Alabama"));
 
                     // We need to format our data so that it's consistent across formats for city and county.
                     for(var i = 0; i< _countyData.length; i++)
@@ -206,36 +183,15 @@
                       _summary[i]["Tracks"] = parseInt(_summary[i]["Tracks"]);
                     }
 
-//console.log(_countyData);
-  /*                  var countyData = d3.nest()
-                                    .key(function(d) {return getIDbyName(d.State);})
-                                    .key(function(d) {return "counties";})
-                                    .key(function(d) {return d.County})
-                                    .key(function(d) { return d.Year})
-                                    .map(_countyData);
-*/
                    infoData = d3.nest()
                                     .key(function(d) {return parseInt(d.year);})
                                     .key(function(d) {return d.type;})
                                     .map(_info);
 
-                    /*var cityData = d3.nest()
-                                    .key(function(d) {return getIDbyCode(d.State);})
-                                    .key(function(d) {return "cities";})
-                                    .key(function(d) {return d.City})
-                                    .key(function(d) {return d.Year})
-                                    .map(_cityData);
-                    */
                     summaryData = d3.nest()
                                     .key(function(d) { return d.Year;})
                                     .map(_summary);
-                    //console.log(summaryData);
-                                 
-                //    console.log(_countyData);
-                  //  console.log(_cityData);
-                                    //var tmpData = d3.merge(countyData, cityData);
 
-                    // This is temporary until I figure out how to merge the two objects above.
                     allData.counties = _countyData;
                     allData.cities = _cityData;
                     countryMaps["1800"] = _1800_CountryMap;
@@ -259,58 +215,18 @@
                     railMaps["1880"] = _1880RailMap;
                     railMaps["1890"] = _1890RailMap;
                     railMaps["1900"] = _1900RailMap;
-                    //console.log(_stateMap);
+                    
 
-                    //console.log(countryMaps);
-                    //stateMaps =
-                    //countyMaps =
-                    //railMaps = 
-
-                    /*for(var i in cityData)
-                    {
-                      countyData[i]["cities"] = cityData[i]["cities"];
-                    }*/
-
-                    /*for(var i = 0; i < 3_countyData.length;i++)
-                    {
-                        // If the key doesn't exist, create it
-                        console.log(_countyData[i]["StateID"]);
-                        console.log(areaData.map.get(_countyData[i]["StateID"]));
-
-                    }*/                    
-
-                    /*allData = _allData.map(function (d) {
-                                var res = {
-                                    time: dateFormatter.parse(d.day),
-                                    count: parseInt(d["count(*)"])
-                                };
-                                // TODO: implement that  !!
-                                res.prios = []
-                                // should be an array of 16 numbers with the total count MAPping the prio values,
-                                //  [d["sum(p0)"], d["sum(p1)"], d["sum(p2)"],...]
-                                // Example:
-                                // [10,200,500,... ]
-                                // This is ONE way to create an array of length 100
-                                // and set every value to "0")
-                                res.ages = d3.range(0,100). map(function(){return 0;})
-                                // TODO: Assign the count for each age to the index position
-                                // eg: res.ages[22] should contain the count value for age 22
-                                // BE AWARE THAT THE DATA MIGHT CONTAIN ages >99 which you have to handle especially
-                                // final result:
-                                // [0,0,0,..,1034,23,...] -- array length is 100
-                                return res;
-                            }
-                    )
-                    metaData = _metaData;*/
                     initVis();
-                }
+  
+                  }
                 else
                     console.log(error);
             }
+
+            
             var startHere = function(){
-                //TODO: load data here and call "dataLoaded" afterwards
-                // Hint: http://giscollective.org/d3-queue-js/
-                //startTime = new Date();
+                //load data here and call "dataLoaded" afterwards
                 var q = queue();
                 q = q.defer(d3.csv, "data/info.csv");
                 q = q.defer(d3.csv, "data/stateID.csv");
@@ -327,15 +243,6 @@
                 }
                 q = q.defer(d3.csv, "data/summary_data.csv"); 
                     q.await(dataLoaded);
-                //var endTime = new Date();
-                //var totalTime = endTime - startTime;
-                //console.log("Time: " + Math.abs(endTime - startTime));
-                //console.log("End time: " + endTime.toDateString());
-
-               // bind reset zoom button to a function (-- ONLY FOR BONUS --)
-                //d3.select("#fitInBtn").on("click", function() {
-                    // TODO: -- ONLY FOR BONUS --
-                //});
             }
 
             var getIDbyName = function(name)
@@ -363,9 +270,10 @@
 
 
 
-
             startHere();
-        })
+    })
+
+
     </script>
 </body>
 </html>

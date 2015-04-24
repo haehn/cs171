@@ -59,8 +59,10 @@ ControlVis.prototype.initVis = function(){
 */
 
     this.displayForm = this.parentElement.select(".displaySelection");
-	that.displayForm.append("text")
-	   .text("Display: ");
+
+    that.displayForm.append("text")
+        .attr("class", "legend-desc")
+	   .text("Display population by: ");
 
    // this.displayForm.append("br");
 
@@ -73,7 +75,9 @@ ControlVis.prototype.initVis = function(){
 		    that.updateView();
 		})
 
-	this.displayForm.append("text").text("  Population by County");
+	this.displayForm.append("text")
+            .attr("class", "legend-desc")
+            .text(" County  ");
     document.getElementById('counties').checked = true;
 
     //this.displayForm.append("br");
@@ -85,8 +89,11 @@ ControlVis.prototype.initVis = function(){
 		    that.updateView();
 		})
 
-    this.displayForm.append("text").text("  Population by City");
-    //this.displayForm.append("br");
+    this.displayForm.append("text")
+        .attr("class", "legend-desc")
+        .text(" City");
+    this.displayForm.append("div")
+        .attr("style", "padding:1px;min-width:50px;display:inline-block");
 
     this.displayForm.append("input")
 	    .attr("type", "checkbox")
@@ -99,9 +106,14 @@ ControlVis.prototype.initVis = function(){
 
 	document.getElementById('railroads').checked = true;
 
-    this.displayForm.append("text").text("  Railroad Expansion");
-    //this.displayForm.append("br");
-    this.displayForm.append("text").text("Years:");
+    this.displayForm.append("text")
+        .attr("class", "legend-desc")
+        .text("  Display Railroads");
+    this.displayForm.append("div")
+        .attr("style", "padding:1px;min-width:50px;display:inline-block");
+    this.displayForm.append("text")
+        .attr("class", "legend-desc")
+        .text("Select Year:  ");
     //this.displayForm.append("br");
 
     //this.displayForm.append("div")
@@ -117,7 +129,7 @@ ControlVis.prototype.initVis = function(){
 		.attr("max", "1900")
 		.attr("step", "10")
 		.attr("value", "1800")
-		.on("click", function() {
+		.on("change", function() {
 		    that.updateView();
 		})
 		//.text("Population by City");
@@ -130,6 +142,10 @@ ControlVis.prototype.initVis = function(){
 	    .attr("style", "float-right;display:inline-block;width:32px")
 		.text("1900");
 */
+
+    this.displayForm.append("div")
+        .attr("style", "padding:1px;min-width:50px;display:inline-block");
+ 
     this.displayForm.append("button")
         .attr("type", "button")
         .attr("class", "btn btn-sm btn-primary")

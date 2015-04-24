@@ -74,7 +74,12 @@ line{
 
 }
 
-.info-pane{
+.summaryDesc{
+  font-size:13px;
+  font-weight:200;
+  stroke: rgb(33,113,181);
+  fill: rgb(33,113,181);
+
 
 }
 
@@ -84,10 +89,10 @@ input[type=range]{
 }
 .summaryTitle, .chartTitle{
 
-  font-size:14px;
+  font-size:18px;
   font-weight:700;
-  stroke: rgb(33,113,181);
-  fill: rgb(33,113,181);
+  stroke: rgb(8,48,107);
+  fill: rgb(8,48,107);
 
 }
 
@@ -176,8 +181,13 @@ input[type=range]{
   fill: none;
 }
 
+.legend-desc{
+   stroke:black;
+   font-size:12px;
+   font-weight:700;
+}
 
-.statesSummary text{
+.statesSummary{
     stroke: black;
 	font-size: 13px;
 	font-weight:normal;

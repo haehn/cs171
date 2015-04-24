@@ -24,7 +24,7 @@ ChartVis = function(_parentElement, _data, _eventHandler){
 	this.railroads = true;
 
     // defines constants
-    this.margin = {top: 50, right: 20, bottom: 100, left: 10},
+    this.margin = {top: 80, right: 20, bottom: 55, left: 10},
     this.width = 200;//getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
     this.height = 900;//400 - this.margin.top - this.margin.bottom;
 
@@ -38,7 +38,8 @@ ChartVis = function(_parentElement, _data, _eventHandler){
 ChartVis.prototype.initVis = function(){
     var that = this;
     // constructs SVG layout
-    this.svg = this.parentElement.append("svg")
+    this.svg = this.parentElement.select(".chart-svg")
+        .append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
         //.attr("style", "border: 2px solid black")
@@ -63,6 +64,16 @@ ChartVis.prototype.initVis = function(){
             that.displayChange("state");
         })
         .text("State");
+    this.displayForm.append("span")
+        .text("                          ");;
+
+    this.displayForm.append("button")
+        .attr("type", "button")
+        .attr("class", "btn btn-sm btn-primary")
+        .on("click", function(){
+            that.displayChange("county");
+        })
+        .text("County");
 
 
     // creates axis and scales
@@ -87,7 +98,7 @@ ChartVis.prototype.initVis = function(){
     this.svg.append("text")
         .attr("class", "chartTitle")
         .attr("x", 40)
-        .attr("y", 10);;
+        .attr("y", 30);
 
     this.svg.append("g")
         .attr("class", "bars");
@@ -166,20 +177,41 @@ ChartVis.prototype.updateVis = function(){
     var bar_min = 0;
     var median = 0;
     bars.sort(function(a,b)
-        {  
+        { //console.log(a); 
              if(that.order == "popDesc")
                  return d3.descending(parseInt(a.Population), parseInt(b.Population));
              else if(that.order == "popAsc")
                  return d3.ascending(parseInt(a.Population), parseInt(b.Population));
              else if(that.order == "stateAsc")
+             {
+                 if(a.State == b.State)
+                     return d3.ascending(a.County, b.County);
                  return d3.ascending(a.State, b.State);
+             }
              else if(that.order == "stateDesc")
+             {
+                 if(a.State == b.State)
+                     return d3.descending(a.County, b.County);
                  return d3.descending(a.State, b.State);
+             }
+             else if(that.order == "countyAsc")
+             {
+                 if(a.County == b.County)   
+                     return d3.ascending(a.State, b.State);
+                 return d3.ascending(a.County, b.County);
+             }
+             else if(that.order == "countyDesc")
+             {
+                 if(a.County == b.County)
+                     return d3.descending(a.State, b.State);
+                 return d3.descending(a.County, b.County);
+             }
+        
         })
         .attr("x", 0)
         .attr("y", function(d,i)
         {//   console.log(d.Name, i);
-            return (i *10 +20);
+            return (i *10 +50);
         })
         .attr("height", 8)
         .attr("width", function(d,i)
@@ -218,13 +250,34 @@ ChartVis.prototype.updateVis = function(){
              else if(that.order == "popAsc")
                  return d3.ascending(parseInt(a.Population), parseInt(b.Population));
              else if(that.order == "stateAsc")
+             {
+                 if(a.State == b.State)
+                     return d3.ascending(a.County, b.County);
                  return d3.ascending(a.State, b.State);
+             }
              else if(that.order == "stateDesc")
+             {
+                 if(a.State == b.State)
+                     return d3.descending(a.County, b.County);
                  return d3.descending(a.State, b.State);
+             }
+             else if(that.order == "countyAsc")
+             {   
+                 if(a.County == b.County)
+                     return d3.ascending(a.State, b.State);
+
+                 return d3.ascending(a.County, b.County);
+             }
+             else if(that.order == "countyDesc")
+             {
+                 if(a.County == b.County)
+                     return d3.descending(a.State,b.State);
+                 return d3.descending(a.County, b.County);
+             }
 
         })
           .attr("x", function(d) { return that.x(d.Population) + (that.doesLabelFit(d) ? -3 : 5); })
-      .attr("y", function(d,i) { return (i*10+23) })
+      .attr("y", function(d,i) { return (i*10+53) })
       .text(function(d) { 
           return d.Name + ", " + d.StateCode; })
       .attr("class", "type-label")
@@ -455,7 +508,7 @@ ChartVis.prototype.filterAndAggregate = function(year, display){
 
     var finalData = [];
     var filteredLen = filteredData.length;
-    var chartLen = filteredLen < 75 ? filteredLen : 75;
+    var chartLen = filteredLen < 79 ? filteredLen : 79;
   //  console.log(chartLen);
     for(var i = 0; i < chartLen;i++)
     {
@@ -534,7 +587,15 @@ ChartVis.prototype.displayChange = function(order){
             that.order = "stateAsc";
         else
             that.order = "stateAsc";
-
+    }
+    else if(order == "county")
+    {
+        if(that.order == "countyAsc")
+            that.order = "countyDesc";
+        else if(that.order == "countyDesc")
+            that.order = "countyAsc";
+        else
+            that.order = "countyAsc";
     }
 
     that.updateVis();

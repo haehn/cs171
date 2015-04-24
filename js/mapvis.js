@@ -70,11 +70,65 @@ MapVis.prototype.initVis = function(){
 //        .attr("style", "border: 2px solid black")
         .append("g")
         .attr("transform", "translate(-100, 0)");
+        
+    //this.parentElement.select("svg").attr("viewBox", "475 50 300 225");
 
-    this.svg.append("g")
-        .attr("class", "legend");
 
-   
+    this.legend = this.svg.append("g")
+                      .attr("class", "legend");
+
+    this.legend.append("line")
+        .attr("x1", 600) 
+        .attr("y1", 15)
+        .attr("x2", 650)
+        .attr("y2", 15)
+        .attr("class", "country");
+
+    this.legend.append("line")
+        .attr("x1", 600)
+        .attr("y1", 35)
+        .attr("x2", 650)
+        .attr("y2", 35)
+        .attr("class", "incorporated");
+
+    this.legend.append("line")
+        .attr("x1", 600)
+        .attr("y1", 55)
+        .attr("x2", 650)
+        .attr("y2", 55)
+        .attr("class", "notincorporated");
+
+    this.legend.append("line")
+        .attr("x1", 600)
+        .attr("y1", 75)
+        .attr("x2", 650)
+        .attr("y2", 75)
+        .attr("class", "rails");
+
+    this.legend.append("text")
+        .attr("x", 665) 
+        .attr("y", 20)
+        .attr("class", "legend-desc")
+        .text("Country Border");
+
+    this.legend.append("text")
+        .attr("x", 665)
+        .attr("y", 40)
+        .attr("class", "legend-desc")
+        .text("State Borders");
+
+    this.legend.append("text")
+        .attr("x", 665)
+        .attr("y", 60)
+        .attr("class", "legend-desc")
+        .text("Future State Borders");
+
+    this.legend.append("text")
+        .attr("x", 665)
+        .attr("y", 80)
+        .attr("class", "legend-desc")
+        .text("Railroads");
+
 
     this.svg.append("g")
         .attr("class", "counties");
@@ -98,7 +152,7 @@ MapVis.prototype.initVis = function(){
     // TODO: Update the color scale (inspired by Mike Bostock's color scale, bl.ocks.org/mbostock/5925375
     // In order to do this, we need to loop through all populations and find the highest.
     var population = 0;
-    console.log(that.data);
+    //console.log(that.data);
 
     for(var state in that.data)
     {
@@ -243,7 +297,9 @@ MapVis.prototype.wrangleData= function(){
 	}
 //console.log(that.displayData);
  //   console.log(that.railMaps);
-	if(that.tracks)
+
+
+       if(that.tracks)
 	{
 	    for(y in that.railMaps)
 		{
@@ -264,9 +320,7 @@ MapVis.prototype.wrangleData= function(){
  */
 MapVis.prototype.updateVis = function(){
 
-//    console.log("update");
     // TODO: implement update graphs (D3: update, enter, exit)
-    //var year = 1860;
     var that = this;
     var projection = d3.geo.albersUsa()
                        .scale([1000]);
@@ -278,32 +332,12 @@ MapVis.prototype.updateVis = function(){
     
 
     // TODO:  We need to add the layers, from bottom to top: counties, states, countries
-    //console.log(that.countyMaps);
-    //console.log(that.displayData);
-    // Here we need to bind the population data to the county data 
-
-    //console.log(that.displayData.counties);
-   // if(that.encoding == "counties")
-    //{
-  /*  var codisplay = [];
+    // COUNTIES
+    
     if(that.encoding == "counties")
-        codisplay = [1];
-	
-        var countygroup = svg.select(".counties").selectAll("g")
-	    .data(codisplay);
-
-	countygroup.enter()
-	    .append("g")
-		.attr("class", function(d,i)
-		{
-			return "county" + i;
-		});
-
-	countygroup.exit().remove();
-*/
-    if(that.encoding == "counties")
-	{
-	    var coline = svg.select(".counties").selectAll("path")
+    {
+       // Here we need to bind the population data to the county data 
+        var coline = svg.select(".counties").selectAll("path")
 		    .data(that.displayData.counties.features);
 
 		coline.enter()
@@ -332,71 +366,12 @@ MapVis.prototype.updateVis = function(){
         coline.attr("class", "invisible");
     }
 
-/*
-
-    var codisplay = []; 
-    if(that.encoding == "counties")
-        codisplay = [1];
     
-        var countygroup = svg.select(".counties").selectAll("g")
-            .data(codisplay);
 
-        countygroup.enter()
-            .append("g")
-                .attr("class", function(d,i)
-                {   
-                        return "county" + i;
-                }); 
-
-        countygroup.exit().remove();
-
-    if(that.encoding == "counties")
-        {   
-            var coline = svg.select(".counties").select(".county0").selectAll("path")
-                    .data(that.displayData.counties.features);
-
-                coline.enter()
-                    .append("path");
-
-                coline.attr("d", path)
-                    .attr("class", function(d){
-                        if(d.properties.population == -1) 
-                            return "nocolor";
-                        else
-                            return that.color(d.properties.population);
-           }); 
-
-
-        }   
-
-
-
-
-
-*/
-
-
-/*
-    console.log(that.displayData);
-        var countyshapes = svg.select(".counties").selectAll("path")
-           .data(that.displayData.counties.features);
-
-        countyshapes.enter()
-           .append("path");
-           
-        countyshapes.attr("d", path)
-	   .attr("class", function(d){
-           if(d.properties.population == -1)
-              return "nocolor";
-           else
-              return that.color(d.properties.population);
-           });
-
-        countyshapes.exit().remove();
-*/
+// RAILROADS
 
     // Create the parent objects that will maintain the railroads by year
-	var railgroup = svg.select(".rails").selectAll("g")
+	var railgroup = svg.select("g.rails").selectAll("g")
 	    .data(that.displayData.railroads);
 
 	railgroup.enter()
@@ -410,7 +385,7 @@ MapVis.prototype.updateVis = function(){
 
     for(var i = 0; i < that.displayData.railroads.length;i++)
 	{
-	    var railline = svg.select(".rails").select(".rail" + i).selectAll("path")
+	    var railline = svg.select("g.rails").select(".rail" + i).selectAll("path")
 		    .data(that.displayData.railroads[i].features);
 
 		railline.enter()
@@ -419,16 +394,18 @@ MapVis.prototype.updateVis = function(){
 		railline.attr("d", path)
 		    .attr("class", "railtrack");
 	}
-    //}
-    //else if(that.encoding == "cities")
-    //{
+
+
+// CITY CIRCLES
+
+
         var citycircle = svg.select(".cities").selectAll("circle")
             .data(that.displayData.cities);
             
         citycircle.enter()
             .append("circle");
 
-        citycircle.attr("r", function(d){/*console.log(d);*/return that.cityScale(d.Population);})
+        citycircle.attr("r", function(d){return that.cityScale(d.Population);})
             .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
             .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
 
@@ -436,7 +413,7 @@ MapVis.prototype.updateVis = function(){
   
         citycircle.exit().remove();
 
-    //}
+// STATES
 
     svg.select(".states").selectAll("path")
        .data(that.displayData.states.features)
@@ -451,7 +428,12 @@ MapVis.prototype.updateVis = function(){
 		   else
 		       return "notincorporated";
 	   });
-    var country = svg.select(".country").selectAll("path")
+
+
+
+  // COUNTRY
+   
+   var country = svg.select("g.country").selectAll("path")
        .data(that.displayData.country.features);
     
 	country.enter()
@@ -464,32 +446,7 @@ MapVis.prototype.updateVis = function(){
 
 
 
-/*
-console.log(that.displayData.railroads);
-console.log(svg.select(".rails"));
-    svg.select(".rails").selectAll("g")
-	    .data(that.displayData.railroads)
-		.append("g")
-		.attr("class", "lauren");
-	*/	/*.attr("class", function(d){
-		    console.log(d);
-		       //return d.features.properties.name;
-		});*/
-/*
-    for(y in that.displayData.railroads)
-	{
-        svg.select(".rails").selectAll("path." + y + "rail")
-           .data(that.displayData.railroads[y].features)
-           .enter()
-           .append("path")
-           .attr("d", path)
-		   .attr("class", y + "rail");
-    }*/
-      // .attr("stroke", "black")
-      // .attr("stroke-width", "2");
-       //.attr("class", function(d) {console.log(d)});
-
-
+//STOP HERE!
 
 }
 

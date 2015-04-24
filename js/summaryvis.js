@@ -75,13 +75,13 @@ SummaryVis.prototype.initVis = function(){
         //.attr("style", "border: 2px solid black")
     this.svg.append("text")
         .attr("x", 100)
-        .attr("y", 10)
+        .attr("y", 15)
         .attr("class", "summaryTitle")
         .text("Numbers by the Decade");
     
     this.svg.append("g").attr("class", "populationsSummary")
             .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.population+5)
             .text(this.titles.population);
@@ -89,19 +89,19 @@ SummaryVis.prototype.initVis = function(){
 
         this.svg.append("g").attr("class", "tracksSummary")
             .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.tracks - 8)
             .text(this.titles.tracks1);
         this.svg.select(".tracksSummary")
             .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.tracks+7)
             .text(this.titles.tracks2);
         this.svg.select(".tracksSummary")
             .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.tracks + 20)
             .text(this.titles.tracks3);
@@ -110,7 +110,7 @@ SummaryVis.prototype.initVis = function(){
 
         this.svg.append("g").attr("class", "areaSummary")
       .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.area+8)
             .text(this.titles.area);
@@ -118,7 +118,7 @@ SummaryVis.prototype.initVis = function(){
       
         this.svg.append("g").attr("class", "statesSummary")
             .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.states-40)
             .text(this.titles.states);
@@ -126,7 +126,7 @@ SummaryVis.prototype.initVis = function(){
        
         this.svg.append("g").attr("class", "legendSummary")
     .append("text")
-            .attr("class", "summarytitle")
+            .attr("class", "summaryDesc")
             .attr("x", 0)
             .attr("y", that.displaylocations.legend - 2)
             .text(this.titles.legend);
@@ -383,7 +383,11 @@ SummaryVis.prototype.updateVis = function(){
 
 	states.sort(function(a,b)
 			{
-			    return d3.ascending(a.Year, b.Year);
+                            //console.log(a,b);
+                            if(a.Year == b.Year)
+			        return d3.ascending(a.State, b.State);
+                            else
+                                return(d3.ascending(a.Year, b.Year));
 			})
 			.attr("x", function(d,i){return (i *19)+65;})
 			.attr("y", that.displaylocations.states)

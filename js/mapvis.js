@@ -34,8 +34,9 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
     this.tracks = true;
     this.width = 760;
     this.height = 475;
-    this.color = d3.scale.quantize(); // We need to define this here because
-    this.cityScale = d3.scale.linear().domain([0,3500000]).range([2,20]);
+    this.densityColor = d3.scale.threshold(); // We need to define this here because
+    this.cityColor = d3.scale.linear().domain([0,1000000]).range([0,10]);
+    this.cityScale = d3.scale.linear().domain([0,1000000]).range([2,20]);
     // the values stay the same across all views
 
     // TODO: define all "constants" here
@@ -67,7 +68,7 @@ MapVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-//        .attr("style", "border: 2px solid black")
+        //.attr("style", "border: 2px solid black")
         .append("g")
         .attr("transform", "translate(-100, 0)");
         
@@ -129,6 +130,134 @@ MapVis.prototype.initVis = function(){
         .attr("class", "legend-desc")
         .text("Railroads");
 
+    this.legend.append("text")
+        .attr("x", 105)
+        .attr("y", 340)
+        .attr("class", "legend-desc")
+        .text("Population Density");
+
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 350)
+        .attr("r", 5)
+        .attr("class", "color0");
+     this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 353)
+        .attr("class", "legend-desc")
+        .text("0 - 2");
+   
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 370)
+        .attr("r", 5)
+        .attr("class", "color1");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 373)
+        .attr("class", "legend-desc")
+        .text("2-6");
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 390)
+        .attr("r", 5)
+        .attr("class", "color2");
+ this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 393)
+        .attr("class", "legend-desc")
+        .text("6-12");
+   
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 410)
+        .attr("r", 5)
+        .attr("class", "color3");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 413)
+        .attr("class", "legend-desc")
+        .text("12-25");
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 430)
+        .attr("r", 5)
+        .attr("class", "color4");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 433)
+        .attr("class", "legend-desc")
+        .text("26-50");
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 450)
+        .attr("r", 5)
+        .attr("class", "color5");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 453)
+        .attr("class", "legend-desc")
+        .text("50-100");
+
+    this.legend.append("circle")
+        .attr("cx", 200)
+        .attr("cy", 370)
+        .attr("r", 5)
+        .attr("class", "color6");
+    this.legend.append("text")
+        .attr("x", 215)
+        .attr("y", 373)
+        .attr("class", "legend-desc")
+        .text("100-200");
+
+    this.legend.append("circle")
+        .attr("cx", 200)
+        .attr("cy", 390)
+        .attr("r", 5)
+        .attr("class", "color7");
+    this.legend.append("text")
+        .attr("x", 215)
+        .attr("y", 393)
+        .attr("class", "legend-desc")
+        .text("200-500");
+   
+    this.legend.append("circle")
+        .attr("cx", 200)
+        .attr("cy", 410)
+        .attr("r", 5)
+        .attr("class", "color8");
+    this.legend.append("text")
+        .attr("x", 215)
+        .attr("y", 413)
+        .attr("class", "legend-desc")
+        .text("500-1000");
+
+    this.legend.append("circle")
+        .attr("cx", 200)
+        .attr("cy", 430)
+        .attr("r", 5)
+        .attr("class", "color9");
+    this.legend.append("text")
+        .attr("x", 215)
+        .attr("y", 433)
+        .attr("class", "legend-desc")
+        .text("1000-2000");
+
+    this.legend.append("circle")
+        .attr("cx", 200)
+        .attr("cy", 450)
+        .attr("r", 5)
+        .attr("class", "color10");
+    this.legend.append("text")
+        .attr("x", 215)
+        .attr("y", 453)
+        .attr("class", "legend-desc")
+        .text("2000-5000");
+
 
     this.svg.append("g")
         .attr("class", "counties");
@@ -170,9 +299,9 @@ MapVis.prototype.initVis = function(){
     //    console.log(d);
     //});
 
-    that.color
-        .domain([0, 50000])
-        .range(d3.range(9).map(function(i) { return "color" + (i + 1);}));
+    that.densityColor
+        .domain([0, 2, 6, 12, 25, 50, 100, 200, 500, 1000, 2000, 5000])
+        .range(d3.range(9).map(function(i) { return "color" + i;}));
 
     //TODO: implement the slider -- see example at http://bl.ocks.org/mbostock/6452972
     //this.addSlider(this.svg)
@@ -353,8 +482,11 @@ MapVis.prototype.updateVis = function(){
                         if(d.properties.population <= 0)
                             return "color0";
                         else
-                            return that.color(d.properties.population);
+                        {
+                            return that.densityColor(d.properties.population/d.properties.CENSUSAREA);
+                        }
            });
+
 
 
 	}
@@ -403,14 +535,18 @@ MapVis.prototype.updateVis = function(){
             .data(that.displayData.cities);
             
         citycircle.enter()
-            .append("circle");
+            .append("circle")
+            .append("title");;
 
         citycircle.attr("r", function(d){return that.cityScale(d.Population);})
             .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
             .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
 
-            citycircle.attr("class", "city-circle");
+            citycircle.attr("class", function(d,i){console.log(d.Population, that.cityColor(d.Population));return "city-circle color" + Math.round(that.cityColor(d.Population));});
   
+        citycircle.select("title")
+            .text(function(d,i){return d.City + ", " + d.State + ", Pop: " + d.Population;});
+
         citycircle.exit().remove();
 
 // STATES

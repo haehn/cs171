@@ -15930,9 +15930,9 @@ Year,County,State,StateID,Population
 1800,Augusta,Virginia,51,11712
 1800,Bath,Virginia,51,5508
 1800,Bedford,Virginia,51,14125
-1800,Berkeley,West Virginia,51,22006
+1800,Berkeley,West Virginia,54,22006
 1800,Botetourt,Virginia,51,10422
-1800,Brooke,West Virginia,51,4706
+1800,Brooke,West Virginia,54,4706
 1800,Brunswick,Virginia,51,16339
 1800,Buckingham,Virginia,51,13389
 1800,Campbell,Virginia,51,9866
@@ -15953,18 +15953,18 @@ Year,County,State,StateID,Population
 1800,Gloucester,Virginia,51,8181
 1800,Goochland,Virginia,51,9696
 1800,Grayson,Virginia,51,3912
-1800,Greenbrier,West Virginia,51,4345
+1800,Greenbrier,West Virginia,54,4345
 1800,Greensville,Virginia,51,6727
 1800,Halifax,Virginia,51,19377
-1800,Hampshire,West Virginia,51,8348
+1800,Hampshire,West Virginia,54,8348
 1800,Hanover,Virginia,51,14403
-1800,Hardy,Virginia,51,6627
-1800,Harrison,West Virginia,51,4848
+1800,Hardy,West Virginia,54,6627
+1800,Harrison,West Virginia,54,4848
 1800,Henrico,Virginia,51,9149
 1800,Henry,Virginia,51,5259
 1800,Isle Of Wight,Virginia,51,9342
 1800,James City,Virginia,51,3931
-1800,Kanawha,West Virginia,51,3239
+1800,Kanawha,West Virginia,54,3239
 1800,King And Queen,Virginia,51,9538
 1800,King George,Virginia,51,6749
 1800,King William,Virginia,51,9055
@@ -15977,8 +15977,8 @@ Year,County,State,StateID,Population
 1800,Mathews,Virginia,51,5806
 1800,Mecklenburg,Virginia,51,17008
 1800,Middlesex,Virginia,51,4203
-1800,Monongalia,West Virginia,51,8540
-1800,Monroe,West Virginia,51,4188
+1800,Monongalia,West Virginia,54,8540
+1800,Monroe,West Virginia,54,4188
 1800,Montgomery,Virginia,51,9044
 1800,Nansemond,Virginia,51,11127
 1800,New Kent,Virginia,51,6363
@@ -15987,10 +15987,10 @@ Year,County,State,StateID,Population
 1800,Northampton,Virginia,51,6763
 1800,Northumberland,Virginia,51,7803
 1800,Nottoway,Virginia,51,9401
-1800,Ohio,West Virginia,51,4740
+1800,Ohio,West Virginia,54,4740
 1800,Orange,Virginia,51,11449
 1800,Patrick,Virginia,51,4331
-1800,Pendleton,West Virginia,51,3962
+1800,Pendleton,West Virginia,54,3962
 1800,Petersburg,Virginia,51,3521
 1800,Pittsylvania,Virginia,51,12697
 1800,Powhatan,Virginia,51,7769
@@ -15998,7 +15998,7 @@ Year,County,State,StateID,Population
 1800,Prince George,Virginia,51,7425
 1800,Prince William,Virginia,51,12733
 1800,Princess Anne,Virginia,51,8859
-1800,Randolph,West Virginia,51,1826
+1800,Randolph,West Virginia,54,1826
 1800,Richmond City,Virginia,51,5737
 1800,Richmond-Westmore,Virginia,51,13744
 1800,Rockbridge,Virginia,51,8945
@@ -16013,7 +16013,7 @@ Year,County,State,StateID,Population
 1800,Tazewell,Virginia,51,2127
 1800,Warwick,Virginia,51,1659
 1800,Washington,Virginia,51,9536
-1800,Wood,West Virginia,51,1217
+1800,Wood,West Virginia,54,1217
 1800,Wythe,Virginia,51,6380
 1800,York,Virginia,51,3231
 1810,Accomack,Virginia,51,15743
@@ -16023,12 +16023,12 @@ Year,County,State,StateID,Population
 1810,Augusta,Virginia,51,14308
 1810,Bath,Virginia,51,4837
 1810,Bedford,Virginia,51,16148
-1810,Berkeley,Virginia,51,11479
+1810,Berkeley,West Virginia,54,11479
 1810,Botetourt,Virginia,51,13301
-1810,Brooke,Virginia,51,5843
+1810,Brooke,West Virginia,54,5843
 1810,Brunswick,Virginia,51,15411
 1810,Buckingham,Virginia,51,20059
-1810,Cabell,Virginia,51,2717
+1810,Cabell,West Virginia,54,2717
 1810,Campbell,Virginia,51,11001
 1810,Caroline,Virginia,51,17544
 1810,Charles City,Virginia,51,5186
@@ -16048,19 +16048,19 @@ Year,County,State,StateID,Population
 1810,Gloucester,Virginia,51,10427
 1810,Goochland,Virginia,51,10203
 1810,Grayson,Virginia,51,4941
-1810,Greenbrier,Virginia,51,5914
+1810,Greenbrier,West Virginia,54,5914
 1810,Greensville,Virginia,51,6853
 1810,Halifax,Virginia,51,22133
-1810,Hampshire,Virginia,51,9784
+1810,Hampshire,West Virginia,54,9784
 1810,Hanover,Virginia,51,15082
-1810,Hardy,Virginia,51,5525
-1810,Harrison,Virginia,51,9958
+1810,Hardy,West Virginia,54,5525
+1810,Harrison,West Virginia,54,9958
 1810,Henrico,Virginia,51,9945
 1810,Henry,Virginia,51,5611
 1810,Isle Of Wight,Virginia,51,9186
 1810,James City,Virginia,51,4094
-1810,Jefferson,Virginia,51,11851
-1810,Kanawha,Virginia,51,3866
+1810,Jefferson,West Virginia,54,11851
+1810,Kanawha,West Virginia,54,3866
 1810,King And Queen,Virginia,51,10988
 1810,King George,Virginia,51,6454
 1810,King William,Virginia,51,9285
@@ -16070,12 +16070,12 @@ Year,County,State,StateID,Population
 1810,Louisa,Virginia,51,11900
 1810,Lunenburg,Virginia,51,12265
 1810,Madison,Virginia,51,8381
-1810,Mason,Virginia,51,1991
+1810,Mason,West Virginia,54,1991
 1810,Mathews,Virginia,51,4227
 1810,Mecklenburg,Virginia,51,18453
 1810,Middlesex,Virginia,51,4414
-1810,Monongalia,Virginia,51,12793
-1810,Monroe,Virginia,51,5444
+1810,Monongalia,West Virginia,54,12793
+1810,Monroe,West Virginia,54,5444
 1810,Montgomery,Virginia,51,8409
 1810,Nansemond,Virginia,51,10324
 1810,Nelson,Virginia,51,9684
@@ -16085,10 +16085,10 @@ Year,County,State,StateID,Population
 1810,Northampton,Virginia,51,7474
 1810,Northumberland,Virginia,51,8308
 1810,Nottoway,Virginia,51,9278
-1810,Ohio,Virginia,51,8175
+1810,Ohio,West Virginia,54,8175
 1810,Orange,Virginia,51,12323
 1810,Patrick,Virginia,51,4695
-1810,Pendleton,Virginia,51,4239
+1810,Pendleton,West Virginia,54,4239
 1810,Petersburg,Virginia,51,5668
 1810,Pittsylvania,Virginia,51,17172
 1810,Powhatan,Virginia,51,8073
@@ -16096,7 +16096,7 @@ Year,County,State,StateID,Population
 1810,Prince George,Virginia,51,8050
 1810,Prince William,Virginia,51,11311
 1810,Princess Anne,Virginia,51,9498
-1810,Randolph,Virginia,51,2854
+1810,Randolph,West Virginia,54,2854
 1810,Richmond,Virginia,51,6214
 1810,Richmond City,Virginia,51,9735
 1810,Rockbridge,Virginia,51,10318
@@ -16112,7 +16112,7 @@ Year,County,State,StateID,Population
 1810,Warwick,Virginia,51,1835
 1810,Washington,Virginia,51,12136
 1810,Westmoreland,Virginia,51,8102
-1810,Wood,Virginia,51,3036
+1810,Wood,West Virginia,54,3036
 1810,Wythe,Virginia,51,8356
 1810,York,Virginia,51,5187
 1820,Accomack,Virginia,51,15966
@@ -16122,12 +16122,12 @@ Year,County,State,StateID,Population
 1820,Augusta,Virginia,51,16742
 1820,Bath,Virginia,51,5237
 1820,Bedford,Virginia,51,19305
-1820,Berkeley,Virginia,51,11211
+1820,Berkeley,West Virginia,54,11211
 1820,Botetourt,Virginia,51,13589
-1820,Brooke,Virginia,51,6631
+1820,Brooke,West Virginia,54,6631
 1820,Brunswick,Virginia,51,16687
 1820,Buckingham,Virginia,51,17569
-1820,Cabell,Virginia,51,4789
+1820,Cabell,West Virginia,54,4789
 1820,Campbell,Virginia,51,16569
 1820,Caroline,Virginia,51,18008
 1820,Charles City,Virginia,51,5255
@@ -16147,59 +16147,59 @@ Year,County,State,StateID,Population
 1820,Gloucester,Virginia,51,9678
 1820,Goochland,Virginia,51,10007
 1820,Grayson,Virginia,51,5598
-1820,Greenbrier,Virginia,51,7041
+1820,Greenbrier,West Virginia,54,7041
 1820,Greensville,Virginia,51,6858
 1820,Halifax,Virginia,51,19060
-1820,Hampshire,Virginia,51,10889
+1820,Hampshire,West Virginia,54,10889
 1820,Hanover,Virginia,51,15267
-1820,Hardy,Virginia,51,5700
-1820,Harrison,Virginia,51,10932
+1820,Hardy,West Virginia,54,5700
+1820,Harrison,West Virginia,54,10932
 1820,Henrico,Virginia,51,11600
 1820,Henry,Virginia,51,5624
 1820,Isle Of Wight,Virginia,51,10139
 1820,James City,Virginia,51,3161
-1820,Jefferson,Virginia,51,13087
-1820,Kanawha,Virginia,51,6399
+1820,Jefferson,West Virginia,54,13087
+1820,Kanawha,West Virginia,54,6399
 1820,King And Queen,Virginia,51,11798
 1820,King George,Virginia,51,6116
 1820,King William,Virginia,51,9697
 1820,Lancaster,Virginia,51,5517
 1820,Lee,Virginia,51,4256
-1820,Lewis,Virginia,51,4247
+1820,Lewis,West Virginia,54,4247
 1820,Loudoun,Virginia,51,22702
 1820,Louisa,Virginia,51,13746
 1820,Lunenburg,Virginia,51,10662
 1820,Madison,Virginia,51,8490
-1820,Mason,Virginia,51,4868
+1820,Mason,West Virginia,54,4868
 1820,Mathews,Virginia,51,6920
 1820,Mecklenburg,Virginia,51,19786
 1820,Middlesex,Virginia,51,4057
-1820,Monongalia,Virginia,51,11060
-1820,Monroe,Virginia,51,6620
+1820,Monongalia,West Virginia,54,11060
+1820,Monroe,West Virginia,54,6620
 1820,Montgomery,Virginia,51,8733
-1820,Morgan,Virginia,51,2500
+1820,Morgan,West Virginia,54,2500
 1820,Nansemond,Virginia,51,10494
 1820,Nelson,Virginia,51,10137
 1820,New Kent,Virginia,51,6630
-1820,Nicholas,Virginia,51,1853
+1820,Nicholas,West Virginia,54,1853
 1820,Norfolk,Virginia,51,15478
 1820,Norfolk City,Virginia,51,8478
 1820,Northampton,Virginia,51,7705
 1820,Northumberland,Virginia,51,8016
 1820,Nottoway,Virginia,51,9658
-1820,Ohio,Virginia,51,9182
+1820,Ohio,West Virginia,54,9182
 1820,Orange,Virginia,51,12913
 1820,Patrick,Virginia,51,5089
-1820,Pendleton,Virginia,51,4846
+1820,Pendleton,West Virginia,54,4846
 1820,Petersburg,Virginia,51,6690
 1820,Pittsylvania,Virginia,51,21323
 1820,Powhatan,Virginia,51,8292
-1820,Preston,Virginia,51,3422
+1820,Preston,West Virginia,54,3422
 1820,Prince Edward,Virginia,51,12577
 1820,Prince George,Virginia,51,8030
 1820,Prince William,Virginia,51,9419
 1820,Princess Anne,Virginia,51,8768
-1820,Randolph,Virginia,51,3357
+1820,Randolph,West Virginia,54,3357
 1820,Richmond,Virginia,51,5706
 1820,Richmond City,Virginia,51,12067
 1820,Rockbridge,Virginia,51,11945
@@ -16213,12 +16213,12 @@ Year,County,State,StateID,Population
 1820,Surry,Virginia,51,6594
 1820,Sussex,Virginia,51,11884
 1820,Tazewell,Virginia,51,3916
-1820,Tyler,Virginia,51,2314
+1820,Tyler,West Virginia,54,2314
 1820,Warwick,Virginia,51,1608
 1820,Washington,Virginia,51,12444
 1820,Westmoreland,Virginia,51,6901
 1820,Williamsburg,Virginia,51,1402
-1820,Wood,Virginia,51,5860
+1820,Wood,West Virginia,54,5860
 1820,Wythe,Virginia,51,9692
 1820,York,Virginia,51,4384
 1830,Accomack,Virginia,51,16656
@@ -16229,12 +16229,12 @@ Year,County,State,StateID,Population
 1830,Augusta,Virginia,51,19926
 1830,Bath,Virginia,51,4002
 1830,Bedford,Virginia,51,20246
-1830,Berkeley,Virginia,51,10518
+1830,Berkeley,West Virginia,54,10518
 1830,Botetourt,Virginia,51,16354
-1830,Brooke,Virginia,51,7041
+1830,Brooke,West Virginia,54,7041
 1830,Brunswick,Virginia,51,15767
 1830,Buckingham,Virginia,51,18351
-1830,Cabell,Virginia,51,5884
+1830,Cabell,West Virginia,54,5884
 1830,Campbell,Virginia,51,20350
 1830,Caroline,Virginia,51,17760
 1830,Charles City,Virginia,51,5500
@@ -16254,61 +16254,61 @@ Year,County,State,StateID,Population
 1830,Gloucester,Virginia,51,10608
 1830,Goochland,Virginia,51,10369
 1830,Grayson,Virginia,51,7675
-1830,Greenbrier,Virginia,51,9006
+1830,Greenbrier,West Virginia,54,9006
 1830,Greensville,Virginia,51,7117
 1830,Halifax,Virginia,51,28034
-1830,Hampshire,Virginia,51,11279
+1830,Hampshire,West Virginia,54,11279
 1830,Hanover,Virginia,51,16253
-1830,Hardy,Virginia,51,6798
-1830,Harrison,Virginia,51,14722
+1830,Hardy,West Virginia,54,6798
+1830,Harrison,West Virginia,54,14722
 1830,Henrico,Virginia,51,12737
 1830,Henry,Virginia,51,7100
 1830,Isle Of Wight,Virginia,51,10517
 1830,James City,Virginia,51,3838
-1830,Jefferson,Virginia,51,12927
-1830,Kanawha,Virginia,51,9326
+1830,Jefferson,West Virginia,54,12927
+1830,Kanawha,West Virginia,54,9326
 1830,King And Queen,Virginia,51,11644
 1830,King George,Virginia,51,6397
 1830,King William,Virginia,51,9812
 1830,Lancaster,Virginia,51,4801
 1830,Lee,Virginia,51,6461
-1830,Lewis,Virginia,51,6241
-1830,Logan,Virginia,51,3680
+1830,Lewis,West Virginia,54,6241
+1830,Logan,West Virginia,54,3680
 1830,Loudoun,Virginia,51,21939
 1830,Louisa,Virginia,51,16151
 1830,Lunenburg,Virginia,51,11957
 1830,Madison,Virginia,51,9236
-1830,Mason,Virginia,51,6534
+1830,Mason,West Virginia,54,6534
 1830,Mathews,Virginia,51,7664
 1830,Mecklenburg,Virginia,51,20477
 1830,Middlesex,Virginia,51,4122
-1830,Monongalia,Virginia,51,14056
-1830,Monroe,Virginia,51,7798
+1830,Monongalia,West Virginia,54,14056
+1830,Monroe,West Virginia,54,7798
 1830,Montgomery,Virginia,51,12306
-1830,Morgan,Virginia,51,2694
+1830,Morgan,West Virginia,54,2694
 1830,Nansemond,Virginia,51,11784
 1830,Nelson,Virginia,51,11254
 1830,New Kent,Virginia,51,6458
-1830,Nicholas,Virginia,51,3346
+1830,Nicholas,West Virginia,54,3346
 1830,Norfolk,Virginia,51,14992
 1830,Norfolk City,Virginia,51,9814
 1830,Northampton,Virginia,51,8641
 1830,Northumberland,Virginia,51,7953
 1830,Nottoway,Virginia,51,10130
-1830,Ohio,Virginia,51,15584
+1830,Ohio,West Virginia,54,15584
 1830,Orange,Virginia,51,14637
 1830,Patrick,Virginia,51,7395
-1830,Pendleton,Virginia,51,6271
+1830,Pendleton,West Virginia,54,6271
 1830,Petersburg,Virginia,51,8322
 1830,Pittsylvania,Virginia,51,26034
 1830,Pocahontas,Virginia,51,2542
 1830,Powhatan,Virginia,51,8517
-1830,Preston,Virginia,51,5144
+1830,Preston,West Virginia,54,5144
 1830,Prince Edward,Virginia,51,14107
 1830,Prince George,Virginia,51,8367
 1830,Prince William,Virginia,51,9330
 1830,Princess Anne,Virginia,51,9102
-1830,Randolph,Virginia,51,5000
+1830,Randolph,West Virginia,54,5000
 1830,Richmond,Virginia,51,6055
 1830,Richmond City,Virginia,51,16060
 1830,Rockbridge,Virginia,51,14244
@@ -16322,11 +16322,11 @@ Year,County,State,StateID,Population
 1830,Surry,Virginia,51,7109
 1830,Sussex,Virginia,51,12720
 1830,Tazewell,Virginia,51,5749
-1830,Tyler,Virginia,51,4104
+1830,Tyler,West Virginia,54,4104
 1830,Warwick,Virginia,51,1570
 1830,Washington,Virginia,51,15614
 1830,Westmoreland,Virginia,51,8396
-1830,Wood,Virginia,51,6429
+1830,Wood,West Virginia,54,6429
 1830,Wythe,Virginia,51,12163
 1830,York,Virginia,51,5354
 1840,Accomack,Virginia,51,17096
@@ -16337,13 +16337,13 @@ Year,County,State,StateID,Population
 1840,Augusta,Virginia,51,19628
 1840,Bath,Virginia,51,4300
 1840,Bedford,Virginia,51,20203
-1840,Berkeley,Virginia,51,10972
+1840,Berkeley,West Virginia,54,10972
 1840,Botetourt,Virginia,51,11679
-1840,Braxton,Virginia,51,2575
-1840,Brooke,Virginia,51,7948
+1840,Braxton,West Virginia,54,2575
+1840,Brooke,West Virginia,54,7948
 1840,Brunswick,Virginia,51,14346
 1840,Buckingham,Virginia,51,18786
-1840,Cabell,Virginia,51,8163
+1840,Cabell,West Virginia,54,8163
 1840,Campbell,Virginia,51,21030
 1840,Caroline,Virginia,51,17813
 1840,Charles City,Virginia,51,4774
@@ -16357,7 +16357,7 @@ Year,County,State,StateID,Population
 1840,Essex,Virginia,51,11309
 1840,Fairfax,Virginia,51,9370
 1840,Fauquier,Virginia,51,21897
-1840,Fayette,Virginia,51,3924
+1840,Fayette,West Virginia,54,3924
 1840,Floyd,Virginia,51,4453
 1840,Fluvanna,Virginia,51,8812
 1840,Franklin,Virginia,51,15832
@@ -16366,65 +16366,65 @@ Year,County,State,StateID,Population
 1840,Gloucester,Virginia,51,10715
 1840,Goochland,Virginia,51,9760
 1840,Grayson,Virginia,51,9087
-1840,Greenbrier,Virginia,51,8695
+1840,Greenbrier,West Virginia,54,8695
 1840,Greene,Virginia,51,4232
 1840,Greensville,Virginia,51,6366
 1840,Halifax,Virginia,51,25936
-1840,Hampshire,Virginia,51,12295
+1840,Hampshire,West Virginia,54,12295
 1840,Hanover,Virginia,51,14968
-1840,Hardy,Virginia,51,7622
-1840,Harrison,Virginia,51,17669
+1840,Hardy,West Virginia,54,7622
+1840,Harrison,West Virginia,54,17669
 1840,Henrico,Virginia,51,33076
 1840,Henry,Virginia,51,7335
 1840,Isle Of Wight,Virginia,51,9972
-1840,Jackson,Virginia,51,4890
+1840,Jackson,West Virginia,54,4890
 1840,James City,Virginia,51,3779
-1840,Jefferson,Virginia,51,14082
-1840,Kanawha,Virginia,51,13567
+1840,Jefferson,West Virginia,54,14082
+1840,Kanawha,West Virginia,54,13567
 1840,King And Queen,Virginia,51,10862
 1840,King George,Virginia,51,5927
 1840,King William,Virginia,51,9258
 1840,Lancaster,Virginia,51,4628
 1840,Lee,Virginia,51,8441
-1840,Lewis,Virginia,51,8151
-1840,Logan,Virginia,51,4309
+1840,Lewis,West Virginia,54,8151
+1840,Logan,West Virginia,54,4309
 1840,Loudoun,Virginia,51,20431
 1840,Louisa,Virginia,51,15433
 1840,Lunenburg,Virginia,51,11055
 1840,Madison,Virginia,51,8107
-1840,Marshall,Virginia,51,6937
-1840,Mason,Virginia,51,6777
+1840,Marshall,West Virginia,54,6937
+1840,Mason,West Virginia,54,6777
 1840,Mathews,Virginia,51,7442
 1840,Mecklenburg,Virginia,51,20724
-1840,Mercer,Virginia,51,2233
+1840,Mercer,West Virginia,54,2233
 1840,Middlesex,Virginia,51,4392
-1840,Monongalia,Virginia,51,17368
-1840,Monroe,Virginia,51,8422
+1840,Monongalia,West Virginia,54,17368
+1840,Monroe,West Virginia,54,8422
 1840,Montgomery,Virginia,51,7405
-1840,Morgan,Virginia,51,4253
+1840,Morgan,West Virginia,54,4253
 1840,Nansemond,Virginia,51,10795
 1840,Nelson,Virginia,51,12287
 1840,New Kent,Virginia,51,6230
-1840,Nicholas,Virginia,51,2515
+1840,Nicholas,West Virginia,54,2515
 1840,Norfolk,Virginia,51,27569
 1840,Northampton,Virginia,51,7715
 1840,Northumberland,Virginia,51,7924
 1840,Nottoway,Virginia,51,9719
-1840,Ohio,Virginia,51,13357
+1840,Ohio,West Virginia,54,13357
 1840,Orange,Virginia,51,9125
 1840,Page,Virginia,51,6194
 1840,Patrick,Virginia,51,8032
-1840,Pendleton,Virginia,51,6940
+1840,Pendleton,West Virginia,54,6940
 1840,Pittsylvania,Virginia,51,26398
 1840,Pocahontas,Virginia,51,2922
 1840,Powhatan,Virginia,51,7924
-1840,Preston,Virginia,51,6866
+1840,Preston,West Virginia,54,6866
 1840,Prince Edward,Virginia,51,14069
 1840,Prince George,Virginia,51,7175
 1840,Prince William,Virginia,51,8144
 1840,Princess Anne,Virginia,51,7285
 1840,Pulaski,Virginia,51,3739
-1840,Randolph,Virginia,51,6208
+1840,Randolph,West Virginia,54,6208
 1840,Rappahannock,Virginia,51,9257
 1840,Richmond,Virginia,51,5965
 1840,Roanoke,Virginia,51,5499
@@ -16440,12 +16440,12 @@ Year,County,State,StateID,Population
 1840,Surry,Virginia,51,6480
 1840,Sussex,Virginia,51,11229
 1840,Tazewell,Virginia,51,6290
-1840,Tyler,Virginia,51,6954
+1840,Tyler,West Virginia,54,6954
 1840,Warren,Virginia,51,5627
 1840,Warwick,Virginia,51,1456
 1840,Washington,Virginia,51,13001
 1840,Westmoreland,Virginia,51,8019
-1840,Wood,Virginia,51,7923
+1840,Wood,West Virginia,54,7923
 1840,Wythe,Virginia,51,9375
 1840,York,Virginia,51,4720
 1850,Accomack,Virginia,51,17890
@@ -16456,17 +16456,17 @@ Year,County,State,StateID,Population
 1850,Appomattox,Virginia,51,9193
 1850,Arlington/alexand,Virginia,51,10008
 1850,Augusta,Virginia,51,24610
-1850,Barbour,Virginia,51,9005
+1850,Barbour,West Virginia,54,9005
 1850,Bath,Virginia,51,3426
 1850,Bedford,Virginia,51,24080
-1850,Berkeley,Virginia,51,11771
-1850,Boone,Virginia,51,3237
+1850,Berkeley,West Virginia,54,11771
+1850,Boone,West Virginia,54,3237
 1850,Botetourt,Virginia,51,14908
-1850,Braxton,Virginia,51,4212
-1850,Brooke,Virginia,51,5054
+1850,Braxton,West Virginia,54,4212
+1850,Brooke,West Virginia,54,5054
 1850,Brunswick,Virginia,51,13894
 1850,Buckingham,Virginia,51,13837
-1850,Cabell,Virginia,51,6299
+1850,Cabell,West Virginia,54,6299
 1850,Campbell,Virginia,51,23245
 1850,Caroline,Virginia,51,18456
 1850,Carroll,Virginia,51,5909
@@ -16477,88 +16477,88 @@ Year,County,State,StateID,Population
 1850,Culpeper,Virginia,51,12282
 1850,Cumberland,Virginia,51,9751
 1850,Dinwiddie,Virginia,51,25118
-1850,Doddridge,Virginia,51,2750
+1850,Doddridge,West Virginia,54,2750
 1850,Elizabeth City,Virginia,51,4586
 1850,Essex,Virginia,51,10206
 1850,Fairfax,Virginia,51,10682
 1850,Fauquier,Virginia,51,20868
-1850,Fayette,Virginia,51,3955
+1850,Fayette,West Virginia,54,3955
 1850,Floyd,Virginia,51,6458
 1850,Fluvanna,Virginia,51,9487
 1850,Franklin,Virginia,51,17430
 1850,Frederick,Virginia,51,15975
 1850,Giles,Virginia,51,6570
-1850,Gilmer,Virginia,51,3475
+1850,Gilmer,West Virginia,54,3475
 1850,Gloucester,Virginia,51,10527
 1850,Goochland,Virginia,51,10352
 1850,Grayson,Virginia,51,6677
-1850,Greenbrier,Virginia,51,10022
+1850,Greenbrier,West Virginia,54,10022
 1850,Greene,Virginia,51,4400
 1850,Greensville,Virginia,51,5639
 1850,Halifax,Virginia,51,25962
-1850,Hampshire,Virginia,51,14036
-1850,Hancock,Virginia,51,4050
+1850,Hampshire,West Virginia,54,14036
+1850,Hancock,West Virginia,54,4050
 1850,Hanover,Virginia,51,15153
-1850,Hardy,Virginia,51,9543
-1850,Harrison,Virginia,51,11728
+1850,Hardy,West Virginia,54,9543
+1850,Harrison,West Virginia,54,11728
 1850,Henrico,Virginia,51,43572
 1850,Henry,Virginia,51,8872
 1850,Highland,Virginia,51,4227
 1850,Isle Of Wight,Virginia,51,9353
-1850,Jackson,Virginia,51,6544
+1850,Jackson,West Virginia,54,6544
 1850,James City,Virginia,51,4020
-1850,Jefferson,Virginia,51,15357
-1850,Kanawha,Virginia,51,15353
+1850,Jefferson,West Virginia,54,15357
+1850,Kanawha,West Virginia,54,15353
 1850,King And Queen,Virginia,51,10319
 1850,King George,Virginia,51,5971
 1850,King William,Virginia,51,8779
 1850,Lancaster,Virginia,51,4708
 1850,Lee,Virginia,51,10267
-1850,Lewis,Virginia,51,10031
-1850,Logan,Virginia,51,3620
+1850,Lewis,West Virginia,54,10031
+1850,Logan,West Virginia,54,3620
 1850,Loudoun,Virginia,51,22079
 1850,Louisa,Virginia,51,16691
 1850,Lunenburg,Virginia,51,11692
 1850,Madison,Virginia,51,9331
-1850,Marion,Virginia,51,10552
-1850,Marshall,Virginia,51,10138
-1850,Mason,Virginia,51,7539
+1850,Marion,West Virginia,54,10552
+1850,Marshall,West Virginia,54,10138
+1850,Mason,West Virginia,54,7539
 1850,Mathews,Virginia,51,6714
 1850,Mecklenburg,Virginia,51,20630
-1850,Mercer,Virginia,51,4222
+1850,Mercer,West Virginia,54,4222
 1850,Middlesex,Virginia,51,4394
-1850,Monongalia,Virginia,51,12387
-1850,Monroe,Virginia,51,10204
+1850,Monongalia,West Virginia,54,12387
+1850,Monroe,West Virginia,54,10204
 1850,Montgomery,Virginia,51,8359
-1850,Morgan,Virginia,51,3557
+1850,Morgan,West Virginia,54,3557
 1850,Nansemond,Virginia,51,12283
 1850,Nelson,Virginia,51,12758
 1850,New Kent,Virginia,51,6064
-1850,Nicholas,Virginia,51,3963
+1850,Nicholas,West Virginia,54,3963
 1850,Norfolk,Virginia,51,33036
 1850,Northampton,Virginia,51,7498
 1850,Northumberland,Virginia,51,7346
 1850,Nottoway,Virginia,51,8437
-1850,Ohio,Virginia,51,18006
+1850,Ohio,West Virginia,54,18006
 1850,Orange,Virginia,51,10067
 1850,Page,Virginia,51,7600
 1850,Patrick,Virginia,51,9609
-1850,Pendleton,Virginia,51,5795
+1850,Pendleton,West Virginia,54,5795
 1850,Pittsylvania,Virginia,51,28796
 1850,Pocahontas,Virginia,51,3598
 1850,Powhatan,Virginia,51,8178
-1850,Preston,Virginia,51,11708
+1850,Preston,West Virginia,54,11708
 1850,Prince Edward,Virginia,51,11857
 1850,Prince George,Virginia,51,7596
 1850,Prince William,Virginia,51,8129
 1850,Princess Anne,Virginia,51,7669
 1850,Pulaski,Virginia,51,5118
-1850,Putnam,Virginia,51,5335
-1850,Raleigh,Virginia,51,1765
-1850,Randolph,Virginia,51,5243
+1850,Putnam,West Virginia,54,5335
+1850,Raleigh,West Virginia,54,1765
+1850,Randolph,West Virginia,54,5243
 1850,Rappahannock,Virginia,51,9782
 1850,Richmond,Virginia,51,6448
-1850,Ritchie,Virginia,51,3902
+1850,Ritchie,West Virginia,54,3902
 1850,Roanoke,Virginia,51,8477
 1850,Rockbridge,Virginia,51,16045
 1850,Rockingham,Virginia,51,20294
@@ -16571,17 +16571,17 @@ Year,County,State,StateID,Population
 1850,Stafford,Virginia,51,8044
 1850,Surry,Virginia,51,5679
 1850,Sussex,Virginia,51,9820
-1850,Taylor,Virginia,51,5367
+1850,Taylor,West Virginia,54,5367
 1850,Tazewell,Virginia,51,9942
-1850,Tyler,Virginia,51,5498
+1850,Tyler,West Virginia,54,5498
 1850,Warren,Virginia,51,6607
 1850,Warwick,Virginia,51,1546
 1850,Washington,Virginia,51,14612
-1850,Wayne,Virginia,51,4760
+1850,Wayne,West Virginia,54,4760
 1850,Westmoreland,Virginia,51,8080
-1850,Wetzel,Virginia,51,4284
-1850,Wirt,Virginia,51,3353
-1850,Wood,Virginia,51,9450
+1850,Wetzel,West Virginia,54,4284
+1850,Wirt,West Virginia,54,3353
+1850,Wood,West Virginia,54,9450
 1850,Wyoming,Virginia,51,1645
 1850,Wythe,Virginia,51,12024
 1850,York,Virginia,51,4460
@@ -16593,19 +16593,19 @@ Year,County,State,StateID,Population
 1860,Appomattox,Virginia,51,8889
 1860,Arlington/alexand,Virginia,51,12652
 1860,Augusta,Virginia,51,27749
-1860,Barbour,Virginia,51,8958
+1860,Barbour,West Virginia,54,8958
 1860,Bath,Virginia,51,3676
 1860,Bedford,Virginia,51,25068
-1860,Berkeley,Virginia,51,12525
-1860,Boone,Virginia,51,4840
+1860,Berkeley,West Virginia,54,12525
+1860,Boone,West Virginia,54,4840
 1860,Botetourt,Virginia,51,11516
-1860,Braxton,Virginia,51,4992
-1860,Brooke,Virginia,51,5494
+1860,Braxton,West Virginia,54,4992
+1860,Brooke,West Virginia,54,5494
 1860,Brunswick,Virginia,51,14809
 1860,Buchanan,Virginia,51,2793
 1860,Buckingham,Virginia,51,15212
-1860,Cabell,Virginia,51,8020
-1860,Calhoun,Virginia,51,2502
+1860,Cabell,West Virginia,54,8020
+1860,Calhoun,West Virginia,54,2502
 1860,Campbell,Virginia,51,26197
 1860,Caroline,Virginia,51,18464
 1860,Carroll,Virginia,51,8012
@@ -16613,96 +16613,96 @@ Year,County,State,StateID,Population
 1860,Charlotte,Virginia,51,14471
 1860,Chesterfield,Virginia,51,19016
 1860,Clarke,Virginia,51,7146
-1860,Clay,Virginia,51,1787
+1860,Clay,West Virginia,54,1787
 1860,Craig,Virginia,51,3553
 1860,Culpeper,Virginia,51,12063
 1860,Cumberland,Virginia,51,9961
 1860,Dinwiddie,Virginia,51,30198
-1860,Doddridge,Virginia,51,5203
+1860,Doddridge,West Virginia,54,5203
 1860,Elizabeth City,Virginia,51,5798
 1860,Essex,Virginia,51,10469
 1860,Fairfax,Virginia,51,11834
 1860,Fauquier,Virginia,51,21706
-1860,Fayette,Virginia,51,5997
+1860,Fayette,West Virginia,54,5997
 1860,Floyd,Virginia,51,8236
 1860,Fluvanna,Virginia,51,10353
 1860,Franklin,Virginia,51,20098
 1860,Frederick,Virginia,51,16546
 1860,Giles,Virginia,51,6883
-1860,Gilmer,Virginia,51,3759
+1860,Gilmer,West Virginia,54,3759
 1860,Gloucester,Virginia,51,10956
 1860,Goochland,Virginia,51,10656
 1860,Grayson,Virginia,51,8252
-1860,Greenbrier,Virginia,51,12211
+1860,Greenbrier,West Virginia,54,12211
 1860,Greene,Virginia,51,5022
 1860,Greensville,Virginia,51,6374
 1860,Halifax,Virginia,51,26520
-1860,Hampshire,Virginia,51,13913
-1860,Hancock,Virginia,51,4445
+1860,Hampshire,West Virginia,54,13913
+1860,Hancock,West Virginia,54,4445
 1860,Hanover,Virginia,51,17222
-1860,Hardy,Virginia,51,9864
-1860,Harrison,Virginia,51,13790
+1860,Hardy,West Virginia,54,9864
+1860,Harrison,West Virginia,54,13790
 1860,Henrico,Virginia,51,61616
 1860,Henry,Virginia,51,12105
 1860,Highland,Virginia,51,4319
 1860,Isle Of Wight,Virginia,51,9977
-1860,Jackson,Virginia,51,8306
+1860,Jackson,West Virginia,54,8306
 1860,James City,Virginia,51,5798
-1860,Jefferson,Virginia,51,14535
-1860,Kanawha,Virginia,51,16150
+1860,Jefferson,West Virginia,54,14535
+1860,Kanawha,West Virginia,54,16150
 1860,King And Queen,Virginia,51,10328
 1860,King George,Virginia,51,6571
 1860,King William,Virginia,51,8530
 1860,Lancaster,Virginia,51,5151
 1860,Lee,Virginia,51,11032
-1860,Lewis,Virginia,51,7999
-1860,Logan,Virginia,51,4938
+1860,Lewis,West Virginia,54,7999
+1860,Logan,West Virginia,54,4938
 1860,Loudoun,Virginia,51,21774
 1860,Louisa,Virginia,51,16701
 1860,Lunenburg,Virginia,51,11983
 1860,Madison,Virginia,51,8854
-1860,Marion,Virginia,51,12722
-1860,Marshall,Virginia,51,12997
-1860,Mason,Virginia,51,9173
+1860,Marion,West Virginia,54,12722
+1860,Marshall,West Virginia,54,12997
+1860,Mason,West Virginia,54,9173
 1860,Mathews,Virginia,51,7091
 1860,Mcdowell,Virginia,51,1535
 1860,Mecklenburg,Virginia,51,20096
-1860,Mercer,Virginia,51,6819
+1860,Mercer,West Virginia,54,6819
 1860,Middlesex,Virginia,51,4364
-1860,Monongalia,Virginia,51,13048
-1860,Monroe,Virginia,51,10757
+1860,Monongalia,West Virginia,54,13048
+1860,Monroe,West Virginia,54,10757
 1860,Montgomery,Virginia,51,10617
-1860,Morgan,Virginia,51,3732
+1860,Morgan,West Virginia,54,3732
 1860,Nansemond,Virginia,51,13693
 1860,Nelson,Virginia,51,13015
 1860,New Kent,Virginia,51,5884
-1860,Nicholas,Virginia,51,4627
+1860,Nicholas,West Virginia,54,4627
 1860,Norfolk,Virginia,51,36227
 1860,Northampton,Virginia,51,7832
 1860,Northumberland,Virginia,51,7531
 1860,Nottoway,Virginia,51,8836
-1860,Ohio,Virginia,51,22422
+1860,Ohio,West Virginia,54,22422
 1860,Orange,Virginia,51,10851
 1860,Page,Virginia,51,8109
 1860,Patrick,Virginia,51,9359
-1860,Pendleton,Virginia,51,6164
+1860,Pendleton,West Virginia,54,6164
 1860,Pittsylvania,Virginia,51,32104
-1860,Pleasants,Virginia,51,2945
+1860,Pleasants,West Virginia,54,2945
 1860,Pocahontas,Virginia,51,3958
 1860,Powhatan,Virginia,51,8392
-1860,Preston,Virginia,51,13312
+1860,Preston,West Virginia,54,13312
 1860,Prince Edward,Virginia,51,11844
 1860,Prince George,Virginia,51,8411
 1860,Prince William,Virginia,51,8565
 1860,Princess Anne,Virginia,51,7714
 1860,Pulaski,Virginia,51,5416
-1860,Putnam,Virginia,51,6301
-1860,Raleigh,Virginia,51,3367
-1860,Randolph,Virginia,51,4990
+1860,Putnam,West Virginia,54,6301
+1860,Raleigh,West Virginia,54,3367
+1860,Randolph,West Virginia,54,4990
 1860,Rappahannock,Virginia,51,8850
 1860,Richmond,Virginia,51,6856
-1860,Ritchie,Virginia,51,6847
-1860,Roane,Virginia,51,5381
+1860,Ritchie,West Virginia,54,6847
+1860,Roane,West Virginia,54,5381
 1860,Roanoke,Virginia,51,8048
 1860,Rockbridge,Virginia,51,17248
 1860,Rockingham,Virginia,51,23408
@@ -16715,21 +16715,21 @@ Year,County,State,StateID,Population
 1860,Stafford,Virginia,51,8555
 1860,Surry,Virginia,51,6133
 1860,Sussex,Virginia,51,10175
-1860,Taylor,Virginia,51,7463
+1860,Taylor,West Virginia,54,7463
 1860,Tazewell,Virginia,51,9920
-1860,Tucker,Virginia,51,1428
-1860,Tyler,Virginia,51,6517
-1860,Upshur,Virginia,51,7292
+1860,Tucker,West Virginia,54,1428
+1860,Tyler,West Virginia,54,6517
+1860,Upshur,West Virginia,54,7292
 1860,Warren,Virginia,51,6442
 1860,Warwick,Virginia,51,1740
 1860,Washington,Virginia,51,16892
-1860,Wayne,Virginia,51,6747
-1860,Webster,Virginia,51,1555
+1860,Wayne,West Virginia,54,6747
+1860,Webster,West Virginia,54,1555
 1860,Westmoreland,Virginia,51,8282
-1860,Wetzel,Virginia,51,6703
-1860,Wirt,Virginia,51,3751
+1860,Wetzel,West Virginia,54,6703
+1860,Wirt,West Virginia,54,3751
 1860,Wise,Virginia,51,4508
-1860,Wood,Virginia,51,11046
+1860,Wood,West Virginia,54,11046
 1860,Wyoming,Virginia,51,2861
 1860,Wythe,Virginia,51,12305
 1860,York,Virginia,51,4949

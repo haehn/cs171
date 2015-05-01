@@ -34,8 +34,9 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
     this.tracks = true;
     this.width = 760;
     this.height = 475;
-    this.color = d3.scale.quantize(); // We need to define this here because
-    this.cityScale = d3.scale.linear().domain([0,3500000]).range([2,20]);
+    this.densityColor = d3.scale.threshold(); // We need to define this here because
+    this.cityColor = d3.scale.linear().domain([0,1000000]).range([0,10]);
+    this.cityScale = d3.scale.linear().domain([0,1000000]).range([2,20]);
     // the values stay the same across all views
 
     // TODO: define all "constants" here
@@ -67,13 +68,196 @@ MapVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-//        .attr("style", "border: 2px solid black")
+        //.attr("style", "border: 2px solid black")
         .append("g")
         .attr("transform", "translate(-100, 0)");
+        
+    //this.parentElement.select("svg").attr("viewBox", "475 50 300 225");
 
-   
 
+    this.legend = this.svg.append("g")
+                      .attr("class", "legend");
+
+    this.legend.append("line")
+        .attr("x1", 600) 
+        .attr("y1", 15)
+        .attr("x2", 650)
+        .attr("y2", 15)
+        .attr("class", "country");
+
+    this.legend.append("line")
+        .attr("x1", 600)
+        .attr("y1", 35)
+        .attr("x2", 650)
+        .attr("y2", 35)
+        .attr("class", "incorporated");
+
+    this.legend.append("line")
+        .attr("x1", 600)
+        .attr("y1", 55)
+        .attr("x2", 650)
+        .attr("y2", 55)
+        .attr("class", "notincorporated");
+
+    this.legend.append("line")
+        .attr("x1", 600)
+        .attr("y1", 75)
+        .attr("x2", 650)
+        .attr("y2", 75)
+        .attr("class", "rails");
+
+    this.legend.append("text")
+        .attr("x", 665) 
+        .attr("y", 20)
+        .attr("class", "legend-desc")
+        .text("Country Border");
+
+    this.legend.append("text")
+        .attr("x", 665)
+        .attr("y", 40)
+        .attr("class", "legend-desc")
+        .text("State Borders");
+
+    this.legend.append("text")
+        .attr("x", 665)
+        .attr("y", 60)
+        .attr("class", "legend-desc")
+        .text("Future State Borders");
+
+    this.legend.append("text")
+        .attr("x", 665)
+        .attr("y", 80)
+        .attr("class", "legend-desc")
+        .text("Railroads");
+
+    this.legend.append("text")
+        .attr("x", 105)
+        .attr("y", 340)
+        .attr("class", "legend-desc legend-title")
+        .text("Population Density");
+
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 365)
+        .attr("r", 5)
+        .attr("class", "color0 legend-circle");
+     this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 368)
+        .attr("class", "legend-desc legend-text")
+        .text("0 - 2");
    
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 385)
+        .attr("r", 5)
+        .attr("class", "color1 legend-circle");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 388)
+        .attr("class", "legend-desc legend-text")
+        .text("2-6");
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 405)
+        .attr("r", 5)
+        .attr("class", "color2 legend-circle");
+ this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 408)
+        .attr("class", "legend-desc legend-text")
+        .text("6-12");
+   
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 425)
+        .attr("r", 5)
+        .attr("class", "color3 legend-circle");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 428)
+        .attr("class", "legend-desc legend-text")
+        .text("12-25");
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 445)
+        .attr("r", 5)
+        .attr("class", "color4 legend-circle");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 448)
+        .attr("class", "legend-desc legend-text")
+        .text("26-50");
+
+    this.legend.append("circle")
+        .attr("cx", 110)
+        .attr("cy", 465)
+        .attr("r", 5)
+        .attr("class", "color5 legend-circle");
+this.legend.append("text")
+        .attr("x", 125)
+        .attr("y", 468)
+        .attr("class", "legend-desc legend-text")
+        .text("50-100");
+
+    this.legend.append("circle")
+        .attr("cx", 225)
+        .attr("cy", 385)
+        .attr("r", 5)
+        .attr("class", "color6 legend-circle");
+    this.legend.append("text")
+        .attr("x", 240)
+        .attr("y", 388)
+        .attr("class", "legend-desc legend-text")
+        .text("100-200");
+
+    this.legend.append("circle")
+        .attr("cx", 225)
+        .attr("cy", 405)
+        .attr("r", 5)
+        .attr("class", "color7 legend-circle");
+    this.legend.append("text")
+        .attr("x", 240)
+        .attr("y", 408)
+        .attr("class", "legend-desc legend-text")
+        .text("200-500");
+   
+    this.legend.append("circle")
+        .attr("cx", 225)
+        .attr("cy", 425)
+        .attr("r", 5)
+        .attr("class", "color8 legend-circle");
+    this.legend.append("text")
+        .attr("x", 240)
+        .attr("y", 428)
+        .attr("class", "legend-desc legend-text")
+        .text("500-1000");
+
+    this.legend.append("circle")
+        .attr("cx", 225)
+        .attr("cy", 445)
+        .attr("r", 5)
+        .attr("class", "color9 legend-circle");
+    this.legend.append("text")
+        .attr("x", 240)
+        .attr("y", 448)
+        .attr("class", "legend-desc legend-text")
+        .text("1000-2000");
+
+    this.legend.append("circle")
+        .attr("cx", 225)
+        .attr("cy", 465)
+        .attr("r", 5)
+        .attr("class", "color10 legend-circle");
+    this.legend.append("text")
+        .attr("x", 240)
+        .attr("y", 468)
+        .attr("class", "legend-desc legend-text")
+        .text("2000-5000");
+
 
     this.svg.append("g")
         .attr("class", "counties");
@@ -115,9 +299,9 @@ MapVis.prototype.initVis = function(){
     //    console.log(d);
     //});
 
-    that.color
-        .domain([0, 50000])
-        .range(d3.range(9).map(function(i) { return "color" + (i + 1);}));
+    that.densityColor
+        .domain([0, 2, 6, 12, 25, 50, 100, 200, 500, 1000, 2000, 5000])
+        .range(d3.range(9).map(function(i) { return "color" + i;}));
 
     //TODO: implement the slider -- see example at http://bl.ocks.org/mbostock/6452972
     //this.addSlider(this.svg)
@@ -136,16 +320,18 @@ MapVis.prototype.initVis = function(){
  * Method to wrangle the data. In this case it takes an options object
   */
 MapVis.prototype.wrangleData= function(){
-    var that = this;
-	var displayStates = true;
+        
+        var that = this;
+	//console.log(that.data);
+        var displayStates = true;
 	that.displayData = [];
     //console.log(this.year);
     //  TODO: Country, States, Counties, Cities, Railroads
     that.displayData.country = that.countryMaps[that.year];
     that.displayData.states = that.stateMaps;
-	that.displayData.counties = that.countyMaps;
-	that.displayData.railroads = [];
-        that.displayData.cities = [];
+    that.displayData.counties = that.countyMaps;
+    that.displayData.railroads = [];
+    that.displayData.cities = [];
 	//console.log(that.data);
 //	console.log(that.displayData.states);
 
@@ -162,7 +348,16 @@ MapVis.prototype.wrangleData= function(){
 	else
 	    that.displayData.states.features = [];
     if(that.encoding == "counties")
-	{
+	{   
+            var filteredData = [];
+            for(var i = 0; i < that.data.counties.length;i++)
+            {//console.log(that.data.counties[i]);
+                if(that.data.counties[i]["Year"] == that.year)
+                    filteredData.push(that.data.counties[i]);
+            }
+           // console.log(filteredData);
+            //console.log(that.displayData.counties.features);
+
 	    for(var i = 0; i < that.displayData.counties.features.length;i++)  //change later to that.countyMaps.features.length
             {
                 var state = that.displayData.counties.features[i].properties["STATE"];
@@ -170,27 +365,53 @@ MapVis.prototype.wrangleData= function(){
                 var population = -100;
                 var stateName = "";
                 var inc = that.getYear(that.getStateNamebyID(state)); 
-            //console.log(that.countyMaps.features[i]);
-                try{
+                if(inc <= that.year)
+                    that.displayData.counties.features[i].properties.inc = true;
+                else
+                    that.displayData.counties.features[i].properties.inc = false;
+            
+
+                if(that.displayData.counties.features[i].properties.inc ==  true)
+                {  
+                    
+                    for(var j = 0; j < filteredData.length;j++)
+                    {
+                        if(filteredData[j].StateID == state && filteredData[j].County == county)
+                        {
+                           population = filteredData[j]["Population"];
+                           break;
+                        }
+                    }
+                    //population = -1;
+                }
+                else
+                    population = -1;
+                //console.log(that.countyMaps.features[i]);
+                /*try{
                     population = that.data[state]["counties"][county][that.year][0]["Population"];
                 }
                 catch(err){
 //                console.log("Error for: "  + year + county + ", " + state);
                     population = -1;
-                }
+                }*/
                 that.displayData.counties.features[i].properties.population = population;
-                if(inc <= that.year)
-                    that.displayData.counties.features[i].properties.inc = true;
-                else
-                    that.displayData.counties.features[i].properties.inc = false;
-            //console.log(that.countyMaps.features[i].properties);
+                //console.log(that.countyMaps.features[i].properties);
             }
+            //console.log(that.displayData.counties);
             that.displayData.cities = [];
 	}
 	else // cities
 	{
-                that.displayData.counties = [];
-            for(code in that.data)
+            //console.log(that.data.cities);
+            var filteredData = [];
+            for(var i = 0; i < that.data.cities.length;i++)
+            {//console.log(that.data.counties[i]);
+                if(that.data.cities[i]["Year"] == that.year)
+                    filteredData.push(that.data.cities[i]);
+            }
+            that.displayData.cities = filteredData;
+            that.displayData.counties = [];
+            /*for(code in that.data)
             {   
                 for(city in that.data[code].cities)
                 {
@@ -199,13 +420,15 @@ MapVis.prototype.wrangleData= function(){
                         that.displayData.cities.push(that.data[code].cities[city][that.year][0]);
                     } 
                 }
-            }
+            }*/
   
 
 	}
 //console.log(that.displayData);
  //   console.log(that.railMaps);
-	if(that.tracks)
+
+
+       if(that.tracks)
 	{
 	    for(y in that.railMaps)
 		{
@@ -226,9 +449,7 @@ MapVis.prototype.wrangleData= function(){
  */
 MapVis.prototype.updateVis = function(){
 
-//    console.log("update");
     // TODO: implement update graphs (D3: update, enter, exit)
-    //var year = 1860;
     var that = this;
     var projection = d3.geo.albersUsa()
                        .scale([1000]);
@@ -240,32 +461,85 @@ MapVis.prototype.updateVis = function(){
     
 
     // TODO:  We need to add the layers, from bottom to top: counties, states, countries
-    //console.log(that.countyMaps);
-    //console.log(that.displayData);
-    // Here we need to bind the population data to the county data 
 
-    //console.log(that.displayData.counties);
-   // if(that.encoding == "counties")
-    //{
-  /*  var codisplay = [];
+    // LEGEND
+
+    svg.select(".legend-title")
+        .attr("class", "legend-desc legend-title")
+        .text(function(d,i){
+        if(that.encoding == "counties")
+            return "Population Density";
+        else if(that.encoding == "cities")
+            return "Population";
+    });
+
+    d3.selectAll(".legend-text")
+      .text(function(d,i) {
+         if(that.encoding == "counties")
+         {
+            if(i == 0)
+                return "0-2";
+            else if(i == 1)
+                return "2-6"; 
+             else if(i == 2)
+                return "6-12"; 
+            else if(i == 3)
+                return "12-25"; 
+            else if(i == 4)
+                return "25-50"; 
+            else if(i == 5)
+                return "50-100"; 
+            else if(i == 6)
+                return "100-200"; 
+            else if(i == 7)
+                return "200-500"; 
+            else if(i == 8)
+                return "500-1000"; 
+            else if(i == 9)
+                return "1000-2000"; 
+           else if(i == 10)
+                return "2000-5000"; 
+         }
+         else if(that.encoding == "cities")
+         {
+            if(i == 0)
+                return "0-100000";
+            else if(i == 1)
+                return "100000-200000"; 
+             else if(i == 2)
+                return "200000-300000"; 
+            else if(i == 3)
+                return "300000-400000"; 
+            else if(i == 4)
+                return "400000-500000"; 
+            else if(i == 5)
+                return "500000-600000"; 
+            else if(i == 6)
+                return "600000-700000"; 
+            else if(i == 7)
+                return "700000-800000"; 
+            else if(i == 8)
+                return "800000-900000"; 
+            else if(i == 9)
+                return "900000-1000000"; 
+           else if(i == 10)
+                return "> 1000000"; 
+        }
+
+
+
+
+
+
+       });
+
+
+    // COUNTIES
+    
     if(that.encoding == "counties")
-        codisplay = [1];
-	
-        var countygroup = svg.select(".counties").selectAll("g")
-	    .data(codisplay);
-
-	countygroup.enter()
-	    .append("g")
-		.attr("class", function(d,i)
-		{
-			return "county" + i;
-		});
-
-	countygroup.exit().remove();
-*/
-    if(that.encoding == "counties")
-	{
-	    var coline = svg.select(".counties").selectAll("path")
+    {
+       // Here we need to bind the population data to the county data 
+        var coline = svg.select(".counties").selectAll("path")
 		    .data(that.displayData.counties.features);
 
 		coline.enter()
@@ -281,8 +555,11 @@ MapVis.prototype.updateVis = function(){
                         if(d.properties.population <= 0)
                             return "color0";
                         else
-                            return that.color(d.properties.population);
+                        {
+                            return that.densityColor(d.properties.population/d.properties.CENSUSAREA);
+                        }
            });
+
 
 
 	}
@@ -294,71 +571,12 @@ MapVis.prototype.updateVis = function(){
         coline.attr("class", "invisible");
     }
 
-/*
-
-    var codisplay = []; 
-    if(that.encoding == "counties")
-        codisplay = [1];
     
-        var countygroup = svg.select(".counties").selectAll("g")
-            .data(codisplay);
 
-        countygroup.enter()
-            .append("g")
-                .attr("class", function(d,i)
-                {   
-                        return "county" + i;
-                }); 
-
-        countygroup.exit().remove();
-
-    if(that.encoding == "counties")
-        {   
-            var coline = svg.select(".counties").select(".county0").selectAll("path")
-                    .data(that.displayData.counties.features);
-
-                coline.enter()
-                    .append("path");
-
-                coline.attr("d", path)
-                    .attr("class", function(d){
-                        if(d.properties.population == -1) 
-                            return "nocolor";
-                        else
-                            return that.color(d.properties.population);
-           }); 
-
-
-        }   
-
-
-
-
-
-*/
-
-
-/*
-    console.log(that.displayData);
-        var countyshapes = svg.select(".counties").selectAll("path")
-           .data(that.displayData.counties.features);
-
-        countyshapes.enter()
-           .append("path");
-           
-        countyshapes.attr("d", path)
-	   .attr("class", function(d){
-           if(d.properties.population == -1)
-              return "nocolor";
-           else
-              return that.color(d.properties.population);
-           });
-
-        countyshapes.exit().remove();
-*/
+// RAILROADS
 
     // Create the parent objects that will maintain the railroads by year
-	var railgroup = svg.select(".rails").selectAll("g")
+	var railgroup = svg.select("g.rails").selectAll("g")
 	    .data(that.displayData.railroads);
 
 	railgroup.enter()
@@ -372,7 +590,7 @@ MapVis.prototype.updateVis = function(){
 
     for(var i = 0; i < that.displayData.railroads.length;i++)
 	{
-	    var railline = svg.select(".rails").select(".rail" + i).selectAll("path")
+	    var railline = svg.select("g.rails").select(".rail" + i).selectAll("path")
 		    .data(that.displayData.railroads[i].features);
 
 		railline.enter()
@@ -381,24 +599,30 @@ MapVis.prototype.updateVis = function(){
 		railline.attr("d", path)
 		    .attr("class", "railtrack");
 	}
-    //}
-    //else if(that.encoding == "cities")
-    //{
+
+
+// CITY CIRCLES
+
+
         var citycircle = svg.select(".cities").selectAll("circle")
             .data(that.displayData.cities);
             
         citycircle.enter()
-            .append("circle");
+            .append("circle")
+            .append("title");;
 
         citycircle.attr("r", function(d){return that.cityScale(d.Population);})
             .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
             .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
 
-            citycircle.attr("class", "city-circle");
+            citycircle.attr("class", function(d,i){return "city-circle color" + Math.round(that.cityColor(d.Population));});
   
+        citycircle.select("title")
+            .text(function(d,i){return d.City + ", " + d.State + ", Pop: " + d.Population;});
+
         citycircle.exit().remove();
 
-    //}
+// STATES
 
     svg.select(".states").selectAll("path")
        .data(that.displayData.states.features)
@@ -413,7 +637,12 @@ MapVis.prototype.updateVis = function(){
 		   else
 		       return "notincorporated";
 	   });
-    var country = svg.select(".country").selectAll("path")
+
+
+
+  // COUNTRY
+   
+   var country = svg.select("g.country").selectAll("path")
        .data(that.displayData.country.features);
     
 	country.enter()
@@ -426,32 +655,7 @@ MapVis.prototype.updateVis = function(){
 
 
 
-/*
-console.log(that.displayData.railroads);
-console.log(svg.select(".rails"));
-    svg.select(".rails").selectAll("g")
-	    .data(that.displayData.railroads)
-		.append("g")
-		.attr("class", "lauren");
-	*/	/*.attr("class", function(d){
-		    console.log(d);
-		       //return d.features.properties.name;
-		});*/
-/*
-    for(y in that.displayData.railroads)
-	{
-        svg.select(".rails").selectAll("path." + y + "rail")
-           .data(that.displayData.railroads[y].features)
-           .enter()
-           .append("path")
-           .attr("d", path)
-		   .attr("class", y + "rail");
-    }*/
-      // .attr("stroke", "black")
-      // .attr("stroke-width", "2");
-       //.attr("class", function(d) {console.log(d)});
-
-
+//STOP HERE!
 
 }
 

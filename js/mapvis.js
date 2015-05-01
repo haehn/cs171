@@ -78,7 +78,7 @@ MapVis.prototype.initVis = function(){
     this.legend = this.svg.append("g")
                       .attr("class", "legend");
 
-    this.legend.append("line")
+        this.legend.append("line")
         .attr("x1", 600) 
         .attr("y1", 15)
         .attr("x2", 650)
@@ -465,6 +465,8 @@ MapVis.prototype.updateVis = function(){
     
     if(that.encoding == "counties")
     {
+
+
        // Here we need to bind the population data to the county data 
         var coline = svg.select(".counties").selectAll("path")
 		    .data(that.displayData.counties.features);

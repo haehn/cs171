@@ -133,129 +133,129 @@ MapVis.prototype.initVis = function(){
     this.legend.append("text")
         .attr("x", 105)
         .attr("y", 340)
-        .attr("class", "legend-desc")
+        .attr("class", "legend-desc legend-title")
         .text("Population Density");
 
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 350)
+        .attr("cy", 365)
         .attr("r", 5)
-        .attr("class", "color0");
+        .attr("class", "color0 legend-circle");
      this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 353)
-        .attr("class", "legend-desc")
+        .attr("y", 368)
+        .attr("class", "legend-desc legend-text")
         .text("0 - 2");
    
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 370)
+        .attr("cy", 385)
         .attr("r", 5)
-        .attr("class", "color1");
+        .attr("class", "color1 legend-circle");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 373)
-        .attr("class", "legend-desc")
+        .attr("y", 388)
+        .attr("class", "legend-desc legend-text")
         .text("2-6");
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 390)
+        .attr("cy", 405)
         .attr("r", 5)
-        .attr("class", "color2");
+        .attr("class", "color2 legend-circle");
  this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 393)
-        .attr("class", "legend-desc")
+        .attr("y", 408)
+        .attr("class", "legend-desc legend-text")
         .text("6-12");
    
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 410)
+        .attr("cy", 425)
         .attr("r", 5)
-        .attr("class", "color3");
+        .attr("class", "color3 legend-circle");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 413)
-        .attr("class", "legend-desc")
+        .attr("y", 428)
+        .attr("class", "legend-desc legend-text")
         .text("12-25");
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 430)
+        .attr("cy", 445)
         .attr("r", 5)
-        .attr("class", "color4");
+        .attr("class", "color4 legend-circle");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 433)
-        .attr("class", "legend-desc")
+        .attr("y", 448)
+        .attr("class", "legend-desc legend-text")
         .text("26-50");
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 450)
+        .attr("cy", 465)
         .attr("r", 5)
-        .attr("class", "color5");
+        .attr("class", "color5 legend-circle");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 453)
-        .attr("class", "legend-desc")
+        .attr("y", 468)
+        .attr("class", "legend-desc legend-text")
         .text("50-100");
 
     this.legend.append("circle")
-        .attr("cx", 200)
-        .attr("cy", 370)
+        .attr("cx", 225)
+        .attr("cy", 385)
         .attr("r", 5)
-        .attr("class", "color6");
+        .attr("class", "color6 legend-circle");
     this.legend.append("text")
-        .attr("x", 215)
-        .attr("y", 373)
-        .attr("class", "legend-desc")
+        .attr("x", 240)
+        .attr("y", 388)
+        .attr("class", "legend-desc legend-text")
         .text("100-200");
 
     this.legend.append("circle")
-        .attr("cx", 200)
-        .attr("cy", 390)
+        .attr("cx", 225)
+        .attr("cy", 405)
         .attr("r", 5)
-        .attr("class", "color7");
+        .attr("class", "color7 legend-circle");
     this.legend.append("text")
-        .attr("x", 215)
-        .attr("y", 393)
-        .attr("class", "legend-desc")
+        .attr("x", 240)
+        .attr("y", 408)
+        .attr("class", "legend-desc legend-text")
         .text("200-500");
    
     this.legend.append("circle")
-        .attr("cx", 200)
-        .attr("cy", 410)
+        .attr("cx", 225)
+        .attr("cy", 425)
         .attr("r", 5)
-        .attr("class", "color8");
+        .attr("class", "color8 legend-circle");
     this.legend.append("text")
-        .attr("x", 215)
-        .attr("y", 413)
-        .attr("class", "legend-desc")
+        .attr("x", 240)
+        .attr("y", 428)
+        .attr("class", "legend-desc legend-text")
         .text("500-1000");
 
     this.legend.append("circle")
-        .attr("cx", 200)
-        .attr("cy", 430)
+        .attr("cx", 225)
+        .attr("cy", 445)
         .attr("r", 5)
-        .attr("class", "color9");
+        .attr("class", "color9 legend-circle");
     this.legend.append("text")
-        .attr("x", 215)
-        .attr("y", 433)
-        .attr("class", "legend-desc")
+        .attr("x", 240)
+        .attr("y", 448)
+        .attr("class", "legend-desc legend-text")
         .text("1000-2000");
 
     this.legend.append("circle")
-        .attr("cx", 200)
-        .attr("cy", 450)
+        .attr("cx", 225)
+        .attr("cy", 465)
         .attr("r", 5)
-        .attr("class", "color10");
+        .attr("class", "color10 legend-circle");
     this.legend.append("text")
-        .attr("x", 215)
-        .attr("y", 453)
-        .attr("class", "legend-desc")
+        .attr("x", 240)
+        .attr("y", 468)
+        .attr("class", "legend-desc legend-text")
         .text("2000-5000");
 
 
@@ -461,6 +461,79 @@ MapVis.prototype.updateVis = function(){
     
 
     // TODO:  We need to add the layers, from bottom to top: counties, states, countries
+
+    // LEGEND
+
+    svg.select(".legend-title")
+        .attr("class", "legend-desc legend-title")
+        .text(function(d,i){
+        if(that.encoding == "counties")
+            return "Population Density";
+        else if(that.encoding == "cities")
+            return "Population";
+    });
+
+    d3.selectAll(".legend-text")
+      .text(function(d,i) {
+         if(that.encoding == "counties")
+         {
+            if(i == 0)
+                return "0-2";
+            else if(i == 1)
+                return "2-6"; 
+             else if(i == 2)
+                return "6-12"; 
+            else if(i == 3)
+                return "12-25"; 
+            else if(i == 4)
+                return "25-50"; 
+            else if(i == 5)
+                return "50-100"; 
+            else if(i == 6)
+                return "100-200"; 
+            else if(i == 7)
+                return "200-500"; 
+            else if(i == 8)
+                return "500-1000"; 
+            else if(i == 9)
+                return "1000-2000"; 
+           else if(i == 10)
+                return "2000-5000"; 
+         }
+         else if(that.encoding == "cities")
+         {
+            if(i == 0)
+                return "0-100000";
+            else if(i == 1)
+                return "100000-200000"; 
+             else if(i == 2)
+                return "200000-300000"; 
+            else if(i == 3)
+                return "300000-400000"; 
+            else if(i == 4)
+                return "400000-500000"; 
+            else if(i == 5)
+                return "500000-600000"; 
+            else if(i == 6)
+                return "600000-700000"; 
+            else if(i == 7)
+                return "700000-800000"; 
+            else if(i == 8)
+                return "800000-900000"; 
+            else if(i == 9)
+                return "900000-1000000"; 
+           else if(i == 10)
+                return "> 1000000"; 
+        }
+
+
+
+
+
+
+       });
+
+
     // COUNTIES
     
     if(that.encoding == "counties")
@@ -542,7 +615,7 @@ MapVis.prototype.updateVis = function(){
             .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
             .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
 
-            citycircle.attr("class", function(d,i){console.log(d.Population, that.cityColor(d.Population));return "city-circle color" + Math.round(that.cityColor(d.Population));});
+            citycircle.attr("class", function(d,i){return "city-circle color" + Math.round(that.cityColor(d.Population));});
   
         citycircle.select("title")
             .text(function(d,i){return d.City + ", " + d.State + ", Pop: " + d.Population;});

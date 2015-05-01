@@ -27,7 +27,8 @@ InfoVis = function(_parentElement, _data, _eventHandler){
     this.year = 1800;
 
     this.width = 175;
-    this.height = 400;
+    this.height = 475;
+	this.margin = {top: 0, right: 20, bottom: 0, left: 0};
 
 
     // TODO: define all constants here
@@ -52,7 +53,7 @@ InfoVis.prototype.initVis = function(){
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-    //    .attr("style", "border: 2px solid black");
+        //.attr("style", "border: 2px solid black");
 
     this.svg.append("text")
         .attr("x", 0)
@@ -115,7 +116,8 @@ InfoVis.prototype.updateVis = function(){
 
 
     d3.select(".info-pane")
-      .text(that.displayData[1]);
+      .text(that.displayData[1])
+	  .call(that.wrap, that.width-that.margin.left-that.margin.right);
 
 }
 
@@ -186,5 +188,39 @@ InfoVis.prototype.filterAndAggregate = function(year){
 
 }
 
+/**
+ *  This function was borrowed from Mike Bostock.  Original code can be found at http://bl.ocks.org/mbostock/7555321
+ **/
 
+InfoVis.prototype.wrap = function(text,width)
+{   
+    text.each(function() 
+	{
+	    var text = d3.select(this),
+		    words = text.text().split(/\s+/).reverse(),
+		    word,
+			line = [],
+			lineNumber = 0,
+			lineHeight = 1.1, // ems
+			y = text.attr("y"),
+			dy = 1,//parseFloat(text.attr("dy")),
+			tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+			
+			while (word = words.pop()) 
+			{
+				line.push(word);
+				tspan.text(line.join(" "));
+																						      
+				if (tspan.node().getComputedTextLength() > width) 
+				{
+																							          
+																									 
+					line.pop();
+					tspan.text(line.join(" "));
+					line = [word];
+			        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+				}																													    
+			}
+	});
+}
 

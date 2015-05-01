@@ -24,7 +24,7 @@ ChartVis = function(_parentElement, _data, _eventHandler){
 	this.railroads = true;
 
     // defines constants
-    this.margin = {top: 80, right: 20, bottom: 55, left: 10},
+    this.margin = {top: 80, right: 20, bottom: 55, left: 10};
     this.width = 200;//getInnerWidth(this.parentElement) - this.margin.left - this.margin.right,
     this.height = 900;//400 - this.margin.top - this.margin.bottom;
 

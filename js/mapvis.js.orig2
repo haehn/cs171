@@ -35,8 +35,8 @@ MapVis = function(_parentElement, _data,_mappings, _country, _state, _county, _r
     this.width = 760;
     this.height = 475;
     this.densityColor = d3.scale.threshold(); // We need to define this here because
-    this.cityColor = d3.scale.linear().domain([0,5000,10000,25000,50000,75000,100000,250000,500000,1000000,2000000,3500000]).range([0,1,2,3,4,5,6,7,8,9,10,10]);
-    this.cityScale = d3.scale.linear().domain([0,1000000,3500000]).range([2,20,20]);
+    this.cityColor = d3.scale.linear().domain([0,1000000]).range([0,10]);
+    this.cityScale = d3.scale.linear().domain([0,1000000]).range([2,20]);
     // the values stay the same across all views
 
     // TODO: define all "constants" here
@@ -133,129 +133,129 @@ MapVis.prototype.initVis = function(){
     this.legend.append("text")
         .attr("x", 105)
         .attr("y", 340)
-        .attr("class", "legend-desc legend-title")
+        .attr("class", "legend-desc")
         .text("Population Density");
 
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 365)
+        .attr("cy", 350)
         .attr("r", 5)
-        .attr("class", "color0 legend-circle");
+        .attr("class", "color0");
      this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 368)
-        .attr("class", "legend-desc legend-text")
+        .attr("y", 353)
+        .attr("class", "legend-desc")
         .text("0 - 2");
    
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 385)
+        .attr("cy", 370)
         .attr("r", 5)
-        .attr("class", "color1 legend-circle");
+        .attr("class", "color1");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 388)
-        .attr("class", "legend-desc legend-text")
+        .attr("y", 373)
+        .attr("class", "legend-desc")
         .text("2-6");
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 405)
+        .attr("cy", 390)
         .attr("r", 5)
-        .attr("class", "color2 legend-circle");
+        .attr("class", "color2");
  this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 408)
-        .attr("class", "legend-desc legend-text")
+        .attr("y", 393)
+        .attr("class", "legend-desc")
         .text("6-12");
    
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 425)
+        .attr("cy", 410)
         .attr("r", 5)
-        .attr("class", "color3 legend-circle");
+        .attr("class", "color3");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 428)
-        .attr("class", "legend-desc legend-text")
+        .attr("y", 413)
+        .attr("class", "legend-desc")
         .text("12-25");
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 445)
+        .attr("cy", 430)
         .attr("r", 5)
-        .attr("class", "color4 legend-circle");
+        .attr("class", "color4");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 448)
-        .attr("class", "legend-desc legend-text")
+        .attr("y", 433)
+        .attr("class", "legend-desc")
         .text("26-50");
 
     this.legend.append("circle")
         .attr("cx", 110)
-        .attr("cy", 465)
+        .attr("cy", 450)
         .attr("r", 5)
-        .attr("class", "color5 legend-circle");
+        .attr("class", "color5");
 this.legend.append("text")
         .attr("x", 125)
-        .attr("y", 468)
-        .attr("class", "legend-desc legend-text")
+        .attr("y", 453)
+        .attr("class", "legend-desc")
         .text("50-100");
 
     this.legend.append("circle")
-        .attr("cx", 225)
-        .attr("cy", 385)
+        .attr("cx", 200)
+        .attr("cy", 370)
         .attr("r", 5)
-        .attr("class", "color6 legend-circle");
+        .attr("class", "color6");
     this.legend.append("text")
-        .attr("x", 240)
-        .attr("y", 388)
-        .attr("class", "legend-desc legend-text")
+        .attr("x", 215)
+        .attr("y", 373)
+        .attr("class", "legend-desc")
         .text("100-200");
 
     this.legend.append("circle")
-        .attr("cx", 225)
-        .attr("cy", 405)
+        .attr("cx", 200)
+        .attr("cy", 390)
         .attr("r", 5)
-        .attr("class", "color7 legend-circle");
+        .attr("class", "color7");
     this.legend.append("text")
-        .attr("x", 240)
-        .attr("y", 408)
-        .attr("class", "legend-desc legend-text")
+        .attr("x", 215)
+        .attr("y", 393)
+        .attr("class", "legend-desc")
         .text("200-500");
    
     this.legend.append("circle")
-        .attr("cx", 225)
-        .attr("cy", 425)
+        .attr("cx", 200)
+        .attr("cy", 410)
         .attr("r", 5)
-        .attr("class", "color8 legend-circle");
+        .attr("class", "color8");
     this.legend.append("text")
-        .attr("x", 240)
-        .attr("y", 428)
-        .attr("class", "legend-desc legend-text")
+        .attr("x", 215)
+        .attr("y", 413)
+        .attr("class", "legend-desc")
         .text("500-1000");
 
     this.legend.append("circle")
-        .attr("cx", 225)
-        .attr("cy", 445)
+        .attr("cx", 200)
+        .attr("cy", 430)
         .attr("r", 5)
-        .attr("class", "color9 legend-circle");
+        .attr("class", "color9");
     this.legend.append("text")
-        .attr("x", 240)
-        .attr("y", 448)
-        .attr("class", "legend-desc legend-text")
+        .attr("x", 215)
+        .attr("y", 433)
+        .attr("class", "legend-desc")
         .text("1000-2000");
 
     this.legend.append("circle")
-        .attr("cx", 225)
-        .attr("cy", 465)
+        .attr("cx", 200)
+        .attr("cy", 450)
         .attr("r", 5)
-        .attr("class", "color10 legend-circle");
+        .attr("class", "color10");
     this.legend.append("text")
-        .attr("x", 240)
-        .attr("y", 468)
-        .attr("class", "legend-desc legend-text")
+        .attr("x", 215)
+        .attr("y", 453)
+        .attr("class", "legend-desc")
         .text("2000-5000");
 
 
@@ -461,79 +461,6 @@ MapVis.prototype.updateVis = function(){
     
 
     // TODO:  We need to add the layers, from bottom to top: counties, states, countries
-
-    // LEGEND
-
-    svg.select(".legend-title")
-        .attr("class", "legend-desc legend-title")
-        .text(function(d,i){
-        if(that.encoding == "counties")
-            return "Population Density";
-        else if(that.encoding == "cities")
-            return "Population";
-    });
-
-    d3.selectAll(".legend-text")
-      .text(function(d,i) {
-         if(that.encoding == "counties")
-         {
-            if(i == 0)
-                return "0-2";
-            else if(i == 1)
-                return "2-6"; 
-             else if(i == 2)
-                return "6-12"; 
-            else if(i == 3)
-                return "12-25"; 
-            else if(i == 4)
-                return "25-50"; 
-            else if(i == 5)
-                return "50-100"; 
-            else if(i == 6)
-                return "100-200"; 
-            else if(i == 7)
-                return "200-500"; 
-            else if(i == 8)
-                return "500-1000"; 
-            else if(i == 9)
-                return "1000-2000"; 
-           else if(i == 10)
-                return "2000-5000"; 
-         }
-         else if(that.encoding == "cities")
-         {
-            if(i == 0)
-                return "0-5,000";
-            else if(i == 1)
-                return "5,000-10,000"; 
-             else if(i == 2)
-                return "10,000-25,000"; 
-            else if(i == 3)
-                return "25,000-50,000"; 
-            else if(i == 4)
-                return "50,000-75,000"; 
-            else if(i == 5)
-                return "75,000-100,000"; 
-            else if(i == 6)
-                return "100,000-250,000"; 
-            else if(i == 7)
-                return "250,000-500,000"; 
-            else if(i == 8)
-                return "500,000-1,000,000"; 
-            else if(i == 9)
-                return "1,000,000-2,000,000"; 
-           else if(i == 10)
-                return "> 2,000,000"; 
-        }
-
-
-
-
-
-
-       });
-
-
     // COUNTIES
     
     if(that.encoding == "counties")
@@ -617,7 +544,7 @@ MapVis.prototype.updateVis = function(){
             .attr("cx",function(d){ return (projection([d.longitude, d.latitude])[0]);})
             .attr("cy", function(d){ return (projection([d.longitude, d.latitude])[1]);})
 
-            citycircle.attr("class", function(d,i){return "city-circle color" + Math.round(that.cityColor(d.Population));});
+            citycircle.attr("class", function(d,i){console.log(d.Population, that.cityColor(d.Population));return "city-circle color" + Math.round(that.cityColor(d.Population));});
   
         citycircle.select("title")
             .text(function(d,i){return d.City + ", " + d.State + ", Pop: " + d.Population;});

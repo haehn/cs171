@@ -265,9 +265,7 @@ SummaryVis.prototype.updateVis = function(){
         tracks.attr("y", that.displaylocations.tracks)
               .attr("x", function(d){return that.tracksX(d.start)})
               .attr("width", function(d){return that.tracksX(d.end) - that.tracksX(d.start)})
-                          //.attr("stroke", "black")
               .attr("height", 2)
-              //.attr("style", "outline: solid black 1px")
               .attr("class", function(d, i){;return "color" + i;});
 
         tracks.exit().remove();
@@ -275,17 +273,14 @@ SummaryVis.prototype.updateVis = function(){
     trackTies.enter()
              .append("g")
              .attr("class", function(d){return "ties" + d.Year})
-             .append("title");
 
     var trackInterval = 20;
     var trackLocation = 0;
     var arrayLen = that.displayData["Tracks"].length;
     for(var i = 0; i < arrayLen;i++)
     {
-        //console.log("for loop", i);
         var trackStart = that.tracksX(that.displayData["Tracks"][i].start);
         var trackEnd = that.tracksX(that.displayData["Tracks"][i].end);
-        //console.log(trackStart, trackEnd);
         if(i == 0)
             trackLocation = trackStart + trackInterval;
         while(trackLocation < trackEnd)
@@ -315,7 +310,6 @@ SummaryVis.prototype.updateVis = function(){
     area.attr("y", that.displaylocations.area)
         .attr("x", function(d){return that.landX(d.start)})
         .attr("width", function(d){return that.landX(d.end) - that.landX(d.start)})
-                          //.attr("stroke", "black")
         .attr("height", 10)
         .attr("style", "outline: solid black 1px")
         .attr("class", function(d, i){;return "color" + i;});
@@ -349,10 +343,12 @@ SummaryVis.prototype.updateVis = function(){
 		                .attr("r", 5)
 		                .attr("cx", that.populationX(that.existingCircles))
 		                .attr("cy", that.displaylocations.population)
-				//.attr("fill", "red")
 		                .attr("class", function() {;return "color" + i})
-                        .attr("id", function(){return "summaryCircle" + that.existingCircles});
-                    that.existingCircles++;
+                        .attr("id", function(){return "summaryCircle" + that.existingCircles})
+                        .append("title")
+						.text(that.displayData["Population"][i]["Year"] + ": " + that.displayData["Population"][i]["end"]);
+                   that.existingCircles++;
+
                 }
 	    }		
         }

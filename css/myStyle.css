@@ -201,3 +201,11 @@ input[type=range]{
     stroke: black;
     stroke-width: 3px;
 }
+
+.footer{
+    stroke: black;
+	font-size: 10px;
+	font-weight:normal;
+	text-align: center;
+}
+

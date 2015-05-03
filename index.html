@@ -27,36 +27,14 @@
 </head>
 <body>
     <div class="container">  
-      <div class="row">
-        <!--<svg class="intro"></svg>-->
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-               <!-- I'm keeping this for now because I might want to use something like this -->
-               <!-- <button class="btn btn-sm btn-primary" id="fitInBtn"> <span class="glyphicon glyphicon-resize-horizontal"></span> reset zoom </button> -->
-            </div>
-
-            <div class="col-md-8">
-                <!-- Same here!  -->
-                <!--  <b>current brush:</b> <span id="brushInfo"></span> -->
-            </div>
-        </div> 
-
-
-
-         <!-- <div class="row">-->
         <div class="col-md-10">
               <h1>The Growth of a Nation</h1>
               <h2>Or....how the railroads changed the face of America in the 1800's</h2>
-
- <!-- If I have time to do a splash screen, I think it will go here  -->
-               <p> The following visualization shows country, population and railroad growth in 19th Century America.</p> 
+               <p> The following visualization shows land, population and railroad growth in 19th Century America.</p> 
             <div class="row">
                 <div class="col-md-2">
                     <div id="infoVis">
                     </div>
-
                 </div>
                 <div class="col-md-8" id="mapVis">
                 </div>
@@ -65,37 +43,28 @@
                 <div id="controlVis">
                     <form class="displaySelection" style="display:inline;padding:0px;margin:0px;white-space:nowrap"></form>
                 </div>
-              <!--</div>-->
           </div>
           <div class="row">
               <div id="summaryVis">
               </div>
-
           </div>
-        </div>
+          <div class="row footer">
+		      Lauren Wood 2015 | Created for Harvard University CS171 Data Visualization | <a href="processbook.pdf">Process Book</a> | <a href="http://www.youtube.com">View video</a>
+		  </div>
+      </div>
         <div class="col-md-2" id="chartVis">
           <div class="chart-svg"></div>
           <form class="displaySelection" style="display:inline;padding:0px;margin:0px;white-space:nowrap"></form>
         </div>
-
-        
     </div>
-      
-  <!--</div>-->
-
-        <!--<div class="row">-->
-          
-                      <!--</div>-->
-                 <!-- </div>-->
-
-
 
     <script>
-        $(function(){ // this function is called after the HTML document is fully loaded
+        $(function() // this function is called after the HTML document is fully loaded
+        {
             //==========================================
             //--- HERE IS WHERE ALL THE MAGIC STARTS --
             //==========================================
-            // variables keeping global knowledge of the data
+            // global data structures 
             var allData = [];
             var metaData = {};
             var areaData = {};
@@ -106,35 +75,33 @@
             var stateMappings = [];
             var summaryData = {};
             var infoData = [];
-            // this function can convert Date objects to a string
-            // it can also convert strings to Date objects
-            // see: https://github.com/mbostock/d3/wiki/Time-Formatting
-            // call this function after Data is loaded, reformatted and bound to the variables
-            var initVis = function(){
-                //TODO: Create an eventHandler  --> DONE :)
-                var MyEventHandler = new Object();
-                //TODO: Instantiate all Vis iObjects here
 
+            // call this function after Data is loaded, reformatted and bound to the variables
+            var initVis = function()
+			{
+			    // EventHandler for communication between svg objects
+                var MyEventHandler = new Object();
+                
+			    //  Instantiate all Vis Objects here
                 var map_vis = new MapVis(d3.select("#mapVis"), allData, stateMappings, countryMaps, stateMaps, countyMaps, railMaps, MyEventHandler);
                 var chart_vis = new ChartVis(d3.select("#chartVis"), allData, MyEventHandler);
                 var summary_vis = new SummaryVis(d3.select("#summaryVis"), summaryData, stateMappings, MyEventHandler);
                 var control_vis = new ControlVis(d3.select("#controlVis"), allData, MyEventHandler);
                 var info_vis = new InfoVis(d3.select("#infoVis"), infoData, MyEventHandler);
                 
-                // TODO: bind the eventHandler to the Vis Objects
-                // events will be created from the CountVis object (nothing to do here)
-                // events will be consumed by the PrioVis and AgeVis object (binding should happen here)
+                // bind the eventHandler to the Vis Objects
+                // events will be created from the ControlVis object
+                // events will be consumed by the other objects
 
-          $(MyEventHandler).bind("selectionChanged", function(event, encoding, tracks, year)
-		  {
-    	              chart_vis.onSelectionChange(encoding, tracks, year);
-		      info_vis.onSelectionChange(encoding, tracks, year);
-		      map_vis.onSelectionChange(encoding, tracks, year);
-		      summary_vis.onSelectionChange(encoding, tracks, year);
-		  })
-
-    }
-            // call this function after both files are loaded -- error should be "null" if no error
+                $(MyEventHandler).bind("selectionChanged", function(event, encoding, tracks, year)
+		        {
+    	            chart_vis.onSelectionChange(encoding, tracks, year);
+		            info_vis.onSelectionChange(encoding, tracks, year);
+		            map_vis.onSelectionChange(encoding, tracks, year);
+		            summary_vis.onSelectionChange(encoding, tracks, year);
+		        })
+            }
+            // call this function after all files are loaded -- error should be "null" if no error
             var dataLoaded = function (error, _info, _states, _cityData, _countyData, _countyMap, _stateMap, _1800_CountryMap, _1810CountryMap, _1820CountryMap, _1830CountryMap, _1830RailMap, _1840CountryMap, _1840RailMap, _1850CountryMap, _1850RailMap, _1860CountryMap, _1860RailMap, _1870CountryMap, _1870RailMap, _1880CountryMap, _1880RailMap, _1890CountryMap, _1890RailMap, _1900CountryMap, _1900RailMap, _summary) {
               var that = this;
               if (!error) {
@@ -156,40 +123,38 @@
                     // We need to format our data so that it's consistent across formats for city and county.
                     for(var i = 0; i< _countyData.length; i++)
                     {
-                      _countyData[i]["Name"] = _countyData[i]["County"] + " Co.";
-                      _countyData[i]["StateCode"] = getCodebyName(_countyData[i]["State"]); 
-                      _countyData[i]["Population"] = parseInt(_countyData[i]["Population"]);
-                      _countyData[i]["Year"] = parseInt(_countyData[i]["Year"]);
-                      _countyData[i]["StateID"] = getIDbyName(_countyData[i]["State"]);
-
+                        _countyData[i]["Name"] = _countyData[i]["County"] + " Co.";
+                        _countyData[i]["StateCode"] = getCodebyName(_countyData[i]["State"]); 
+                        _countyData[i]["Population"] = parseInt(_countyData[i]["Population"]);
+                        _countyData[i]["Year"] = parseInt(_countyData[i]["Year"]);
+                        _countyData[i]["StateID"] = getIDbyName(_countyData[i]["State"]);
                     }
                     
                     for(var i = 0; i< _cityData.length; i++)
                     {
-                      _cityData[i]["Name"] = _cityData[i]["City"];
-                      _cityData[i]["StateCode"] = _cityData[i]["State"];
-                      _cityData[i]["Population"] = parseInt(_cityData[i]["Population"]);
-                      _cityData[i]["Year"] = parseInt(_cityData[i]["Year"]);
-
+                        _cityData[i]["Name"] = _cityData[i]["City"];
+                        _cityData[i]["StateCode"] = _cityData[i]["State"];
+                        _cityData[i]["Population"] = parseInt(_cityData[i]["Population"]);
+                        _cityData[i]["Year"] = parseInt(_cityData[i]["Year"]);
                     }
 
                     for(var i = 0; i< _summary.length; i++)
                     {
-                      _summary[i]["Population"] = parseInt(_summary[i]["Population"]);
-                      _summary[i]["Year"] = parseInt(_summary[i]["Year"]);
-                      _summary[i]["Area"] = parseInt(_summary[i]["Area"]);
-                      _summary[i]["States"] = parseInt(_summary[i]["States"]);
-                      _summary[i]["Tracks"] = parseInt(_summary[i]["Tracks"]);
+                        _summary[i]["Population"] = parseInt(_summary[i]["Population"]);
+                        _summary[i]["Year"] = parseInt(_summary[i]["Year"]);
+                        _summary[i]["Area"] = parseInt(_summary[i]["Area"]);
+                        _summary[i]["States"] = parseInt(_summary[i]["States"]);
+                        _summary[i]["Tracks"] = parseInt(_summary[i]["Tracks"]);
                     }
 
                    infoData = d3.nest()
-                                    .key(function(d) {return parseInt(d.year);})
-                                    .key(function(d) {return d.type;})
-                                    .map(_info);
+                       .key(function(d) {return parseInt(d.year);})
+                       .key(function(d) {return d.type;})
+                       .map(_info);
 
                     summaryData = d3.nest()
-                                    .key(function(d) { return d.Year;})
-                                    .map(_summary);
+                       .key(function(d) { return d.Year;})
+                       .map(_summary);
 
                     allData.counties = _countyData;
                     allData.cities = _cityData;
@@ -218,7 +183,7 @@
 
                     initVis();
   
-                  }
+                }
                 else
                     console.log(error);
             }
@@ -241,9 +206,11 @@
                         q = q.defer(d3.json, "data/" + year + "_rail.json");
                 }
                 q = q.defer(d3.csv, "data/summary_data.csv"); 
-                    q.await(dataLoaded);
+                q.await(dataLoaded);
             }
-
+            
+			// Some helper functions are needed since different data sources have
+			// different IDs, codes and names
             var getIDbyName = function(name)
             {
               for(var i = 0; i < stateMappings.length;i++)
@@ -266,9 +233,6 @@
                       return stateMappings[i]["Code"];
                   }
             }
-
-
-
             startHere();
     })
 

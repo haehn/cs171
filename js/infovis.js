@@ -1,6 +1,7 @@
 /**
- * Created by Hendrik Strobelt (hendrik.strobelt.com) on 1/28/15.
- *
+ * Created by Lauren Wood for Harvard CS171 Final Project.
+ **/
+
 
 
 
@@ -13,10 +14,10 @@
  * */
 
 /**
- * InfoVis object for HW3 of CS171
+ * InfoVis object displays tidbits of information about the decade displayed
  * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
  * @param _data -- the data array
- * @param _metaData -- the meta-data / data description object
+ * @param _eventHandler -- handles the event changes
  * @constructor
  */
 InfoVis = function(_parentElement, _data, _eventHandler){
@@ -25,17 +26,11 @@ InfoVis = function(_parentElement, _data, _eventHandler){
     this.eventHandler = _eventHandler;
     this.displayData = [];
     this.year = 1800;
-
     this.width = 175;
     this.height = 475;
 	this.margin = {top: 0, right: 20, bottom: 0, left: 0};
 
-
-    // TODO: define all constants here
-
-
     this.initVis();
-
 }
 
 
@@ -46,14 +41,9 @@ InfoVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
-
-    //TODO: construct or select SVG
-    //TODO: create axis and scales
-
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width)
-        .attr("height", this.height)
-        //.attr("style", "border: 2px solid black");
+        .attr("height", this.height);
 
     this.svg.append("text")
         .attr("x", 0)
@@ -65,7 +55,7 @@ InfoVis.prototype.initVis = function(){
         .attr("y", 45)
         .attr("class", "info-pane");
 
-    // filter, aggregate, modify data
+    // filter, aggregate, modify data based on year
     this.wrangleData(this.year);
 
     // call the update method
@@ -81,15 +71,6 @@ InfoVis.prototype.wrangleData= function(year){
 
     // displayData should hold the data which is visualized
     this.displayData = this.filterAndAggregate(year);
-    //// you might be able to pass some options,
-    //// if you don't pass options -- set the default options
-    //// the default is: var options = {filter: function(){return true;} }
-    //var options = _options || {filter: function(){return true;}};
-
-
-
-
-
 }
 
 
@@ -99,57 +80,45 @@ InfoVis.prototype.wrangleData= function(year){
  */
 InfoVis.prototype.updateVis = function(){
 
-    // Dear JS hipster,
-    // you might be able to pass some options as parameter _option
-    // But it's not needed to solve the task.
-    // var options = _options || {};
-
     var that = this;
 
-    // TODO: implement...
-    // TODO: ...update scales
-    // TODO: ...update graphs
-    
     d3.select(".info-heading")
       .text("The Year " + that.displayData[0]);
-
-
 
     d3.select(".info-pane")
       .text(that.displayData[1])
 	  .call(that.wrap, that.width-that.margin.left-that.margin.right);
-
 }
 
 
 /**
  * Gets called by event handler and should create new aggregated data
- * aggregation is done by the function "aggregate(filter)". Filter has to
- * be defined here.
- * @param selection
+ * based on date.
+ * @param encoding -- cities or counties
+ * @param tracks -- are we displaying railroad tracks?
+ * @param year -- year to display
  */
-/*InfoVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
-
-    // TODO: call wrangle function
-
-    this.updateVis();
-
-
-}*/
 InfoVis.prototype.onSelectionChange= function (encoding, tracks, year){
-
-//    console.log(encoding);
-//	    console.log(tracks);       
-//		    console.log(year);
-
-			    // TODO: call wrangle function
-
-				    // do nothing -- no update when brushing
 
     this.year = year;
     this.wrangleData(year);
     this.updateVis();
-    }
+}
+
+
+
+/**
+ * The aggregate function that selects the text to display for the year
+ * @param year -- the year to display
+ * @returns {Array|*}
+ */
+InfoVis.prototype.filterAndAggregate = function(year){
+
+    var that = this;
+    var infoData = [year, that.data[year]["summary"][0]["info"]];
+
+    return infoData;
+}
 
 /*
 *
@@ -160,38 +129,13 @@ InfoVis.prototype.onSelectionChange= function (encoding, tracks, year){
 * */
 
 
-
-/**
- * The aggregate function that creates the counts for each age for a given filter.
- * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
- * @returns {Array|*}
- */
-InfoVis.prototype.filterAndAggregate = function(year){
-
-    //Dear JS hipster, a more hip variant of this construct would be:
-    // var filter = _filter || function(){return true;}
-
-    var that = this;
-
-    // create an array of values for age 0-100
-    var infoData = [year, that.data[year]["summary"][0]["info"]];
-    
-
-
-    // accumulate all values that fulfill the filter criterion
-
-    // TODO: implement the function that filters the data and sums the values
-
-
-
-    return infoData;
-
-}
-
 /**
  *  This function was borrowed from Mike Bostock.  Original code can be found at http://bl.ocks.org/mbostock/7555321
+ *  it takes the text string in that needs to be displayed and formats it to fit in the svg object as defined by
+ *  width.
+ *  @param text  -- the text to format
+ *  @param width -- the width of the svg object
  **/
-
 InfoVis.prototype.wrap = function(text,width)
 {   
     text.each(function() 
